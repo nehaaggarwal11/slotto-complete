@@ -23,55 +23,51 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Sider</h4>
+                    <h4>Pages</h4>
                     <ul>
                         <li><i class="ion-ios-arrow-right"></i> <a
-                                href="{{ route('frontend.page.privacy-policy') }}">Personvernerklæring</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.page.responsible-gaming') }}">Ansvarlig Spill</a>
+                                href="{{ route('frontend.page.privacy-policy') }}">Privacy Policy</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.page.responsible-gaming') }}">Responsible Gaming</a>
+                        </li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.page.terms') }}">Terms & Conditions</a>
                         </li>
                         <li><i class="ion-ios-arrow-right"></i> <a
-                                href="{{ route('frontend.page.terms') }}">Vilkår og Betingelser</a>
-                        </li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.sitemap-page') }}">Nettstedskart</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a
-                                href="{{ route('frontend.page.about-us') }}">Om Oss</a>
+                                href="{{ route('frontend.page.about-us') }}">About Us</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Sider</h4>
+                    <h4>Pages</h4>
                     <ul>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.casino-bonus') }}">Sammenlign nettcasino</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.new-casinos') }}">Nye casino</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.all-games') }}">Spill</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a
+                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.casino-bonus') }}">Free Spins</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.new-casinos') }}">New Slots Sites</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.all-games') }}">Free Slots</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('frontend.software') }}">Software</a></li>
+                        
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Pages</h4>
+                    <ul>
+                    <li><i class="ion-ios-arrow-right"></i> <a
                                 href="{{ route('frontend.faq') }}">FAQ</a></li>
                         <li><i class="ion-ios-arrow-right"></i> <a
-                                href="{{ route('frontend.all-news') }}">Nyheter</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Sider</h4>
-                    <ul>
+                                href="{{ route('frontend.all-news') }}">News</a></li>                    
                         <li><i class="ion-ios-arrow-right"></i> <a
-                                href="{{ route('frontend.page.general-information') }}">Generell Informasjon</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a
-                                href="{{ route('frontend.page.cookies') }}">Informasjonskapsler</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a
-                            href="{{ route('frontend.index') }}">Førsteside</a></li>
+                                href="{{ route('frontend.page.cookies') }}">Cookies</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h4>Kontakt oss</h4>
+                    <h4>Contact Us</h4>
                     <p>
                         <strong>Email:</strong> <a href="mailto:someone@example.com?Subject=Hello%20again"
-                                                   class="email-link">Info@slottomat.com</a><br>
+                                                   class="email-link">info@slottomat.com</a><br>
                     </p>
                     <div class="subscription-form">
-                        <h6>Abonner på vårt nyhetsbrev</h6>
+                        <h6>Subscribe To Our Newsletter</h6>
                         <form class="subscribeForm" action="{{ route('frontend.subscribers.subscribe') }}" method="post">
                             @csrf
                             <div class="subscribe-footer-form">
@@ -83,9 +79,9 @@
                                     <div class="form-group mt-3">
                                     <input type="checkbox" id="agree_newsletter_footer" name="agree" value="yes">
                                     <label for="agree_newsletter_footer">
-                                        Jeg aksepterer
-                                        <a href="{{ route('frontend.page.terms') }}">vilkår og betingelser </a>og
-                                        <a href="{{ route('frontend.page.privacy-policy') }}">Personvern</a>
+                                        I accept
+                                        <a href="{{ route('frontend.page.terms') }}">terms & Condition </a> and
+                                        <a href="{{ route('frontend.page.privacy-policy') }}">Privacy Policy</a>
                                     </label>
                                 </div>
                                 </div>
@@ -97,18 +93,18 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <a href="https://hjelpelinjen.no/">
+                    <a href="https://www.begambleaware.org/" target="_blank">
                         <div class="age">
-                            <img src="{{ asset('asset/frontend/img/logo/18logo.png') }}" alt="påbud skilt for atten års grense">
-                            SPILL ANSVARLIG
+                            <img src="{{ asset('asset/frontend/img/logo/18logo.png') }}" alt="a warning sign with 18+ for gambling online">
+                            Play Responsible
                         </div>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <a href="https://hjelpelinjen.no/">
+                    <a href="https://www.begambleaware.org/" target="_blank">
                         <div class="help">
-                            <img src="{{ asset('asset/frontend/img/logo/help-logo.png') }}" alt="logo til hjelpelinjen for spillavhengige">
-                            Hjelpelinjen
+                            <img src="{{ asset('asset/frontend/img/logo/gamble.png') }}" alt="help logo">
+                            Be Gamble Aware
                         </div>
                     </a>
                 </div>
@@ -131,11 +127,11 @@
 
 <!---cookies--->
 <div class="alert text-center cookiealert" role="alert">
-    <b>Vi bruker informasjonskapsler?</b> &#x1F36A; for å sikre at du får den beste opplevelsen på vår hjemmeside. <a
-        href="{{ route('frontend.page.cookies') }}" target="_blank">Ler mere</a>
+    <b>We use cookies?</b> &#x1F36A; to make sure you get the best experience on our website. <a
+        href="{{ route('frontend.page.cookies') }}" target="_blank">Read More</a>
 
     <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">
-        jeg aksepterer
+        I accept
     </button>
 </div>
 {{-- <div id="preloader"></div> --}}
@@ -152,10 +148,11 @@
 <script src="{{ asset('asset/frontend/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('asset/frontend/js/wow.min.js') }}"></script>
 <script src="{{ asset('asset/frontend/js/jquery.dd.min.js') }}"></script>
+{{--<script src="{{ asset('asset/frontend/js/jquery.nice-select.js') }}"></script>--}}
 <!-- Template Main Javascript File -->
 
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('asset/frontend/js/main.js') }}"></script>
+<script src="{{ asset('asset/frontend/js/main.js?v=1.0.0.1') }}"></script>
 <script src="{{ asset('asset/frontend/js/sort.js') }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
@@ -199,22 +196,6 @@
                     return false;
                 }
             });
-        });
-        
-        var sport = document.querySelector('.sport');
-        var casino = document.querySelector('.casino');
-        var casino_toggle = document.querySelector('.casino-toggle');
-        $(".sport-casino-tab").hide();
-        sport.addEventListener('click', () => {
-            casino_toggle.classList.add('active');
-            $(".casino-tab").hide();
-            $(".sport-casino-tab").show();
-        });
-    
-        casino.addEventListener('click', () => {
-            casino_toggle.classList.remove('active');
-            $(".sport-casino-tab").hide();
-            $(".casino-tab").show();
         });
     });
 </script>

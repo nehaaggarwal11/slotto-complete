@@ -26,22 +26,22 @@
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <a href="{{ route("frontend.sitemap-page") }}" class="btn btn-link btn-outline-light" target="_blank">View</a>
-                            <span class="input-group-text">{{ route("frontend.sitemap-page") }}</span>
-                            <a href="{{ route("frontend.sitemap-page") }}" class="btn btn-link btn-outline-light" target="_blank" download>Download</a>
+                            <a href="{{ url("sitemap.xml") }}" class="btn btn-link btn-outline-light" target="_blank">View</a>
+                            <span class="input-group-text">{{ url("sitemap.xml") }}</span>
+                            <a href="{{ url("sitemap.xml") }}" class="btn btn-link btn-outline-light" target="_blank" download>Download</a>
                         </div>
                     </div>
-                    {{--<div class="d-flex">
+                    {{-- <div class="d-flex">
                         <button class="generate_sitemap btn btn-info">Generate New Sitemap</button>
                         <span class="gs_message p-2 text-danger"></span>
-                    </div>--}}
+                    </div> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-{{--@section('scripts')
+@section('scripts')
 @parent
 <script>
     $(".generate_sitemap").click(function () {
@@ -62,4 +62,4 @@
         });
     });
 </script>
-@endsection--}}
+@endsection

@@ -5,9 +5,46 @@
     <title>{{ $data->seo_title }}</title>
     <meta content="{{ $data->seo_keyword }}" name="keywords">
     <meta content="{{ $data->seo_description }}" name="description">
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org/",
+            "@type": ["ArchiveComponent"],
+            "name": "{{ $data->heading }}"
+        },
+        {
+            "@context":"https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                @foreach($faq_questions ?? [] as $faqs)
+                    @if($loop->last)
+                        {
+                            "@type": "Question",
+                            "name": "{{ $faqs->question }}",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "{{ $faqs->question }}"
+                            }
+                        }
+                    @else
+                        {
+                            "@type": "Question",
+                            "name": "{{ $faqs->question }}",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "{{ $faqs->answer }}"
+                            }
+                        },
+                    @endif
+                @endforeach
+
+            ]
+        }
+    ]
+    </script>
 @endsection
 @section('content')
-    <section id="new-casino">
+    <section id="new-casino" class="new-casino sectionPTPB">
         <div id="background-wrap">
             <div class="x1">
                 <div class="cloud"></div>
@@ -36,70 +73,54 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="new-casino-mainheading">{{ $data->heading }}</h2>
-                    <p class="new-casino-subheading">{{ $data->sub_heading }}</p>
+                    <h1 class="skyblueh">{{ $data->heading }}</h1>
+                    <p class="skyblueh text-center">{{ $data->sub_heading }}</p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="casino-rating-headings">
-                        <h1 class="new-top-casino-heading"><img
-                                src="{{asset('asset/frontend/img/rating/star.png')}}"
-                                alt="to stjerner i gull med en liten og en stor stjerne"><span>Topp 3 Casino</span><img
-                                src="{{asset('asset/frontend/img/rating/star2.png')}}"
-                                alt="to stjerner i gull med en stor og en liten stjerne"></h1>
+                        <h2 class="skyblueh">Best New Casinos</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                @foreach($top3_casinos as $casino)
-                    <div class="col-sm-12 col-md-4 mb-2">
-                        <div class="game_table">
-                            <div class="pricing_head text-white bg_light_blue">
-                            <img src="{{ @$casino->image->url }}" alt="{{ $casino->image_alt_text }}" class="play-img">
-                            </div>
-                            <ul class="game_features">
-                                {!! $casino->content !!}
-                            </ul>
-                            <a class="game_btn btn_lightblue" href="{{ $casino->link }}" rel="nofollow">Besøk Casino</a>
+              @include('partials.staytune', compact('casinos'))
+               
+                <div class="row similar-games justify-content-md-center">
+                    <div class="col-md-12">
+                        <h2 class="skyblueh">{{ @$data->new_slots_heading }}</h2>
+                        <div class="row justify-content-center">
+                            @foreach($games ?? [] as $game)
+                                <div class="col-6 col-md-2 mb-4 game-content">
+                                    <div class="content">
+                                        <a href="{{ $game->route }}">
+                                            <img class="content-image" src="{{ $game->logo ? $game->logo->getUrl('thumb') : asset('asset/frontend/img/logo/game.png') }}" alt="{{ $game->logo_alt_text }}">
+                                            <div class="content-details fadeIn-top">
+                                            <span class="gameh5Span">Play {{ $game->name }} demo</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                @endforeach
-            </div>
-
+                </div>
+                
             <div class="row mt-30">
                 <div class="col-md-12">
-                    <div class="new-casino-detail">
+                    <div class="new-casino-detail skyblueh">
                         {!! $data->new_casino_text_less !!}
                         <div id="new-casino-more-section">
                             {!! $data->new_casino_text_more !!}
                         </div>
-                        <a id="new-casino-read-more" href="javascript:void(0);">Les
-                            Mer</a>
+                        <a class="rmore dark" id="new-casino-read-more" href="javascript:void(0);">Read More</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="row mt-30 d-none d-lg-block">
-                <div class="col-md-12">
-                    @include('partials.casino-table', compact('casinos'))
-                </div>
-            </div>
-            <div class="row rating-mobile d-block d-lg-none d-xl-none">
-                <div class="col-md-12">
-                    <div class="rating-headings">
-                        <h2 class="top-casino-heading"><img
-                                src="{{asset('asset/frontend/img/rating/star.png')}}"
-                                alt="to stjerner i gull med en liten og en stor stjerne"><span>NYE CASINO</span><img
-                                src="{{asset('asset/frontend/img/rating/star2.png')}}"
-                                alt="to stjerner i gull med en stor og en liten stjerne"></h2>
-                    </div>
-                    @include('partials.casino-table-mobile', compact('casinos'))
-                    <button class="btn btn-primary view-btn mx-auto d-block">Se Alle
-                    </button>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -127,29 +148,16 @@
     </svg>
 
     </div>
-    <section id="new-casino-content">
-        <div class="container-fluid">
-            <div class="row mt-30">
-                <div class="col-md-2">
-                    <div class="documentaion-shap-img">
-                        <img class="d-shap-img-1 casino-jelly-img wow fadeInLeft animated"
-                             data-wow-duration="1.5s" id="leftglobe"
-                             src="{{ asset('asset/frontend/img/fishes/jelly-octopus.gif')}}" alt="rød blekksprut som beveger seg"
-                             style="visibility: visible; animation-duration: 1.5s; animation-name: bounce;width:150px;">
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    {!! $data->new_online_casino_text !!}
-                </div>
-                <div class="col-md-2">
-                    <div class="documentaion-shap-img">
-                        <img class="casino-tortoise-img wow fadeInLeft animated"
-                             data-wow-duration="1.5s"
-                             src="{{ asset('asset/frontend/img/fishes/tortoise.gif')}}" alt="skillpadde i bevegelse"
-                             style="visibility: visible; animation-duration: 1.5s; animation-name: bounce;">
-                    </div>
-                </div>
+    <section id="new-casino-content" class="new-casino-content mb-5">
+    <div class="container">
+        <div class="row mt-30">
+            <div class="col-md-12">
+                {!! $data->new_online_casino_text !!}
             </div>
         </div>
+       
+    </div>
+  </div>
+
     </section>
 @endsection

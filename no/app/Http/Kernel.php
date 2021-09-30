@@ -7,11 +7,13 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     protected $middleware = [
+        \App\Http\Middleware\MultisiteRedirection::class,
         \App\Http\Middleware\TrimStrings::class,
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \ipinfo\ipinfolaravel\ipinfolaravel::class,
     ];
 
     protected $middlewareGroups = [

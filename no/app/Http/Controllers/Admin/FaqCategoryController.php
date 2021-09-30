@@ -15,7 +15,7 @@ class FaqCategoryController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('faq_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('faq_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $faqCategories = FaqCategory::all();
 
@@ -24,7 +24,7 @@ class FaqCategoryController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('faq_category_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('faq_category_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.faqCategories.create');
     }
@@ -38,7 +38,7 @@ class FaqCategoryController extends Controller
 
     public function edit(FaqCategory $faqCategory)
     {
-        abort_if(Gate::denies('faq_category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('faq_category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.faqCategories.edit', compact('faqCategory'));
     }
@@ -52,14 +52,14 @@ class FaqCategoryController extends Controller
 
     public function show(FaqCategory $faqCategory)
     {
-        abort_if(Gate::denies('faq_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('faq_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.faqCategories.show', compact('faqCategory'));
     }
 
     public function destroy(FaqCategory $faqCategory)
     {
-        abort_if(Gate::denies('faq_category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('faq_category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $faqCategory->delete();
 

@@ -10,9 +10,9 @@ use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
 use Illuminate\Http\Request;
 use Gate;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Str;
 
 class GameController extends Controller
 {
@@ -20,7 +20,7 @@ class GameController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('game_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('game_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $games = Game::all();
 
@@ -29,7 +29,7 @@ class GameController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('game_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('game_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.games.create');
     }
@@ -37,6 +37,12 @@ class GameController extends Controller
     public function store(StoreGameRequest $request)
     {
         $data = $request->all();
+        $data['countries'] = implode(',', $request->countries ?? []);
+        $data['game_category'] = json_encode($request->game_category);
+        $data['similar_games'] = json_encode($request->similar_games);
+        $data['popular_casinos'] = json_encode($request->popular_casinos);
+        $data['faqs'] = json_encode($request->faqs);
+        $data['slots'] = json_encode($request->slots);
         $data['slug'] = Str::slug($request->name);
         $game = Game::create($data);
 
@@ -57,19 +63,19 @@ class GameController extends Controller
         }
 
         return redirect()->route('admin.games.index');
-        
+
     }
 
     public function show(Game $game)
     {
-        abort_if(Gate::denies('game_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('game_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.games.show', compact('game'));
     }
 
     public function edit(Game $game)
     {
-        abort_if(Gate::denies('game_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('game_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.games.edit', compact('game'));
     }
@@ -77,6 +83,12 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game)
     {
         $data = $request->all();
+        $data['countries'] = implode(',', $request->countries ?? []);
+        $data['game_category'] = json_encode($request->game_category);
+        $data['similar_games'] = json_encode($request->similar_games);
+        $data['popular_casinos'] = json_encode($request->popular_casinos);
+        $data['faqs'] = json_encode($request->faqs);
+        $data['slots'] = json_encode($request->slots);
         $data['slug'] = Str::slug($request->name);
         $game->update($data);
 
@@ -109,7 +121,7 @@ class GameController extends Controller
 
     public function destroy(Game $game)
     {
-        abort_if(Gate::denies('game_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('game_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $game->delete();
 
@@ -125,7 +137,7 @@ class GameController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('game_create') && Gate::denies('game_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('game_create') && Gate::denies('game_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new Game();
         $model->id     = $request->input('crud_id', 0);

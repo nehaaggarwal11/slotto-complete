@@ -16,7 +16,7 @@
                     <td><span class="serial_no">{{ $cas + 1 }}</span></td>
                     <td data-order="{{ $casino->spins }}" class="note">
                         @if($casino->featured_image)
-                            <a href="{{ $casino->link }}" target="_blank" rel="nofollow">
+                            <a href="{{ $casino->link }}" class="d-print-inline-block" target="_blank" rel="nofollow">
                                 <img src="{{ $casino->featured_image->getUrl('thumb') }}" alt="{{ $casino->featured_image_alt_text }}">
                             </a>
                         @endif

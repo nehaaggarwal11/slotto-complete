@@ -8,10 +8,6 @@
     src: url('../fonts/norwester/norwester.otf');
 }
 @font-face {
-    font-family: BebasNeue Regular;
-    src: url('../fonts/bebas_neue/BebasNeue\ Regular.otf');
-}
-@font-face {
     font-family: Race1 Brannt NCV;
     src: url('../fonts/RACE1 Brannt Plus NCV.otf');
 }
@@ -958,7 +954,7 @@ video {
 .rating-mobile .rating-mobile-area .rating-mobile-content .add-review-btn {
     color: #fff;
     margin: 0px;
-    font-size: 11px;
+    font-size: 10px;
     background: teal;
     border-radius: 5px;
     padding: 4px;
@@ -1246,7 +1242,7 @@ video {
     font-size: 18px;
     font-family: Montserrat-Regular;
     line-height: 30px;
-    text-align: justify;
+    text-align: left;
 }
 
 .nav-tabs .nav-link.active {
@@ -1264,7 +1260,7 @@ video {
     font-size: 18px;
     font-family: Montserrat-Regular;
     line-height: 30px;
-    text-align: justify;
+    text-align: left;
     margin: 10px 0px 0px;
 }
 
@@ -1273,7 +1269,7 @@ video {
     font-size: 18px;
     font-family: Montserrat-Regular;
     line-height: 30px;
-    text-align: justify;
+    text-align: left;
     margin: 10px 0px 0px;
 }
 
@@ -1468,7 +1464,7 @@ video {
     width: 50%;
     height: 69%;
     content: '';
-    background: url(../img/background/shape.png) no-repeat center center/cover;
+    /*background: url(../img/background/shape.png) no-repeat center center/cover;*/
 }
 
 .wagering-sec {
@@ -1504,7 +1500,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 #wagering-more-section {
@@ -1545,7 +1541,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 .new-casino-detail ul li {
@@ -1566,7 +1562,7 @@ video {
 }
 
 .game_table {
-    background: url(../img/background/table-bg.png) no-repeat center center/cover;
+    /*background: url(../img/background/table-bg.png) no-repeat center center/cover;*/
     position: relative;
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -1595,7 +1591,7 @@ video {
 
 .game_features li {
     padding-top: 15px;
-    text-align: justify;
+    text-align: left;
     color: #fff;
     font-size: 18px;
     font-family: Montserrat-Regular;
@@ -1669,7 +1665,7 @@ video {
 # Find Casino Section
 --------------------------------------------------------------*/
 .find-casino-sec {
-    background: url(../img/background/bg6.png);
+    /*background: url(../img/background/bg6.png);*/
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #0b014a;
@@ -1681,7 +1677,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 .find-casino-detail ul li {
@@ -1728,7 +1724,7 @@ video {
     width: 50%;
     height: 69%;
     content: '';
-    background: url(../img/background/shape.png) no-repeat center center/cover;
+    /*background: url(../img/background/shape.png) no-repeat center center/cover;*/
     z-index: 1;
 }
 
@@ -1739,7 +1735,7 @@ video {
     width: 50%;
     height: 56%;
     content: '';
-    background: url(../img/background/shape2.png) no-repeat center center/cover;
+    /*background: url(../img/background/shape2.png) no-repeat center center/cover;*/
 }
 
 .mobile-casino-sec {
@@ -1754,7 +1750,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 #mobile-casino-more-section {
@@ -1793,8 +1789,8 @@ video {
 }
 
 .slot-machine-sec {
-    /* background-image: radial-gradient(50% 50%, #070086 0%, #050069 37%, #02004b 87%); */
-    background: url('../img/background/pattern.png');
+    /* background-image: radial-gradient(50% 50%, #070086 0%, #050069 37%, #02004b 87%);
+    background: url('../img/background/pattern.png'); */
     background-color: #0b014b;
     padding: 80px 80px 0px 80px;
 }
@@ -1805,7 +1801,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 #slot-machine-more-section {
@@ -1863,7 +1859,7 @@ video {
     width: 50%;
     height: 69%;
     content: '';
-    background: url(../img/background/shape.png) no-repeat center center/cover;
+    /*background: url(../img/background/shape.png) no-repeat center center/cover;*/
     z-index: 1;
 }
 
@@ -1874,7 +1870,7 @@ video {
     width: 50%;
     height: 56%;
     content: '';
-    background: url(../img/background/shape2.png) no-repeat center center/cover;
+    /*background: url(../img/background/shape2.png) no-repeat center center/cover;*/
 }
 
 .blog-sec {
@@ -1889,7 +1885,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 .single-blog {
@@ -1969,7 +1965,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 .faq-accordion {
@@ -2004,7 +2000,7 @@ video {
 }
 
 .panel-body p {
-    text-align: justify;
+    text-align: left;
     color: #fff;
     font-size: 18px;
     font-family: Montserrat-Regular;
@@ -2036,7 +2032,7 @@ video {
     width: 50%;
     height: 56%;
     content: '';
-    background: url(../img/background/shape2.png) no-repeat center center/cover;
+    /*background: url(../img/background/shape2.png) no-repeat center center/cover;*/
 }
 
 /*--------------------------------------------------------------
@@ -2305,7 +2301,7 @@ video {
     font-size: 14px !important;
     font-family: Montserrat-Regular;
     line-height: 30px;
-    text-align: justify;
+    text-align: left;
     margin: 10px 0px 0px;
 }
 
@@ -2342,7 +2338,7 @@ video {
     font-size: 14px;
     font-weight: bold;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -2351,7 +2347,7 @@ video {
     font-size: 14px;
     font-weight: bold;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
     height: 95px;
@@ -2359,7 +2355,7 @@ video {
 .news-blog-title
 {
     text-align: center;
-    height: 50px;
+    height: 70px;
 }
 
 .news-blog-title a {
@@ -2952,7 +2948,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 .boat-animation {
@@ -3037,7 +3033,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 #new-casino .new-casino-detail ul li {
@@ -3046,7 +3042,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 10px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 .new-top-casino-heading {
@@ -3094,12 +3090,12 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 40px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 #new-casino-content ul li {
     color: #fff;
-    text-align: justify;
+    text-align: left;
 }
 
 #new-casino-content ul li span {
@@ -3150,7 +3146,7 @@ video {
 }
 
 #games-new-section .game-top-banner {
-    background: url(../img/banners/games.png) no-repeat center center / cover;
+   /* background: url(../img/banners/games.png) no-repeat center center / cover;*/
     position: relative;
     z-index: 1;
     width: 100%;
@@ -3533,7 +3529,7 @@ video {
 }
 
 #single-game-section .game-top-banner {
-    background: url(../img/banners/games.png) no-repeat center center / cover;
+ /*   background: url(../img/banners/games.png) no-repeat center center / cover;*/
     position: relative;
     z-index: 1;
     width: 100%;
@@ -3690,7 +3686,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 40px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 .play-game-content ul li {
@@ -3751,7 +3747,7 @@ video {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 40px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 
 #single-news-section .entry-content p a{
@@ -3759,7 +3755,7 @@ video {
     font-size: 18px;
     font-family: Montserrat-Regular;
     line-height: 30px;
-    text-align: justify;
+    text-align: left;
 }
 
 #single-news-section .entry-content ul li {
@@ -3767,7 +3763,7 @@ video {
     font-size: 18px;
     font-family: Montserrat-Regular;
     line-height: 30px;
-    text-align: justify;
+    text-align: left;
 }
 
 #single-news-section .entry-content ul li a {
@@ -3775,7 +3771,7 @@ video {
     font-size: 18px;
     font-family: Montserrat-Regular;
     line-height: 30px;
-    text-align: justify;
+    text-align: left;
 }
 #single-news-section .section-comment {
     padding-top: 0px;
@@ -4104,7 +4100,7 @@ div#newsletterModal {
     font-size: 14px;
     font-weight: bold;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4113,7 +4109,7 @@ div#newsletterModal {
     font-size: 14px;
     font-weight: bold;
     color: #da1f15;
-    text-align: justify;
+    text-align: left;
     position: relative;
 }
 
@@ -4154,7 +4150,7 @@ div#newsletterModal {
 #privacy-section-page p {
     font-size: 16px;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4163,7 +4159,7 @@ div#newsletterModal {
     font-size: 16px;
     font-weight: bold;
     color: #da1f15;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4171,7 +4167,7 @@ div#newsletterModal {
 #privacy-section-page ul li {
     font-size: 16px;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4197,7 +4193,7 @@ div#newsletterModal {
 #terms-section-page p {
     font-size: 14px;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4222,7 +4218,7 @@ div#newsletterModal {
     font-size: 16px;
     font-weight: bold;
     color: #da1f15;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4230,7 +4226,7 @@ div#newsletterModal {
 #terms-section-page ul li , ol li {
     font-size: 16px;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4272,7 +4268,7 @@ div#newsletterModal {
 #general-section-page p {
     font-size: 16px;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4281,7 +4277,7 @@ div#newsletterModal {
     font-size: 16px;
     font-weight: bold;
     color: #da1f15;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4289,7 +4285,7 @@ div#newsletterModal {
 #general-section-page ul li {
     font-size: 16px;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4323,7 +4319,7 @@ div#newsletterModal {
 #responsible-section-page p {
     font-size: 16px;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4331,7 +4327,7 @@ div#newsletterModal {
 #responsible-section-page a {
     font-size: 16px;
     color: #da1f15;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4408,7 +4404,7 @@ div#newsletterModal {
     font-size: 14px;
     font-weight: bold;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4443,7 +4439,7 @@ div#newsletterModal {
 #cookie-section-page ul li {
     font-size: 16px;
     color: #fff;
-    text-align: justify;
+    text-align: left;
     position: relative;
     padding-bottom: 12px;
 }
@@ -4667,7 +4663,7 @@ div#newsletterModal {
 .casino-tabs { border-bottom: none; }
 .casino-tabs li a { background: #663332;font-weight: bold;font-size: 18px; }
 .casino-tabs li a.active { color: #f8f9fa;background-color: #3d1d1e !important;border-color: #3d1d1e #3d1d1e #3d1d1e !important;font-weight: bold;font-size: 18px; }
-.sport-casino-sec { color: #fff;font-size: 18px;font-family: Montserrat-Regular;line-height: 30px;margin: 10px 0px 0px;text-align: justify; }
+.sport-casino-sec { color: #fff;font-size: 18px;font-family: Montserrat-Regular;line-height: 30px;margin: 10px 0px 0px;text-align: left; }
 .sports-casinos { border-collapse: collapse;border-radius: 40px;color:#fff; }
 .sports-casinos thead tr { background: #2495D7;border-radius: 50px;padding-top: 10px;padding-bottom: 10px; }
 .sports-casinos tr th { white-space: nowrap; }
@@ -4680,7 +4676,7 @@ div#newsletterModal {
 .sports-casinos .blue { background-color: #f9a500;box-shadow: 0px 5px 0px 0px #ae780f; }
 .sports-casinos h6 { color: #FFC107;margin: 0px;font-size: 18px;font-weight: 500; }
 .sports-casinos  p { color: #fff;margin: 0px;font-size: 16px; }
- .sport-casino-detail p { color: #fff;line-height: 30px;margin: 10px 0px 0px;text-align: justify; }
+ .sport-casino-detail p { color: #fff;line-height: 30px;margin: 10px 0px 0px;text-align: left; }
 .sports-casinos .bonus-span { color: #fff;margin: 0px;font-size: 16px; }
 .sports-casinos .add-review-btn { color: #fff;margin: 0px;font-size: 16px;background: teal;border-radius: 5px;padding: 0;width: 146px; }
 .sport-mobile-area { padding: 10px;background: linear-gradient(90deg, #3E7FFF 70%, #1D4283 30%);border-top-left-radius: 10px;border-top-right-radius: 10px; }
@@ -4959,6 +4955,13 @@ div#newsletterModal {
 .sport-bonus .bonus-amount {
     margin-top: 5px;
 }
+.sport-mobile-collapsed{
+    margin-bottom: 20px;
+}
+.sports-casinos .sport-featured-img {
+    border-radius: 5px;
+    width: 150px;
+}
 /*--------------------------------------------------------------
 # Responsive Media Queries
 --------------------------------------------------------------*/
@@ -5105,6 +5108,7 @@ div#newsletterModal {
     .section-title-item .section-title {
         margin-top:100px;
         margin-bottom: 20px;
+        font-size: 30px;
     }
     .hvordan-title
     {
@@ -5531,7 +5535,9 @@ div#newsletterModal {
     .sport-bonus, .sport-casino-btn {
         width: auto;
     }
-    
+    .about-col h3 {
+        font-size: 30px;
+    }   
 
 }
 
@@ -6076,7 +6082,7 @@ div#newsletterModal {
     font-family: Montserrat-Regular;
     line-height: 30px;
     margin: 40px 0px 0px;
-    text-align: justify;
+    text-align: left;
 }
 figcaption {
     color: #fff;

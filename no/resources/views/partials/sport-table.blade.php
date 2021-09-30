@@ -13,13 +13,13 @@
             </tr>
             </thead>
             <tbody>
-             @foreach($sports as $sp => $sport)
+             @foreach($games as $sp => $sport)
                 <tr>
                     <td><span class="serial_no">{{ $sp + 1 }}</span></td>
                     <td data-order="{{ $sport->spins }}" class="note">
-                        @if($sport->featured_image)
-                            <a href="{{ $sport->link }}" target="_blank">
-                                <img src="{{ $sport->featured_image->getUrl('thumb') }}" alt="{{ $sport->featured_image_alt_text }}">
+                        @if($sport->logo)
+                            <a href="{{ $sport->link }}" target="_blank" class="d-print-inline-block">
+                                <img src="{{ $sport->logo->getUrl('thumb') }}" alt="{{ $sport->featured_image_alt_text }}" class="sport-featured-image">
                             </a>
                         @endif
                     </td>

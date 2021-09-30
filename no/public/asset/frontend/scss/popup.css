@@ -1,0 +1,464 @@
+.gamepop .modal-content{
+    background:0 0;
+    box-shadow:0 0 7px 2px #2114f1;
+    border-radius:16px
+}
+.gamepop .modal-body{
+    background:#191733 url(../img/popup/bg.jpg) no-repeat;
+    background-size:cover;
+    background-position:top left;
+    background-attachment:fixed;
+    border-radius:15px;
+    overflow:hidden
+}
+.twinkling{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#ff000000 url(../img/d.png) repeat top center;
+    -webkit-animation:twink 200s linear infinite;
+    animation:twink 200s linear infinite
+}
+@-webkit-keyframes twink{
+    from{
+        background-position:0 0
+    }
+    to{
+        background-position:-10000px 5000px
+    }
+}
+@keyframes twink{
+    from{
+        background-position:0 0
+    }
+    to{
+        background-position:-10000px 5000px
+    }
+}
+.pop-box{
+    width:-webkit-max-content;
+    width:-moz-max-content;
+    width:100%;
+    padding:2rem 2rem 0;
+    border-radius:6px;
+    position:relative;
+    overflow:hidden;
+    margin:0 auto;
+    z-index:1
+}
+.pop-box:hover span{
+    background:linear-gradient(90deg,transparent,#fff)!important
+}
+.pop-box span{
+    position:absolute;
+    display:none
+}
+.pop-box span:nth-child(1){
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#d7ac4e);
+    -webkit-animation:animate1 1s linear infinite;
+    animation:animate1 1s linear infinite
+}
+@-webkit-keyframes animate1{
+    0%{
+        left:-100%
+    }
+    100%,50%{
+        left:100%
+    }
+}
+@keyframes animate1{
+    0%{
+        left:-100%
+    }
+    100%,50%{
+        left:100%
+    }
+}
+.pop-box span:nth-child(2){
+    top:-100px;
+    right:0;
+    width:2px;
+    height:100%;
+    background:linear-gradient(180deg,transparent,#d7ac4e);
+    -webkit-animation:animate2 1s linear infinite;
+    animation:animate2 1s linear infinite;
+    -webkit-animation-delay:.25s;
+    animation-delay:.25s
+}
+@-webkit-keyframes animate2{
+    0%{
+        top:-100%
+    }
+    100%,50%{
+        top:100%
+    }
+}
+@keyframes animate2{
+    0%{
+        top:-100%
+    }
+    100%,50%{
+        top:100%
+    }
+}
+.pop-box span:nth-child(3){
+    bottom:0;
+    right:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(270deg,transparent,#d7ac4e);
+    -webkit-animation:animate3 1s linear infinite;
+    animation:animate3 1s linear infinite;
+    -webkit-animation-delay:.5s;
+    animation-delay:.5s
+}
+@-webkit-keyframes animate3{
+    0%{
+        right:-100%
+    }
+    100%,50%{
+        right:100%
+    }
+}
+@keyframes animate3{
+    0%{
+        right:-100%
+    }
+    100%,50%{
+        right:100%
+    }
+}
+.pop-box span:nth-child(4){
+    bottom:-100%;
+    left:0;
+    width:2px;
+    height:100%;
+    background:linear-gradient(360deg,transparent,#d7ac4e);
+    -webkit-animation:animate4 1s linear infinite;
+    animation:animate4 1s linear infinite;
+    -webkit-animation-delay:.75s;
+    animation-delay:.75s
+}
+@-webkit-keyframes animate4{
+    0%{
+        bottom:-100%
+    }
+    100%,50%{
+        bottom:100%
+    }
+}
+@keyframes animate4{
+    0%{
+        bottom:-100%
+    }
+    100%,50%{
+        bottom:100%
+    }
+}
+.close-pop button{
+    font-size:14px;
+    color:#fff;
+    border:0;
+    padding:0;
+    outline:0;
+    background:0 0
+}
+.close-pop button:active,.close-pop button:focus{
+    outline:0
+}
+.provider-logo img{
+    max-width:200px;
+    border-radius:7px
+}
+.provider-name h3{
+    font-size: 36px;
+    font-weight: 600;
+    color:#fff;
+    text-transform:uppercase;
+    font-family: sans-serif;
+    letter-spacing: -2px;
+    text-shadow:0 0 20px rgba(255,255,255,.68)
+}
+.game-decs p{
+    font-size:20px;
+    line-height:normal;
+    color:#fff;
+    text-align:center;
+    margin:0 0 30px
+}
+.action{
+    margin-bottom:200px
+}
+.action *{
+    margin:0;
+    padding:0;
+    font-family:"Londrina Shadow",cursive;
+    text-decoration:none
+}
+.agree{
+    color:#1dcb1a;
+    text-shadow:0 0 13px #1dcb1a88,0 0 15px #1dcb1a88;
+    font-size:2em;
+    -webkit-animation:animate 1s infinite;
+    animation:animate 1s infinite;
+    border:2px solid
+}
+.agree:hover{
+    -webkit-animation:animatee 1s infinite;
+    animation:animatee 1s infinite;
+    background:#1dcb1a;
+    text-shadow:0 0 13px #fff,0 0 15px #1dcb1a;
+    color:#fff;
+    box-shadow:0 0 5px #1dcb1a,0 0 25px #1dcb1a,0 0 50px #1dcb1a,0 0 200px #1dcb1a
+}
+.decline{
+    color:#d83838;
+    text-shadow:0 0 13px #d8383888,0 0 15px #d8383888;
+    font-size:2em;
+    border:2px solid
+}
+.decline:hover{
+    background:#d83838;
+    text-shadow:0 0 13px #fff,0 0 15px #d83838;
+    color:#fff;
+    box-shadow:0 0 5px #d83838,0 0 25px #d83838,0 0 50px #d83838,0 0 200px #d83838
+}
+.cta a{
+    position:relative;
+    border-radius:7px;
+    overflow:hidden;
+    display:inline-block;
+    padding:5px 15px;
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin:0 25px
+}
+@-webkit-keyframes animate{
+    0%{
+        opacity:0
+    }
+    20%{
+        opacity:1
+    }
+    30%{
+        opacity:0
+    }
+    100%{
+        opacity:1
+    }
+}
+@keyframes animate{
+    0%{
+        opacity:0
+    }
+    20%{
+        opacity:1
+    }
+    30%{
+        opacity:0
+    }
+    100%{
+        opacity:1
+    }
+}
+.wf-wrap{
+    background-color:#1470cc;
+    position:absolute;
+    width:100%;
+    height:100px;
+    left:0;
+    bottom:0
+}
+.wf-wrap .wf{
+    background:url(../img/popup/wf.png);
+    background-attachment:fixed;
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    transform-box:fill-box;
+    -webkit-animation:wf 10s linear infinite;
+    animation:wf 10s linear infinite
+}
+@-webkit-keyframes wf{
+    from{
+        background-position:0 0
+    }
+    to{
+        background-position:-100% 0
+    }
+}
+@keyframes wf{
+    from{
+        background-position:0 0
+    }
+    to{
+        background-position:-100% 0
+    }
+}
+.land-wrap{
+    position:absolute;
+    left:0;
+    bottom:20px;
+    width:100%
+}
+.cloud-wrap{
+    position:absolute;
+    top:5px;
+    left:0;
+    width:100%;
+    padding:0 10px;
+    z-index:1;
+    transition:all ease-in-out 5s;
+    -webkit-animation:cloud 20s linear infinite;
+    animation:cloud 20s linear infinite
+}
+@-webkit-keyframes cloud{
+    from{
+        transform:translateX(100%)
+    }
+    to{
+        transform:translateX(-120%)
+    }
+}
+@keyframes cloud{
+    from{
+        transform:translateX(100%)
+    }
+    to{
+        transform:translateX(-120%)
+    }
+}
+.moon-wrap{
+    position:absolute;
+    top:10px;
+    right:50px
+}
+.moon-wrap .moon{
+    width:100px;
+    height:100px;
+    border-radius:100%;
+    background:linear-gradient(209deg,#080532,#f3f3ff 0);
+    box-shadow:0 0 20px -2px #fff,0 0 5px -2px #07052f
+}
+.treasure-box{
+    position:absolute;
+    bottom:50px;
+    right:10px
+}
+.treasure-box .t-box{
+    max-width:150px
+}
+.treasure-box .cin{
+    position:absolute;
+    bottom:0;
+    left:0
+}
+.caracter-wrap{
+    position:absolute;
+    bottom:100px;
+    left:0
+}
+.clos{
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index:3
+}
+.clos img{
+    max-width:25px
+}
+.caracter-wrap img{
+    max-width:135px
+}
+.casino-moon-wrap{
+    left:10%
+}
+.casino-close-btn{
+    display:-webkit-inline-box
+}
+.read-review-arrow{
+    animation:slide1 1s ease-in-out infinite;
+    margin-right:15px;
+    margin-left:4px;
+    color:#fff
+}
+@keyframes slide1{
+    0%,100%{
+        transform:translate(0,0)
+    }
+    50%{
+        transform:translate(10px,0)
+    }
+}
+@media (max-width:767px){
+    .pop-box{
+        width:100%
+    }
+    .provider-name h3{
+        font-size:30px!important
+    }
+    .game-decs p{
+        font-size:22px!important
+    }
+    .casino-moon-wrap{
+        left:10%
+    }
+    .cta a{
+        margin:0 5px!important
+    }
+}
+@media (max-width:992px) and (min-width:577px){
+    .action{
+        margin-bottom:310px
+    }
+    .caracter-wrap{
+        bottom:70px
+    }
+    .provider-name h3{
+        font-size:30px!important
+    }
+    .game-decs p{
+        font-size:22px!important
+    }
+    .casino-moon-wrap{
+        left:10%
+    }
+}
+@media (max-width:576px){
+    .cloud-wrap{
+        top:30px
+    }
+    .provider-name h3{
+        font-size:50px
+    }
+    .game-decs p{
+        font-size:25px
+    }
+    .cta{
+        margin-bottom:20px
+    }
+    .wf-wrap{
+        height:50px
+    }
+    .treasure-box{
+        bottom:40px
+    }
+    .treasure-box .t-box{
+        max-width:100px
+    }
+    .caracter-wrap{
+        bottom:60px
+    }
+    .caracter-wrap img{
+        max-width:150px
+    }
+}

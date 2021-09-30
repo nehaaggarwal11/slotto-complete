@@ -1,0 +1,1333 @@
+.sectionMTMB{
+    margin:80px 0;
+}
+.sectionPTPB{
+    padding:80px 0
+}
+.section-padding{
+    padding:60px 0
+}
+.text-orange{
+    color:orange
+}
+.btn{
+    border-radius:50px;
+    padding:7px 22px;
+    font-size:18px;
+    text-decoration:none;
+    color:#fff;
+    position:relative;
+    display:inline-block
+}
+.btn:active{
+    transform:translate(0,5px);
+    -webkit-transform:translate(0,5px);
+    box-shadow:0 1px 0 0
+}
+.purbox{
+    padding:20px;
+    border-radius:10px;
+    background-color:#530a86;
+    color:#fff
+}
+#game-new-section .search-widget,#news-section,#news-section .search-bar,#newsletterModal .modal-content .form-group label,#single-news-section,.blog-and-faq-area,.casino-widget,.checkbox-list .form-group label,.game-banner-content,.mobile-and-slot-machine-area,.note,.provider-container,.softwaresearch .search-bar,.submarine-img,.wagering-and-token-area{
+    position:relative
+}
+#newsletterModal .modal-content .form-group label,.checkbox-list .form-group label,.search-bar .search:hover,.search-bar input:hover{
+    cursor:pointer
+}
+.search-bar .search::after,.search-bar .search::before,.static-page .background-wrap,.wagering-and-token-area:after{
+    content:"";
+    position:absolute;
+    right:0;
+    bottom:0;
+    margin:auto
+}
+#games-new-section .search-filters,.popular_casino_row,.similar-games{
+    margin-top:40px
+}
+#newsletterModal .modal-content .form-group input,.checkbox-list .form-group input,.section-reply-form input[type=checkbox]{
+    padding:0;
+    height:initial;
+    width:initial;
+    margin-bottom:0;
+    display:none;
+    cursor:pointer
+}
+#newsletterModal .modal-content .form-group label:before,.checkbox-list .form-group label:before,.section-reply-form #accept-label:before{
+    content:"";
+    -webkit-appearance:none;
+    background-color:transparent;
+    border:2px solid #da2015;
+    box-shadow:0 1px 2px rgba(0,0,0,.05),inset 0 -15px 10px -12px rgba(0,0,0,.05);
+    padding:7px;
+    display:inline-block;
+    position:relative;
+    vertical-align:middle;
+    cursor:pointer;
+    margin-right:5px
+}
+#newsletterModal .modal-content .form-group input:checked+label:after,.checkbox-list .form-group input:checked+label:after{
+    top:2px;
+    left:9px;
+    width:6px;
+    height:14px;
+    border:solid #0079bf
+}
+#newsletterModal .modal-content .form-group input:checked+label:after,.checkbox-list .form-group input:checked+label:after,.section-reply-form #accept-label:after{
+    content:"";
+    display:block;
+    position:absolute;
+    border-width:0 2px 2px 0!important;
+    transform:rotate(45deg)
+}
+#site-map-section ul{
+    display:none;
+    width:100%;
+    margin:5px 0 30px 0;
+    padding:0;
+    columns:5;
+    -webkit-columns:5;
+    -moz-columns:5
+}
+#site-map-section ul li{
+    text-align:center;
+    margin:6px 0;
+    display:inline-block;
+    width:100%;
+    border:1px dashed #fff
+}
+#site-map-section ul li a{
+    color:#fff;
+    display:inline-block;
+    width:100%;
+    padding:5px
+}
+#site-map-section ul li a:hover{
+    background-color:rgb(255 255 255 / 30%)
+}
+#site-map-section h4.sphead{
+    background-color:#530a86;
+    padding:10px 15px;
+    border-radius:5px;
+    margin:0 0 10px 0
+}
+#site-map-section h4.sphead,#site-map-section h4.sphead a{
+    color:#fff
+}
+#site-map-section h4.sphead i.fas{
+    float:right;
+    font-size:18px;
+    margin:6px;
+    cursor:pointer
+}
+#site-map-section h4.sphead a:hover,#site-map-section h4.sphead i.fas:hover{
+    color:#e6423a
+}
+#casino-bonuse,#new-casino{
+    position:relative;
+    background:#42bdf4
+}
+#background-wrap{
+    bottom:0;
+    left:0;
+    padding-top:100px;
+    position:absolute;
+    right:0;
+    top:0;
+    z-index:0
+}
+img.newcasi{
+    width:150px;
+    max-width:100%
+}
+#newHeader *{
+    display:inline-block!important
+}
+.newHeader{
+    text-align:center;
+    padding:60px 0 20px 0;
+    background-color:#000!important;
+    background-repeat:no-repeat;
+    background-image:url(../img/background/bannerbg.png),linear-gradient(#1b1b1b,#000)
+}
+.newHeader img{
+    border:2px solid #fff;
+    margin:0 15px 0 0;
+    padding:5px
+}
+#newHeader h1{
+    margin:25px 0
+}
+#games-new-section .newHeader:before{
+    background:linear-gradient(199deg,rgb(0 0 0 / 90%) 15%,rgb(0 0 0 / 78%) 65%,rgb(0 0 0 / 90%) 85%);
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    height:302px;
+    width:100%;
+    border-radius:.3125rem .3125rem 0 0
+}
+.cBreadcrumb{
+    padding:28px 0 0
+}
+.cBreadcrumb span{
+    float:left;
+    list-style:none;
+    color:#fff;
+    text-transform:capitalize
+}
+.cBreadcrumb a{
+    color:#da1f15;
+    text-decoration:none
+}
+.cBreadcrumb span::before{
+    content:"/";
+    margin:0 10px;
+    font-size:16px;
+    font-weight:600;
+    color:#fff
+}
+.cBreadcrumb span:first-child::before{
+    content:none
+}
+.cBreadcrumb a:hover{
+    text-decoration:underline;
+    color:#fff
+}
+.search-bar{
+    width:350px;
+    max-width:100%
+}
+.search-bar input{
+    color:#fff;
+    background:#3e70ff;
+    border:5px solid #3325d9;
+    padding:15px;
+    float:left;
+    width:100%;
+    height:55px;
+    border-radius:10px
+}
+.search-bar .search{
+    position:absolute;
+    right:0;
+    border-radius:0 10px 10px 0;
+    height:55px;
+    z-index:9;
+    width:60px;
+    box-shadow:0 0 25px 0 rgb(0 0 0 / 40%);
+    background:#3325d9
+}
+.search-bar .search::before{
+    top:22px;
+    left:22px;
+    width:12px;
+    height:2px;
+    background:#fff;
+    transition:all .5s;
+    transform:rotate(45deg)
+}
+.search-bar .search::after{
+    top:-5px;
+    left:-5px;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    transition:all .5s;
+    border:2px solid #fff
+}
+.search-bar input::placeholder{
+    color:#fff;
+    opacity:.5;
+    font-weight:bolder
+}
+.softwareCard .content{
+    background-image:linear-gradient(#ffb300,#f23227);
+    padding:15px
+}
+.softwareCard .col-6:nth-child(2n) .content{
+    background-image:linear-gradient(#5d9fed,#9220d7)
+}
+.softwareCard .col-6:nth-child(3n) .content{
+    background-image:linear-gradient(#fd98dc,#fc1f40)
+}
+.softwareCard .col-6:nth-child(4n) .content{
+    background-image:linear-gradient(#2ced7a,#0a8cc6)
+}
+.softwareCard .content a,img.gamelogo{
+    background-image:linear-gradient(#000,#2d2d2d);
+    background-color:#000;
+    box-shadow:6px 6px 5px #020202
+}
+.softwareCard .content a:hover{
+    background-image:linear-gradient(#2d2d2d,#000)
+}
+.softwareCard .content a{
+    display:inline-block;
+    width:100%;
+    padding:12px
+}
+.softgames{
+    border-top:2px solid #eed274;
+    border-bottom:2px solid #eed274;
+    padding:15px;
+    background-color:#100261;
+    text-align:center
+}
+.softgames .gamesb{
+    display:inline-block;
+    width:135px;
+    margin:0 10px
+}
+.softgames .head{
+    display:inline-block;
+    width:auto;
+    vertical-align:top
+}
+.softgames .head img{
+    max-width:100%
+}
+.conclusion{
+    border-left:60px solid #530a86;
+    position:relative
+}
+.conclusion .head{
+    letter-spacing:8px;
+    text-transform:uppercase;
+    color:#fff;
+    font-size:30px;
+    line-height:60px;
+    font-weight:700;
+    position:absolute;
+    top:20px;
+    left:-60px;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg)
+}
+.conclusion p{
+    background-color:#5140b3;
+    margin:0!important;
+    padding:15px
+}
+.conclusion p:nth-of-type(2n){
+    background-color:#4c437d
+}
+#gameNewSection{
+    background:#5140b3;
+    display:block;
+    font-size:14px
+}
+#gameNewSection ul{
+    padding:0 2%
+}
+#gameNewSection img{
+    vertical-align:inherit;
+    margin:0 0 5px;
+    border:2px Solid #fbe48a;
+    box-shadow:1px 0 12px 6px #00000036
+}
+#gameNewSection li{
+    width:100px;
+    word-wrap:break-word;
+    display:inline-block;
+    vertical-align:middle;
+    position: relative;
+    margin:0 8px
+}
+#single-game-section p{
+  text-align: justify;
+}
+.scrol{
+    height:500px;
+    overflow-y:scroll;
+    overflow-x:hidden
+}
+.gameContent{
+    width:100%;
+    display:inline-block
+}
+.gameContent ul{
+    margin:10px auto
+}
+.gameContent:nth-child(odd),table tbody tr:nth-of-type(even){
+    background:rgba(0,0,0,.2)!important
+}
+#gameNewSection .readLess{
+    display:none
+}
+.gameHeader,table thead{
+    background:#530a86;
+    padding:10px 0;
+    font-weight:600
+}
+.gameHeader li span{
+    display:block;
+    font-size:10px
+}
+.gameContent .splbtns{
+    padding:0;
+    line-height:40px;
+    height:40px;
+    font-size:10px;
+    font-weight:400;
+    width:100%
+}
+.imgLi div{
+    position:absolute;
+    top:10px;
+    width:500px;
+    left:calc(100% + 20px);
+    text-align:left;
+    font-size:14px;
+    color:#fbe48a;
+    font-weight:600
+}
+ul.spcheckn li{
+    background-image:url(/asset/frontend/img/slot/check.png);
+    background-size:30px auto;
+    background-repeat:no-repeat;
+    padding:0 10px 12px 40px;
+    min-height:32px;
+    margin-bottom:6px
+}
+.game-frame{
+    width:100%;
+    height:500px
+}
+#newTable sub{
+    display:block;
+    font-size:10px
+}
+#newTable li{
+    display:inline-block
+}
+#newTable .tablehead{
+    background:#641e9b;
+    color:#fff;
+    font-weight:600
+}
+#newTable .tablebody{
+    margin-top:-9px;
+    color:#0b004b;
+    background:linear-gradient(#fff6e5,#ffda91)
+}
+#newTable li .tLi{
+    float:left;
+    width:155px;
+    padding:12px 0;
+    border:2px groove #0b004b;
+    font-size: 14px;
+    margin-left:-2px
+}
+#newTable #single-game-table{
+    padding:0;
+    margin:0
+}
+.filter{
+    position:static;
+    box-sizing:border-box;
+    transition:margin .2s cubic-bezier(.25,.46,.45,.94);
+    margin-top:0;
+    background:#d49844;
+    border-radius:8px
+}
+.vertical-filters{
+    position:relative;
+    padding:14px 0 15px 25px;
+    background:#da2015;
+    border-radius:8px 8px 0 0
+}
+.vertical-filters span{
+    color:#fff;
+    font-size:14px;
+    font-weight:700
+}
+.vertical-filters-filters{
+    padding:20px 0 15px 25px;
+    border-top:none;
+    background-image:linear-gradient(#f9e086,#b59f4d);
+    border-radius:0
+}
+.filter .vertical-filters-filters:nth-child(2n){
+    background-color:#eabf60;
+    background-image:none
+}
+.vertical-filters-header{
+    font-weight:600;
+    text-transform:uppercase;
+    font-size:14px;
+    margin:0 0 20px 0;
+    clear:both;
+    color:#000;
+    display:block
+}
+.vertical-filters-header:after{
+    display:block;
+    position:absolute;
+    content:"";
+    height:2px;
+    left:27px;
+    width:60px;
+    background:#da2015
+}
+.vertical-filters-header i.fa.fa-chevron-down{
+    color:#da2015
+}
+#providerCollapse .form-group{
+    display:block;
+    margin-bottom:15px
+}
+.provider-container ul{
+    list-style:none;
+    padding-left:15px
+}
+.checkbox-list{
+    padding-left:0!important
+}
+.provider-container li{
+    font-size:14px;
+    margin-bottom:7px
+}
+.rtp-label{
+    color:#000;
+    font-size:14px;
+    padding-left:4px
+}
+.rtp-label input:checked~.common-radioIndicator:before{
+    transform:rotate(-90deg);
+    border-color:#da2015;
+    visibility:visible;
+    background:#da2015;
+    box-shadow:inset 0 0 0 3px #fff
+}
+.reset-filter{
+    color:#fff;
+    font-size:13px;
+    margin-right:15px;
+    margin-top:2px
+}
+.common-radioIndicator{
+    box-sizing:border-box;
+    position:relative;
+    top:-23px;
+    left:-23px
+}
+.common-radioIndicator:before{
+    content:"";
+    position:absolute;
+    top:4px;
+    z-index:1;
+    width:16px;
+    height:16px;
+    border:2px solid red;
+    border-radius:50%;
+    visibility:visible;
+    display:inline-block;
+    vertical-align:middle;
+    padding:2px;
+    text-align:center
+}
+.rtp-label input{
+    margin:0 16px 0 0;
+    visibility:hidden
+}
+.checkbox-list .form-group label{
+    color:#000;
+}
+#casino-bonuse h1,.skyblueh,.skyblueh .dark li,.skyblueh p,h1.new-top-casino-heading,h2.new-casino-mainheading{
+    color:#0b004b
+}
+p.heitext{
+    font-size:20px;
+    font-weight:600;
+    text-transform:uppercase;
+    color:#00fcff
+}
+p.redc{
+    color:#e6423a
+}
+ul.spcheckn.dark li{
+    background-image:url(/asset/frontend/img/slot/checkdark.png)
+}
+.nofull, .nofull li{
+    display:block !important;
+    width:auto !important
+}
+#single-news-section .top-banner{
+    background:rgba(0, 0, 0, 0.5) url(../img/background/bannerbg.png) no-repeat center center;
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-height:285px;
+    height:285px;
+    background-size:cover
+}
+#NewsTtile{
+    font-size:111px;
+    font-weight:700;
+    color:#fff
+}
+#single-news-section p{
+    color:#fff;
+    text-align:justify!important
+}
+#single-news-section h6{
+    font-weight:700
+}
+#single-news-section .entry-header{
+    border-top:2px solid #fff;
+    border-bottom:10px solid #fff
+}
+#RightNewSection #latestPost img{
+    height:150px;
+    object-fit:cover;
+}
+.lthead{
+    transition:.5s all;
+    color:#dcba73
+}
+#latestPost:hover .lthead{
+    color:#fff
+}
+#RightNewSection #sideSecContent{
+    background-color:#36278d;
+    padding:15px
+}
+#single-news-section h3.cushead strong{
+    background-color:transparent;
+    padding:0;
+    height:auto
+}
+#single-news-section h3.cushead, .news-cushead{
+    position: relative;
+    padding:0 0 10px 0;
+    margin-bottom:20px;
+    color:#e6423a;
+    margin:0 0 15px 0
+}
+.news-cushead{
+    font-family: 'Montserrat';
+    text-align: left;
+}
+
+#single-news-section h3.cushead::before, .news-cushead::before{
+    border:none;
+    width:100px;
+    height:5px;
+    background-color:#e6423a;
+    top:100%
+}
+#single-news-section h3.cushead strong::after{
+    display:none
+}
+#single-news-section .entry-meta{
+    padding-bottom:12px;
+    border-bottom:2px solid #eee;
+    margin-bottom:12px
+}
+.spcomsec{
+    background-color:rgb(255 255 255 / 20%);
+    margin-top:35px;
+    padding:30px;
+    border-radius:10px;
+    color:#fff;
+    box-shadow:inset 0 0 15px rgb(0 0 0 / 50%)
+}
+.spcomsec input.splbtns{
+    background-color:#da1f15;
+    background-image:url(/asset/frontend/img/slot/button-bg.png);
+    background-repeat:no-repeat;
+    background-position:0 0;
+    margin:15px auto 0 auto;
+    display:block
+}
+.spcomsec input.splbtns:hover{
+    background-color:#ca0a00
+}
+.spcomsec .newsh2title{
+    margin-top:0;
+    font-size:30px
+}
+#single-news-section .section-comment h2,.newsh2title{
+    margin-bottom:20px;
+    margin-top:40px
+}
+.spcomsec .section-comment .newsh2title{
+    margin-top:0
+}
+.section-reply-form #accept-label:before{
+    border-width:2px;
+    border-style:solid;
+    border-color:#0079bf;
+    border-image:initial;
+    padding:7px
+}
+.section-reply-form #accept-label:after{
+    top:7px;
+    left:22px;
+    width:4px;
+    height:9px;
+    border:solid #fff
+}
+table{
+    background:#5140b3;
+    color:#fff;
+    font-size:15px
+}
+.table td,.table th,.table thead th{
+    border:none
+}
+table a{
+    color:#fbe48a
+}
+table a:hover{
+    color:#fff
+}
+.about-col p,.find-casino-detail,.find-casino-detail p,.mobile-casino-sec p,.new-casino-detail p,.slot-machine-detail p{
+    text-align:justify
+}
+.bigtext p strong{
+    font-size:70px;
+    line-height:normal;
+    color:#42b528
+}
+.rnewt{
+    width:100%;
+    margin:50px 0 60px 0;
+    background-image:linear-gradient(#0c0052,#041500)
+}
+.rnewt .box1{
+    display:inline-block;
+    background-color:#008417;
+    padding:10px 15px;
+    margin:-20px 0 0 0
+}
+.rnewt .box2{
+    font-size:34px;
+    padding:5px 0 20px 15px;
+    line-height:30px;
+    font-weight:700
+}
+.rnewt .box2 small{
+    font-size:18px;
+    color:#fff
+}
+.rnewt .box3{
+    padding:8px 15px;
+    background-color:#2e1c9a
+}
+.rnewt .img{
+    float:right;
+    margin:-22px 0;
+    width:380px;
+    border:5px solid #2e1c9a;
+    max-width:100%
+}
+.rnewt .img img{
+    max-width:100%
+}
+.rnewt .box2 strong{
+    background:-webkit-linear-gradient(#9a5c19,#fde48b);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent
+}
+.redc p strong{
+    color:#da1f15
+}
+.gamerimg{
+    float:right;
+    width:185px;
+    text-align:center;
+    margin:0 0 0 15px;
+    position:relative;
+    border:5px solid #fff
+}
+.gamerimg .gamenum{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    background-color:rgb(0 0 0 / 80%);
+    padding:5px;
+    color:#e9a729;
+    font-size:15px
+}
+.sppat4{
+    text-align:center;
+    margin:0 0 15px 0
+}
+.sppat4 .inn{
+    text-align:center;
+    background-color:#148c3f;
+    padding:10px 45px;
+    background-image:linear-gradient(#148c3f,#0c5d29);
+    display:inline-block;
+    position:relative
+}
+.rs3box2{
+    border:5px solid #eed274;
+    padding:10px;
+    margin-bottom:15px
+}
+.rs3box2 .text{
+    padding:15px;
+    background-image:linear-gradient(#eed274,#b36a1a);
+    color:#000;
+    text-align:center
+}
+.rs3box2 .text p:last-child{
+    margin-bottom:0
+}
+.rs3box2 .text p{
+    font-weight:600;
+    color:#313131;
+}
+.rs3box3{
+    background-image:url(/asset/frontend/img/slot/rs3box4bg.png);
+    background-repeat:no-repeat;
+    background-position:center bottom
+}
+.rea3shimgb{
+    display:inline-block;
+    float:right;
+    vertical-align:top;
+    width:185px;
+    text-align:center;
+    margin:0 0 0 15px
+}
+.sppat4 .inn:before{
+    left:0;
+    border-left:22px solid #0b004b
+}
+.sppat4 .inn:after,.sppat4 .inn:before{
+    content:"";
+    position:absolute;
+    top:0;
+    width:0;
+    height:0;
+    transform:translate(0);
+    border-top:22px solid transparent;
+    border-bottom:22px solid transparent
+}
+.sppat4 .inn:after{
+    left:auto;
+    border-left:0 solid #0b004b;
+    right:0;
+    border-right:22px solid #0b004b
+}
+img.rs31{
+    width:400px
+}
+.bord2{
+    border:18px solid #000;
+    padding:30px 60px 20px 60px;
+    background-color:#148c3f;
+    border-radius:140px
+}
+.wallimg img{
+    float:right;
+    margin:0 0 15px 15px;
+    max-width:100%;
+    width:230px;
+    border-radius:50%;
+    border:10px solid #2c1a92
+}
+ul.spcheck li img{
+    width:30px;
+    margin:0 6px 0 0
+}
+ul.points li img{
+    display:inline-block;
+    width:40px;
+    margin:0 10px 8px 0;
+    float:left
+}
+ul.points li.fifty{
+    width:100%;
+    line-height:56px
+}
+.comments-list{
+    margin-bottom:30px
+}
+.comments-list .comment{
+    margin-bottom:20px;
+    border-bottom:1px solid #eee
+}
+.comments-list .comment-face{
+    float:left;
+    overflow:hidden;
+    width:80px;
+    border-radius:50%
+}
+.comments-list .comment-header{
+    margin-bottom:5px
+}
+.comments-list .comment-author{
+    margin-right:10px;
+    font:normal normal 18px Montserrat
+}
+.comments-list .comment-body{
+    font-size:14px
+}
+.comments-list .comment-datetime{
+    margin-right:35px;
+    font-size:13px
+}
+.filter-mobile{
+    display: none;
+}
+#review-section .casino-bonus{
+    color:#fff;
+    text-align:left
+}
+.casino-bonus .bonus-amount{
+    font-size:25px;
+    font-weight:700;
+    margin-bottom:14px
+}
+#review-section .play-btn{
+    background:#3a32b9;
+    border-color:#3a32b9
+}
+#review-section .casino-logo{
+    right:75px;
+    top:50%;
+    transform:translateY(-50%)
+}
+#review-section .casino-logo img{
+    max-height:150px;
+    max-width:300px
+}
+#review-section #nav-tab{
+    background:#eee;
+    padding:6px 10px 0 10px
+}
+#review-section .nav-tabs .nav-link{
+    color:#000;
+    font-size:14px;
+    font-weight:700
+}
+#review-section .nav-tabs .nav-link.active{
+    color:#da2015;
+    background-color:transparent;
+    border:none;
+    border-bottom:3px solid!important
+}
+#review-section #nav-tab-review-content{
+    margin-top:30px
+}
+.casinoSinlgeBg{
+    background:#eee;
+    padding:30px
+}
+.casino-review-tab *,.popular-casino h6{
+    color:#555;
+    text-align:left
+}
+.casino-review-tab h4{
+    margin-top:30px;
+    margin-bottom:0;
+    font-weight:600
+}
+#review-section .top-banner{
+    position:relative
+}
+#review-section table td{
+    padding:10px
+}
+#review-section table li,#review-section table td,#review-section table p{
+    color:#fff
+}
+.casino-review-tab td:first-child{
+    width:25%
+}
+.x1{
+    animation:animateCloud 35s linear infinite;
+    transform:scale(.65)
+}
+.x2{
+    animation:animateCloud 20s linear infinite;
+    transform:scale(.3)
+}
+.x3{
+    animation:animateCloud 30s linear infinite;
+    transform:scale(.5)
+}
+.x4{
+    animation:animateCloud 18s linear infinite;
+    transform:scale(.4)
+}
+.x5{
+    animation:animateCloud 25s linear infinite;
+    transform:scale(.55)
+}
+.cloud{
+    background:#4b9ccc;
+    background:linear-gradient(top,#fff 5%,#f1f1f1 100%);
+    border-radius:100px;
+    box-shadow:0 8px 5px rgba(0,0,0,.1);
+    height:120px;
+    position:relative;
+    width:350px
+}
+.cloud::after,.cloud::before{
+    background:#4b9ccc;
+    content:"";
+    position:absolute;
+    z-index:0
+}
+.cloud::after{
+    border-radius:100px;
+    height:100px;
+    width:100px;
+    left:50px;
+    top:-50px
+}
+.cloud::before{
+    border-radius:200px;
+    height:180px;
+    width:180px;
+    right:50px;
+    top:-90px
+}
+.bird-container{
+    position:absolute;
+    top:5%;
+    left:-10%;
+    transform:scale(0) translateX(-10vw);
+    will-change:transform;
+    animation-name:fly-right-one;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite
+}
+.bird-container--one{
+    animation-duration:15s;
+    animation-delay:0
+}
+.bird-container--two{
+    animation-duration:16s;
+    animation-delay:1s
+}
+.bird{
+    background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells-new.svg);
+    background-size:auto 100%;
+    width:88px;
+    height:125px;
+    will-change:background-position;
+    animation-name:fly-cycle;
+    animation-timing-function:steps(10);
+    animation-iteration-count:infinite
+}
+.bird--one{
+    animation-duration:1s;
+    animation-delay:-.5s
+}
+.bird--two{
+    animation-duration:.9s;
+    animation-delay:-.75s
+}
+@keyframes animateCloud{
+    0%{
+        margin-left:-1000px
+    }
+    100%{
+        margin-left:80%
+    }
+}
+@keyframes fly-right-one{
+    0%{
+        transform:scale(.3) translateX(-10vw)
+    }
+    100%{
+        transform:translateY(0) translateX(100vw) scale(.6)
+    }
+}
+@keyframes fly-cycle{
+    100%{
+        background-position:-900px 0
+    }
+}
+
+.software-content .rea3shimgb .content, .dinblock  .rea3shimgb .content{
+    border: 5px groove #8a8a8a;
+    max-width: 150px;
+}
+.software-games p{
+  padding: 15px 0;
+}
+@media screen and (max-width:1200px){
+    #sideSecContent a.splbtns,button.splbtns,input.splbtns{
+        padding:0 33px
+    }
+    #NewsTtile{
+        font-size:93px!important
+    }
+    #gameNewSection li{
+        width:81px
+    }
+    .gameContent .splbtns {
+        padding: 0 47px;
+    }
+    ul.spcheckn.r3in1 li{
+        width:50%
+    }
+    .sectionPTPB {
+        padding: 50px 0;
+    }
+}
+@media screen and (max-width:998px){
+    .game-frame{
+        height:370px
+    }
+    #NewsTtile{
+        font-size:69px!important
+    }
+    #games-new-section .newHeader::before{
+        height:288px
+    }
+    #newTable li .tLi{
+        width:94px
+    }
+    #newTable sub{
+        font-size:7px
+    }
+    #gameNewSection li{
+        width:51px
+    }
+    #gameNewSection li:last-child{
+        width:82px
+    }
+    #gameNewSection{
+        font-size:12px
+    }
+    .imgLi div{
+        top:0;
+        font-size:11px
+    }
+    .review{
+        padding:1px 10px;
+        margin:10px 0
+    }
+    .gameContent .splbtns{
+        padding:0 16px;
+        line-height:30px;
+        height:30px
+    }
+    .casino-bonus .bonus-amount {
+        font-size: 16px;
+        width: 230px;
+    }
+    #review-section .casino-logo{
+        right:15px
+    }
+}
+@media screen and (max-width:768px){
+    h3.cushead strong::after,h3.cushead::before{
+        display:none
+    }
+    h3.cushead strong{
+        height:auto;
+        font-size:20px
+    }
+    #NewsTtile{
+        font-size:51px!important
+    }
+    #sideSecContent{
+        display:none
+    }
+    #sideCol3{
+        margin-top:-15px
+    }
+    #gameNewSection img{
+        width:90%!important;
+        height:auto
+    }
+    #newTable .tablehead{
+        display:none
+    }
+    #newTable li .tLi::before{
+        content:attr(data-id);
+        font-weight:600;
+        margin-right:49px;
+        text-align:left
+    }
+    #newTable{
+        text-align:left!important
+    }
+    #newTable li .tLi{
+        width:100%!important;
+        padding:12px 50px;
+        border:0;
+        border-bottom:1px dashed #0b004b
+    }
+    #newTable li .tLi:last-child{
+        border:0
+    }
+    .casino-review-tab ul{
+        padding-left:0;
+        font-size:14px
+    }
+    .casino-bonus{
+        text-align:center!important;
+    }
+    .casino-content{
+        padding:70px 0 20px!important;
+        text-align:center!important
+    }
+    .casino-content button{
+        margin:0 auto
+    }
+    .casino-bonus .bonus-amount{
+        font-size:14px;
+        text-align:center;
+        width:100%
+    }
+    #review-section .casino-logo{
+        right:50%;
+        transform:translateX(50%);
+        top:0
+    }
+    .sectionPTPB{
+        padding:30px 0
+    }
+    .sectionMTMB{
+        margin-top:30px;
+        margin-bottom:70px
+    }
+    #single-news-section .top-banner{
+        max-height:200px
+    }
+    #newHeader h1{
+        font-size:28px
+    }
+    #single-news-section .newHeader h1{
+        padding:0 15px!important
+    }
+    #single-news-section .cBreadcrumb,#single-news-section .cBreadcrumb span::before{
+        font-size:15px!important
+    }
+    #games-new-section .newHeader::before{
+        height:268px
+    }
+    .cBreadcrumb span{
+        float:none!important
+    }
+    .sppat4 .inn::after,.sppat4 .inn::before{
+        display:none
+    }
+    .rea3shimgb{
+        margin:0 0 10px 15px
+    }
+    .bigtext p strong,.rnewt .box2{
+        font-size:26px
+    }
+    #sideFilter{
+        display:none
+    }
+    .filter-mobile{
+        display:block
+    }
+    .imgLi div{
+        font-size:16px
+    }
+    .gameHeader{
+        display:none
+    }
+    .gameContent span:nth-child(even){
+        display:inline-block;
+        width:calc(100% - 225px);
+        vertical-align:top;
+        text-align:left;
+        margin-top:25px
+    }
+    .gameContent .splbtns{
+        min-width:100px;
+        margin-top:5px
+    }
+    #gameNewSection .gameContent .imgLi{
+        width:200px
+    }
+    #gameNewSection li{
+        width:100%;
+        text-align:left;
+        margin-bottom:2px
+    }
+    #gameNewSection li::before{
+        content:attr(data-type);
+        font-weight:600;
+        margin-right:20px;
+        font-size:14px;
+        color:#c5c5c5
+    }
+    #gameNewSection li::before{
+      position: absolute;
+    }
+    #subgameContent li span {
+      margin-left: 130px;
+    }
+}
+@media screen and (max-width:479px){
+    .gameContent .splbtns {
+      max-width: 40%;
+      top: 5px;
+    }
+    #NewsTtile{
+        font-size:40px!important
+    }
+    #sideCol3{
+        margin-right:0
+    }
+    #gameNewSection{
+        font-size:12px;
+        width:99%;
+        position:relative;
+        margin:0 auto
+    }
+    .gameContent span:nth-child(2n){
+        margin-top:10px
+    }
+    .imgLi div{
+        position:relative;
+        top:10px;
+        left:auto;
+        width:auto
+    }
+    #gameNewSection li{
+        display:block;
+        width: 100% !important;
+    }
+    #gameNewSection img{
+        width: 80% !important;
+    }
+    .imgLi::before{
+        display: none;
+    }
+    #gameNewSection .gameContent .imgLi{
+        text-align: center;
+        margin: 0;
+    }
+    .gameContent span:nth-child(2n){
+        width:100%
+    }
+    .rnewt{
+        margin:30px 0
+    }
+    .gamerimg{
+        margin:0 0 10px 10px
+    }
+    .conclusion{
+        border:none
+    }
+    .conclusion .head{
+        position:relative;
+        writing-mode:horizontal-tb;
+        transform:rotate(0);
+        top:0;
+        left:0;
+        background-color:#530a86;
+        padding:0 15px;
+        letter-spacing:2px
+    }
+}

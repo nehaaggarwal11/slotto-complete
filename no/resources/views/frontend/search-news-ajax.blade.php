@@ -7,10 +7,10 @@
                         alt="{{ $news->logo_img_alt_text }}"></a>
             </div>
             <div class="blog-content">
-                <h4 class="news-blog-title"><a href="{{ $news->route }}">{{ $news->name }}</a></h4>
+                <h5 class="news-blog-title"><a href="{{ $news->route }}">{{ $news->name }}</a></h5>
                 <p class="news-short-description">{{ Str::limit($news->small_description, 80) }}</p>
-                <a class="btn read-blog-btn mx-auto d-block"
-                href="{{ $news->route }}">Les Blogg</a>
+                <a class="btn read-blog-btn mx-auto d-block splbtns purple"
+                href="{{ $news->route }}" data-text="Read Blog">Read Blog</a>
             </div>
         </div>
     </div>

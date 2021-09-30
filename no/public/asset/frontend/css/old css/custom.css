@@ -1,0 +1,294 @@
+.casino-review-tab p{
+    color:#555
+}
+.casino-list .casino-img{
+    margin-right:10px
+}
+.casino-review-tab td:first-child{
+    width:25%
+}
+#review-section table td{
+    padding:10px
+}
+.main-nav .drop-down ul{
+    left:0;
+    right:unset
+}
+.casino-review-tab *,.popular-casino h6{
+    color:#555;
+    text-align:left
+}
+.casino-review-tab h4{
+    margin-top:30px;
+    margin-bottom:0;
+    font-weight:600
+}
+.Casinoh5Span{
+    font-size:1rem
+}
+.gameh5Span{
+    color:#fff;
+    font-weight:500;
+    margin-bottom:.5em;
+    text-transform:uppercase;
+    margin-top:10px;
+    font-size:12px
+}
+.content-details{
+    line-height:15px
+}
+.subscribe-footer-form .form-control{
+    border-radius:50px 0 0 50px!important;
+    padding:.375rem 2rem .375rem .75rem!important;
+    width:80%;
+    font-size:14px
+}
+.subscribe-footer-form button{
+    border-radius:0 50px 50px 0!important;
+    font-size:14px;
+    padding:0 6px!important
+}
+#email-error{
+    position:absolute;
+    color:red
+}
+.software-content .tooltiptext p{
+    color:#000
+}
+.section-reply-form span{
+    font-weight:400
+}
+#single-news-section .section-comment h2,.newsh2title{
+    margin-bottom:20px;
+    margin-top:40px
+}
+.checkbox-list .form-group label{
+    color:#000;
+    font-size:14px
+}
+#newHeader *{
+    display:inline-block!important
+}
+.newHeader{
+    text-align:center;
+    padding:60px 0 20px 0;
+    background-color:#000!important;
+    background-repeat:no-repeat,linear-gradient(#1b1b1b,#000)
+}
+.newHeader img{
+    border:2px solid #fff;
+    margin:0 15px 0 0;
+    padding:5px
+}
+#newHeader h1{
+    margin:25px 0
+}
+#single-news-section .newHeader h1{
+    padding:0 100px
+}
+.vertical-filters-header i.fa.fa-chevron-down{
+    color:#da2015
+}
+.cBreadcrumb span{
+    float:left;
+    list-style:none;
+    color:#fff;
+    text-transform:capitalize
+}
+.cBreadcrumb{
+    padding:28px 0 0
+}
+.cBreadcrumb a{
+    color:#da1f15;
+    text-decoration:none
+}
+.cBreadcrumb span::before{
+    content:"/";
+    margin:0 10px;
+    font-size:16px;
+    font-weight:600;
+    color:#fff
+}
+.cBreadcrumb span:first-child::before{
+    content:none
+}
+.cBreadcrumb a:hover{
+    text-decoration:underline;
+    color:#fff
+}
+.obFit{
+    object-fit:none!important
+}
+#noCasino{
+    width:540px;
+    max-width:100%;
+    margin:0 auto 35px;
+    padding:20px;
+    color:#000;
+    font-weight:500
+}
+#noCasino span{
+    background:#e3a132;
+    display:inline-block
+}
+#noCasino img{
+    max-width:100%
+}
+.h2,h2{
+    font-size:32px
+}
+.h3,H3{
+    font-size:24px
+}
+.h4,H4{
+    font-size:21px
+}
+.h5,H5{
+    font-size:18px;
+    font-family:Montserrat!important
+}
+.h6,H6{
+    font-size:16px
+}
+
+#NewsTtile{
+    font-size:111px;
+    font-weight:700;
+    color:#fff
+}
+#single-news-section p{
+    color:#fff;
+    text-align:justify!important
+}
+#single-news-section h6{
+    font-weight:700
+}
+#single-news-section .entry-header{
+    border-top:2px solid #fff;
+    border-bottom:10px solid #fff
+}
+#RightNewSection #latestPost img{
+    height:150px;
+    object-fit:cover;
+    object-position:top
+}
+.lthead{
+    transition:.5s all;
+    color:#dcba73
+}
+#latestPost:hover .lthead{
+    color:#fff
+}
+#RightNewSection #sideSecContent{
+    background-color:#36278d;
+    padding:15px
+}
+.navbar-brand{
+    top:0
+}
+#navbarNavDropdown{
+    position:absolute;
+    right:10px;
+    top:15px
+}
+#menuOverlay{
+    background:rgba(40,38,70,.8);
+    position:absolute;
+    width:100%;
+    height:1000px;
+    z-index:9;
+    top:0;
+    display:none
+}
+.lgNoDis{
+    display:none
+}
+@media screen and (max-width:992px){
+    .fx{
+        width:130px!important;
+        color:#fff
+    }
+    .oc-header .menu__link:hover{
+        background:0 0;
+        cursor:default
+    }
+    #navbarNavDropdown{
+        position:relative;
+        left:0
+    }
+    .lgNoDis{
+        display:block
+    }
+    .menu-Icon{
+        display:block;
+        position:absolute;
+        padding:12px;
+        right:0;
+        top:0;
+        z-index:11
+    }
+    .menu-Icon .fa{
+        font-size:25px;
+        color:#fff
+    }
+    #header-desk .navbar{
+        padding:5px 0
+    }
+    .oc-header--desktop{
+        position:absolute;
+        height:1003px;
+        background:rgba(40,38,70);
+        top:-20px;
+        z-index:10;
+        min-width:220px;
+        left:-300px
+    }
+    .dropdown-menu{
+        position:relative;
+        background:no-repeat;
+        width:auto!important;
+        box-shadow:none!important;
+        left:-240px;
+        transition:.5s all
+    }
+    .navbar-brand{
+        top:-20px
+    }
+    .dropdown-menu::after,.dropdown-menu::before,.oc-header .dropdown-toggler::before,.oc-header.oc-header--desktop .dropdown--open-on-hover:hover .dropdown-menu,.oc-header.oc-header--desktop .fa-arrow-right{
+        display:none
+    }
+    .oc-header .dropdown-toggler{
+        border:none;
+        display:flex
+    }
+    .oc-header .dropdown--cats .dropdown-menu__list .menu__link a{
+        margin:5px 10px;
+        color:#fff;
+        padding:0
+    }
+    .dropdown-menu{
+        height:400px
+    }
+    #header-desk i{
+        color:#fff;
+        font-size:15px;
+        margin:0 5px 0 0!important
+    }
+    .oc-header .dropdown--cats .dropdown-menu--sub{
+        opacity:1;
+        visibility:visible;
+        position:inherit;
+        background:0 0;
+        height:auto;
+        margin-left:11px;
+        padding-right:45px
+    }
+    .oc-header ul{
+        padding-right:5px
+    }
+}
+@media screen and (max-width:768px){
+    .navbar-brand img{
+        width:115px
+    }
+}

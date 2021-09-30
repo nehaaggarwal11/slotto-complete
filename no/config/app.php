@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'development'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -180,8 +180,10 @@ return [
          * Custom Providers
          */
         Spatie\Sitemap\SitemapServiceProvider::class,
+        Webwizo\Shortcodes\ShortcodesServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
-
+        App\Providers\ShortcodesServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -233,7 +235,8 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         'Bugsnag'      => Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
-
+        'Shortcode'    => Webwizo\Shortcodes\Facades\Shortcode::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

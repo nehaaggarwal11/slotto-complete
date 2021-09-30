@@ -21,7 +21,7 @@ class ContentPageController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('content_page_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_page_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $contentPages = ContentPage::all();
 
@@ -30,7 +30,7 @@ class ContentPageController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('content_page_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_page_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $categories = ContentCategory::all()->pluck('name', 'id');
 
@@ -66,7 +66,7 @@ class ContentPageController extends Controller
 
     public function edit(ContentPage $contentPage)
     {
-        abort_if(Gate::denies('content_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $categories = ContentCategory::all()->pluck('name', 'id');
 
@@ -96,7 +96,7 @@ class ContentPageController extends Controller
 
     public function show(ContentPage $contentPage)
     {
-        abort_if(Gate::denies('content_page_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_page_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $contentPage->load('categories', 'tags');
 
@@ -105,7 +105,7 @@ class ContentPageController extends Controller
 
     public function destroy(ContentPage $contentPage)
     {
-        abort_if(Gate::denies('content_page_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_page_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $contentPage->delete();
 
@@ -121,7 +121,7 @@ class ContentPageController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('content_page_create') && Gate::denies('content_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_page_create') && Gate::denies('content_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new ContentPage();
         $model->id     = $request->input('crud_id', 0);

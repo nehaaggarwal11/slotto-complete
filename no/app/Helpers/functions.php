@@ -5,7 +5,7 @@ if (!function_exists('nj_get_email_templates')) {
      * @return array
      */
     function nj_get_email_templates() {
-        $data = file_get_contents(env('EMAIL_BUILDER_API_ENDPOINT').'/?action=get_templates');
+        $data = file_get_contents(config('services.email_builder.api_endpoint').'/?action=get_templates');
         if(empty($data)){
             return [];
         }
@@ -31,7 +31,7 @@ if (!function_exists('get_email_template_html_by_id')) {
      * @return ''|null
      */
     function get_email_template_html_by_id($template_id) {
-        $data = file_get_contents(env('EMAIL_BUILDER_API_ENDPOINT').'/?action=get_template_content_html&template_id='.$template_id);
+        $data = file_get_contents(config('services.email_builder.api_endpoint').'/?action=get_template_content_html&template_id='.$template_id);
         if(empty($data)){
             return null;
         }
@@ -40,5 +40,97 @@ if (!function_exists('get_email_template_html_by_id')) {
             return @$data->html;
         }
         return null;
+    }
+}
+
+if(!function_exists('nj_countries')){
+    function nj_countries($countries = []) {
+        $result = app(PragmaRX\Countries\Package\Countries::class);
+//        if($countries){
+//            $result = $result->whereIn("cca2", $countries);
+//            dd($result);
+////            ->get();
+//        }else{
+//             $result = $result->all();
+//        }
+        $result = $result->all();
+        $result = $result->map(function ($country) {
+                $commonName = $country->name->common;
+                $languages = $country->languages ?? collect();
+                $language = $languages->keys()->first() ?? null;
+                $nativeNames = $country->name->native ?? null;
+                if (filled($language) && filled($nativeNames) && filled($nativeNames[$language]) ?? null) {
+                    $native = $nativeNames[$language]['common'] ?? null;
+                }
+                if (blank($native ?? null) && filled($nativeNames)) {
+                    $native = $nativeNames->first()['common'] ?? null;
+                }
+                $native = $native ?? $commonName;
+                if ($native !== $commonName && filled($native)) {
+                    $native = "$native ($commonName)";
+                }
+                return (object)[
+                    'code' => $country->cca2,
+                    'name' => $native,
+                ];
+                //return [$country->cca2 => $native];
+            })
+            ->values();
+
+        if(!empty($countries)){
+            $result = $result->filter(function($country) use ($countries) {
+                return in_array($country->code, $countries);
+            });
+        }
+
+        return $result->toArray();
+    }
+}
+
+if(!function_exists('nj_get_current_country')){
+    function nj_get_current_country(){
+        $ipinfo = @request()->ipinfo;
+        return strtoupper(@$ipinfo->country);
+    }
+}
+
+if(!function_exists('nj_set_current_country_site')){
+    function nj_set_current_country_site(){
+        $req = request();
+        $que = $req->query();
+        $query = !empty($que) ? '?'.http_build_query($que): '';
+        $country = 'en';
+        switch ($country) {
+            case 'us':
+            case 'no':
+            break;
+            case 'en':
+            default:
+                $country = '';
+            break;
+        }
+
+        $new_url = $req->getSchemeAndHttpHost() .
+                    ($country?'/' .$country: '') .
+                    ($req->path() && $req->path() != "/" ? '/' .$req->path(): '');
+        if($new_url !== $req->url()){
+            $new_url .= $query;
+            header("Location: $new_url"); exit;
+        }
+    }
+}
+
+
+if (!function_exists('sdh_dynamic_menu')) {
+    function sdh_dynamic_menu($id, $table, $cust)
+    {
+        if (!empty($id)) {
+            $dyn_menu = DB::table($table)->where('id', $id)->get('slug');
+            //print_r($dyn_menu[0]);
+            echo ucwords(str_replace('-',' ',$dyn_menu[0]->slug));
+        }
+        else{
+            echo $cust;
+        }
     }
 }

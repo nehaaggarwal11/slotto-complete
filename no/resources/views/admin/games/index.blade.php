@@ -16,34 +16,34 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Game">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Casino">
                 <thead>
                     <tr>
                         <th width="10"></th>
                         <th>{{ trans('cruds.game.fields.id') }}</th>
                         <th>{{ trans('cruds.game.fields.logo') }}</th>
+                        <th>{{ trans('cruds.game.fields.name') }}</th>
                         <th>{{ trans('cruds.game.fields.bg_image_text') }}</th>
-                        <th>{{ trans('cruds.game.fields.bg_image_button_text') }}</th>
                         <th>&nbsp;</th>
-                    </tr> 
+                    </tr>
                 </thead>
                 <tbody>
                   @foreach($games as $key => $game)
                     <tr data-entry-id="{{ $game->id }}">
                         <td></td>
-                        <td>{{ $game->id ?? '' }}</td>
+                        <td>{{ $game->id ?? '' }}</td>                        
                         <td> @if($game->logo)
                             <a href="{{ $game->logo->getUrl() }}" target="_blank">
                                 <img src="{{ $game->logo->getUrl('thumb') }}" width="50px" height="50px">
                             </a>
                         @endif</td>
+                        <td>{{ $game->name ?? '' }}</td>
                         <td>{{ $game->bg_image_text ?? '' }}</td>
-                        <td>{{ $game->bg_image_button_text ?? '' }}</td>
                         <td>
-                            <a class="btn btn-xs btn-success" href="{{ $game->route }}" target="_blank">
+                            <a class="btn btn-xs btn-primary" href="{{ $game->route }}" target="_blank">
                                 {{ trans('global.slug') }}
                             </a>
-                            
+
                             @can('game_show')
                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.games.show', $game->id) }}">
                                     {{ trans('global.view') }}
@@ -67,7 +67,7 @@
                         </td>
 
                     </tr>
-                  @endforeach 
+                  @endforeach
                 </tbody>
             </table>
         </div>

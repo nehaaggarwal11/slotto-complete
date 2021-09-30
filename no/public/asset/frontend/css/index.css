@@ -1,0 +1,710 @@
+.section-padding{
+    padding:60px 0
+}
+#carouselContent{
+    position:absolute;
+    top:56%;
+    left:36%;
+    right:unset;
+    transform:translateY(-50%);
+    width:63%;
+    padding:0 15% 0 30px
+}
+#carouselContent .carhead h1{
+    color:#141115;
+    text-shadow:1px 2px 5px rgb(0 0 0 / 75%);
+    padding:0 10px;
+    margin:0
+}
+#carouselContent .carousel-item{
+    padding:1.4em
+}
+#carouselContent .carousel-item img{
+    margin:0 20px 0 0
+}
+#carouselContent .carousel-item .text{
+    max-width:100%;
+    color:#000;
+    padding:10px 0 20px 0
+}
+#carouselContent .carousel-item a.splbtns{
+    -webkit-text-stroke:0 #fff;
+    font-weight:100;
+    font-size:14px;
+    padding:0 20px;
+    height:40px;
+    line-height:40px;
+}
+.carousel-control-prev{
+    width:6%
+}
+video{
+    min-width:100%;
+    min-height:100%;
+    z-index:0;
+    width:100%
+}
+#rating-section{
+    background-color:#6f482b;
+    position: relative;
+    background: url(../img/background/water-bg.png);
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+}
+.rating-headings{
+    margin-bottom:40px
+}
+
+.top-casino-heading {
+    font-weight: bold;
+    font-size: 40px;
+    color: #2b1708;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.about-div{
+    position:relative;
+    background-color:#2a5db8
+}
+.about-div:before{
+    position:absolute;
+    right:0;
+    top:-4%;
+    width:100%;
+    height:22%;
+    content:"";
+    background:url(../img/background/brown-background.png) no-repeat center;
+    background-position:top;
+    background-size:100%
+}
+.about-col{
+    padding:100px 0 60px 0
+}
+.about-col ul{
+    display:inline-grid;
+    width:auto
+}
+.about-col ul li,.faq-accordion .panel-body ul li,ul.spcheckn li{
+    background-image:url(/asset/frontend/img/slot/check.png);
+    background-size:30px auto;
+    background-repeat:no-repeat;
+    padding:0 10px 12px 40px;
+    min-height:32px;
+    margin-bottom:6px
+}
+.about-col ul li{
+    background-image:url(/asset/frontend/img/slot/dice.png)
+}
+.slot-machine-sec{
+    padding:80px 0
+}
+.slot-machine-detail{
+    padding:0 0 30px 0
+}
+.slot-sptext {
+    text-align: center;
+}
+.slot-sptext strong{
+    display:inline-block;
+    color:#e178c4;
+    border-top:2px solid #295ab5;
+    border-bottom:2px solid #295ab5;
+    padding:10px 15px;
+    position:relative;
+    line-height:34px;
+    font-size:20px;
+    margin:20px 0 30px 0
+}
+.slot-sptext strong:after,.slot-sptext strong:before{
+    content:"";
+    width:60%;
+    height:3px;
+    background-color:#e178c4;
+    position:absolute;
+    right:0;
+    top:-15px
+}
+.slot-sptext strong:after{
+    right:auto;
+    top:auto;
+    left:0;
+    bottom:-15px
+}
+.documentaion-shap-img img{
+    position:absolute
+}
+.documentaion-shap-img img.d-shap-img-1,.documentaion-shap-img img.d-shap-img-2{
+    margin:auto;
+    animation:bounce 1s ease-in-out 0s infinite alternate
+}
+.documentaion-shap-img img.d-shap-img-2{
+    animation-delay:1.5s;
+    position:relative;
+    float:right
+}
+.new-casino-sec{
+    background:url(../img/background/mountain.webp);
+    background-repeat:no-repeat;
+    background-color:#0b014a
+}
+.nye-img{
+    margin-bottom:85px
+}
+.new-casino-sec h3 strong{
+    color:#e6423a;
+    border-color:#e23d34
+}
+.find-casino-sec .section-title-item{
+    margin-bottom:50px
+}
+.find-casino-sec img.imgleft{
+    width:500px
+}
+ul.slist.purple li strong{
+    background-image:linear-gradient(#79034e,#530a86);
+    color:#fff;
+    padding:5px 10px
+}
+ul.goldendice li{
+    background-image:url(/asset/frontend/img/slot/golddice.png);
+    background-size:23px auto;
+    background-position:4px 2px
+}
+p.tbggradi{
+    background-image:linear-gradient(to right,#6b0546,#d495ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-transform:uppercase;
+    font-size:30px;
+    font-weight:700;
+    text-align:center;
+    line-height:30px
+}
+h4.purpbg{
+    color:#fff;
+    background-image:linear-gradient(to right,#530a86,#0b014b);
+    font-weight:600
+}
+.fish{
+    top:0;
+    left:0;
+    animation:swim 15s infinite linear
+}
+.fish-group,.orange-fish, .fish{
+    position:absolute;
+    z-index:0
+}
+.orange-fish{
+    top:26%;
+    right:0;
+    animation:swim2 15s infinite linear
+}
+
+/******** Norway old Css *******/
+#ripple-img {
+    position: absolute;
+    left: -37%;
+    bottom: -1px;
+    width: 100%;
+    height: 100%;
+    background: url(../img/gif/water-ripple.gif) 0 no-repeat;
+    background-position-x: 0px;
+    background-position-y: center;
+    background-position: bottom;
+}
+.waterfall-loop {
+    position: absolute;
+    left: 6%;
+    top: 0px;
+    width: 14%;
+    height: 100%;
+    background: url(../img/rating/water-fall.png);
+    background-attachment: fixed;
+    animation: waterfallloop 5s infinite linear;
+}
+
+.casino-toggle.active {
+    background: #3e7fff;
+}
+
+.casino-toggle.active .bar {
+    background: #1d4283;
+    left: 190px;
+}
+
+.casino-toggle.sport label[for='casino'] {
+    color: #626262;
+}
+
+.casino-toggle.sport label[for='sport'] {
+    color: #000;
+}
+
+.casino-toggle .wrap {
+    width: 100%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+}
+
+.casino-toggle input {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.casino-toggle label {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.casino-toggle {
+    background: #663332;
+    border-radius: 50px;
+    padding: 10px 15px;
+    color: #626262;
+    font-weight: bold;
+    display: -webkit-box;
+    display: inline-block;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 300px;
+    font-size: 21px;
+    position: relative;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.casino-toggle #casino {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.casino-toggle #sport {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.casino-toggle label[for='casino'] {
+    margin-left: 22px;
+    color: #fff;
+}
+.casino-toggle label[for='sport'] {
+    margin-right: 10px;
+}
+.casino-toggle .bar {
+    position: absolute;
+    left: -90px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background: #3d1d1e;
+    height: 40px;
+    width: 200px;
+    border-radius: 50px;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+.sports-casinos,
+.nj_sorting_table {
+    border-collapse: collapse;
+    border-radius: 40px;
+    color: #fff;
+}
+.sports-casinos{
+     background: #387fff !important;
+}
+.sports-casinos thead tr {
+    background: #2495D7;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.sports-casinos tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.sports-casinos td:nth-child(2) {
+    background-color: #1d4283;
+    padding: 30px 40px;
+}
+
+.note {
+    position: relative;
+    background-color: #3D1D1E;
+}
+.note:after {
+    content: "";
+    position: absolute;
+    top: -25px;
+    right: -29px;
+    width: 25px;
+    height: 59px;
+    display: block;
+    border-top: 20px solid transparent;
+    border-right: 20px solid #3D1D1E;
+    transform: rotate(45deg);
+    border-width: 50px;
+}
+.sports-casinos .note:after {
+    border-right: 20px solid #1d4283;
+    border-width: 50px;
+}
+.table td,
+.table thead th {
+    border:none;
+}
+.table tr::before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    background: #fff;
+    height: 1px;
+    top: 0;
+    z-index: 1;
+}
+.nj_sorting_table,
+.sports-casinos {
+    overflow: hidden;
+}
+.nj_sorting_table {
+    background: #663332;
+}
+#DataTables_Table_0_filter,
+#DataTables_Table_0_length,
+#DataTables_Table_0_info,
+#DataTables_Table_0_paginate {
+    display: none;
+}
+.nj_sorting_table tr:nth-child(odd) {
+   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.top-casino-heading {
+    font-weight: bold;
+    font-family: norwester;
+    font-size: 40px;
+    color: #2b1708;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.top-casino-heading span {
+    margin-left: 15px;
+    margin-right: 15px;
+    font-family: "Race1 Brannt NCV";
+}
+
+.nj_sorting_table thead tr {
+    background: #2495D7;
+    border-radius: 50px;
+}
+
+.nj_sorting_table tr th {
+    color: #fff;
+    font-family: "Montserrat",sans-serif;
+    font-size: 18px;
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+.nj_sorting_table td {
+    padding: 10px 20px;
+    vertical-align: middle !important;
+}
+
+
+.nj_sorting_table tr{
+   position: relative;
+}
+.nj_sorting_table td img {
+    width: 150px;
+    border-radius: 5px;
+}
+.nj_sorting_table td:nth-child(6) {
+    text-align: center;
+}
+.nj_sorting_table tr th.sorting_asc,
+.nj_sorting_table tr th.sorting_desc {
+    color: #00ccff;
+}
+.nj_sorting_table h6 {
+    color: #fdcf00;
+    margin: 0px;
+   font-size: 16px;
+   font-weight: 600;
+   font-family: "Montserrat",
+   sans-serif;
+}
+
+.nj_sorting_table p {
+    color: #fff;
+    margin: 0px !important;
+    font-size: 16px;
+}
+
+.nj_sorting_table .bonus-span {
+    color: #fff;
+    margin: 0px;
+    font-size: 16px;
+}
+
+.nj_sorting_table .add-review-btn {
+    color: #fff;
+    margin: 0px;
+    font-size: 16px;
+    background: teal;
+    border-radius: 5px;
+    padding: 0;
+    width: 146px;
+}
+
+.nj_sorting_table p a {
+    color: #fff;
+    font-size: 14px;
+}
+
+.text-orange {
+    color: orange;
+}
+
+.btn {
+    border-radius: 50px;
+    padding: 7px 22px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+}
+
+.btn:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+}
+
+.blue {
+    background-color: #00CCFF;
+    box-shadow: 0px 5px 0px 0px #00CCFF;
+}
+
+.blue:hover {
+    background-color: #3f9ad5;
+    box-shadow: 0px 5px 0px 0px #3f9ad5;
+    color: #fff;
+}
+
+.serial_no {
+    color: #fff;
+    font-size: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    transform: translate(8%, 50%);
+}
+
+@keyframes waterfallloop {
+    0% {
+        background-position: 0 0;
+    }
+
+    /* the end position y must equal bitmap's height */
+    100% {
+        background-position: 0 1112px;
+    }
+}
+@keyframes swim{
+    0%{
+        bottom:14%
+    }
+    100%{
+        left:90%
+    }
+}
+@keyframes swim2{
+    10%{
+        bottom:14%
+    }
+    100%{
+        right:80%
+    }
+}
+@media (min-width:1401px){
+    .shiftCon{
+        height: 510px
+    }
+}
+@media (min-width:1800px){
+    .shiftCon{
+        height:632px
+    }
+}
+@media (max-width:1400px){
+    .shiftCon{
+        height:448px
+    }
+}
+@media screen and (max-width:1280px){
+    .shiftCon{
+        height:445px
+    }
+    #carouselContent{
+        width:63%
+    }
+    #carouselContent{
+        top:65px;
+        transform:translateY(0)
+    }
+    #carouselContent .carousel-item{
+        padding:0
+    }
+    #carouselContent .carousel-item p{
+        font-size:10px
+    }
+    .about-div:before{
+        top:-3%
+    }
+}
+@media (min-width:980px) and (max-width:1150px){
+    .shiftCon{
+        height:356px
+    }
+}
+@media (max-width:998px){
+    .octopus-two-img{
+        width:200px
+    }
+    .shiftCon{
+        height:300px
+    }
+    #carouselContent{
+        top:28%;
+        left:28%;
+        width:80%
+    }
+    .about-div:before {
+        top: -1%;
+    }
+    #carouselContent h1{
+        font-size:28px
+    }
+    #carouselContent .carousel-item img{
+        max-width:132px;
+        height:auto
+    }
+    .carousel-control-next{
+        width:30%
+    }
+    #sideSecContent a.splbtns{
+        font-size:9px
+    }
+}
+@media screen and (max-width:768px){
+    .find-casino-sec{
+        padding-bottom:0
+    }
+    .new-casino-sec, .slot-machine-sec, .mobile-casino-sec, .faq-sec{
+        text-align: justify;
+    }
+    #carouselContent .carhead{
+        padding:0 0 5px 0
+    }
+    #carouselContent .carhead h1{
+        padding:0;
+        text-align:center
+    }
+    #carouselContent .carhead,#carouselContent .carhead h1,.slot-machine-sec p .imgright{
+        width:100%
+    }
+    #carouselContent .carousel-item img{
+        height:auto;
+        width:150px;
+        float:none;
+        max-width:100%
+    }
+    .carousel-control-next{
+        width:15%
+    }
+    #carouselContent .carousel-item a.splbtns{
+        font-size:13px;
+        letter-spacing:0;
+        padding:0 10px;
+        height:30px;
+        line-height:30px
+    }
+    #carouselContent{
+        width:100%;
+        margin:0;
+        left:0;
+        top:25%;
+        transform:translateY(0);
+        padding-right:10%
+    }
+    #carouselContent .carousel-item{
+        padding:0
+    }
+    #carouselContent .carousel-item a.thumb{
+        width:30%!important;
+        float:left
+    }
+    #carouselContent .carousel-item .text{
+        float:left;
+        width:70%;
+        padding:0 0 0 10px;
+        font-size:13px
+    }
+    #carouselContent .carousel-item .btnbo{
+        float:right;
+        width:70%;
+        padding:8px 0 10px 10px
+    }
+    .shiftCon{
+        height:644px
+    }
+}
+@media screen and (max-width:479px){
+    .shiftCon{
+        height:305px
+    }
+    #carouselContent h1{
+        font-size:22px
+    }
+    p.tbggradi{
+        font-size:20px;
+        line-height:normal
+    }
+}
+@media (max-width:411px){
+    div#carouselContentMobile{
+        top:60%!important
+    }
+}

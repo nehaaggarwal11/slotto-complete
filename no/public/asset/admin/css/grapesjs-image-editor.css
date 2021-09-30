@@ -1,0 +1,17 @@
+.tui-image-editor-container .tui-image-editor-menu>.tui-image-editor-item[title]:hover:before{
+    content: unset !important;
+}
+.tui-image-editor-container .tui-image-editor-menu>.tui-image-editor-item[title]:hover:after,
+.tui-image-editor-container .tui-image-editor-menu>.tui-image-editor-item::after {
+    content: attr(title) !important;
+    position: relative;
+    top: 0;
+    padding: 0;
+    font-size: inherit;
+    background: inherit;
+}
+
+.tui-image-editor-container .tui-image-editor-menu>.tui-image-editor-item.active {
+    background: inherit;
+    color: white;
+}
