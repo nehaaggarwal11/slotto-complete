@@ -1,16 +1,18 @@
 @extends('layouts.admin')
 @section('content')
-
     <div class="card">
         <div class="card-header">
             {{ trans('global.send') }} {{ trans('cruds.subscriber.fields.email') }}
         </div>
         <div class="card-body">
-            <form id="sendBulkEmail" method="POST" action="{{ route("admin.subscribers.sendBulkEmail") }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route("admin.subscribers.sendEmail") }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label class="required" for="emails">{{ trans('cruds.subscriber.fields.email') }}</label>
-                    
+                    <div style="padding-bottom: 4px">
+                        <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                        <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                    </div>
                     <select class="form-control select2_tags {{ $errors->has('emails') ? 'is-invalid' : '' }}" name="emails[]" id="emails" multiple required>
                         @foreach(old('emails', $emails) as $email)
                             <option value="{{ $email }}" selected>{{ $email }}</option>
@@ -33,9 +35,22 @@
                     @endif
                     <span class="help-block">{{ trans('cruds.subscriber.fields.subject_helper') }}</span>
                 </div>
-
                 <div class="form-group">
-                    <button class="btn btn-danger sendBulkEmail" type="submit">
+                    <label for="template">{{ trans('cruds.subscriber.fields.template') }}</label>
+                    <select class="form-control select2 {{ $errors->has('template') ? 'is-invalid' : '' }}" name="template" id="template">
+                        @foreach($templates as $template)
+                            <option value="{{ $template->id }}" {{ $template->id == old('template') ? 'selected' : '' }}>{{ $template->name }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('template'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('template') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.subscriber.fields.template_helper') }}</span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-danger" type="submit">
                         {{ trans('global.save') }}
                     </button>
                 </div>

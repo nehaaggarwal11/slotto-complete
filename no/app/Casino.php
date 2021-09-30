@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
@@ -16,7 +15,7 @@ class Casino extends Model implements HasMedia
     public $table = 'casinos';
 
     protected $appends = [
-//        'slug',
+        // 'slug',
         'route',
         'featured_image',
         'logo_image',
@@ -30,9 +29,8 @@ class Casino extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'slug',
-        'bg_color',
         'name',
+        'slug',
         'overview',
         'detail',
         'link',
@@ -56,41 +54,19 @@ class Casino extends Model implements HasMedia
         'logo_image_alt_text',
         'transparent_logo_image_alt_text',
         'bg_image_alt_text',
-        'popular_casino_heading',
-        'popular_casinos',
-        'bg_image_color',
-        'countries',
-        'faq_heading',
-        'faqs',
-        'games_heading',
-        'games',
-        'order_id',
         'created_at',
         'updated_at',
     ];
 
-    /**
-     * Scope a query to only include active users.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     * @param  array  $countries
-     */
-    public function scopeCountries($query, array $countries = [])
-    {
-        return $query->whereRaw('FIND_IN_SET(?,countries)', $countries);
-        //return whereIn('countries', $countries);
-    }
-
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('thumb')->width(150)->height(150)->format(Manipulations::FORMAT_PNG);
+        $this->addMediaConversion('thumb')->width(150)->height(150);
     }
-
-    /*public function getSlugAttribute()
+/* 
+    public function getSlugAttribute()
     {
         return Str::slug($this->name);
-    }*/
+    } */
 
     public function getRouteAttribute()
     {

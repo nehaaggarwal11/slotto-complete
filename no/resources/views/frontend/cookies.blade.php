@@ -7,7 +7,7 @@
     <meta content="{{ @$cookies->seo_description }}" name="description">
 @endsection
 @section('content')
-    <section id="cookie-section-page" class="sectionMTMB">
+    <section id="cookie-section-page">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

@@ -7,7 +7,7 @@
     <meta content="{{ $privacy->seo_description }}" name="description">
 @endsection
 @section('content')
-    <section id="privacy-section-page" class="sectionMTMB">
+    <section id="privacy-section-page">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

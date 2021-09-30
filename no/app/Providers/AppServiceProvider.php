@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
 	    $this->app->bind(
 		    \Auth0\Login\Contract\Auth0UserRepository::class,
 		    \App\Repositories\CustomUserRepository::class
-		    // \Auth0\Login\Repository\Auth0UserRepository::class
+	    // \Auth0\Login\Repository\Auth0UserRepository::class
 	    );
     }
 
@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-         //\Debugbar::disable();
+        //
     }
 }

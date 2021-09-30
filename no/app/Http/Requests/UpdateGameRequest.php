@@ -11,7 +11,7 @@ class UpdateGameRequest extends FormRequest
 {
     public function authorize()
     {
-        //abort_if(Gate::denies('game_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('game_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -25,7 +25,6 @@ class UpdateGameRequest extends FormRequest
             'logo_alt_text' => [],
             'bg_image_alt_text' => [],
             'bg_image_logo_alt_text' => [],
-            'bg_color' => [],
             'game_link' => [],
             'name' => ['required'],
             'rtp_game' => [],
@@ -39,13 +38,6 @@ class UpdateGameRequest extends FormRequest
             'provider' => [],
             'rtp' => [],
             'volatilitet' => [],
-            'gpi'   => [],
-            'popular_casino_heading' => [],
-            'popular_casino' => [],
-            'faq_heading' => [],
-            'faq' => [],
-            'slots_heading' => [],
-            'slots' => [],
         ];
     }
 }

@@ -58,15 +58,14 @@ class SubscriberController extends Controller
     {
         abort_if(!$subscriber = Subscriber::where('email', $email)->first(), 404);
 
-        //if($subscriber->status != "subscribed" || $subscriber->status == "subscribed"){
-          if($subscriber->status != "subscribed"){
+        if($subscriber->status != "subscribed"){
             Subscriber::select('email')
                 ->where('email', $email)
                 ->update(['status' => 'subscribed']);
 
             $subject = StaticPage::getField('setting', 'welcome_email_subject');
             $subscribe_confirm = "<a href='".route('frontend.subscribers.subscribe.confirm', $email)."'>Subscribe Confirm</a>";
-            $unsub = "<a href='".route('frontend.subscribers.unsubscribe', $email)."' style='color:#f5c582;'><u>unsubscribe</u></a>";
+            $unsub = "<a href='".route('frontend.subscribers.unsubscribe', $email)."'>unsubscribe</a>";
             $email_content = StaticPage::getField('setting', 'welcome_email_content');
             $email_content = str_replace('%EMAIL%', $email, $email_content);
             $email_content = str_replace('%SUB_CONFIRM%', $subscribe_confirm, $email_content);

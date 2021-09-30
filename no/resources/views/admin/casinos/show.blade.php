@@ -140,7 +140,7 @@
                             {{ $casino->featured_image_alt_text }}
                         </td>
                     </tr>
-                    {{-- <tr>
+                    <tr>
                         <th>
                             {{ trans('cruds.casino.fields.logo_image') }}
                         </th>
@@ -179,7 +179,7 @@
                         <td>
                             {{ $casino->transparent_logo_image_alt_text }}
                         </td>
-                    </tr> 
+                    </tr>
                     <tr>
                         <th>
                             {{ trans('cruds.casino.fields.bg_image') }}
@@ -191,7 +191,7 @@
                                 </a>
                             @endif
                         </td>
-                    </tr> 
+                    </tr>
                     <tr>
                         <th>
                             {{ trans('cruds.casino.fields.bg_image_alt_text') }}
@@ -199,7 +199,7 @@
                         <td>
                             {{ $casino->bg_image_alt_text }}
                         </td>
-                    </tr>--}}
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

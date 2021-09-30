@@ -17,7 +17,7 @@ class HomeController
         SitemapGenerator::create(config('app.url'))
             ->hasCrawled(function (Url $url){ // Remove http and https route then add url base route
                 $uri = implode('/', $url->segments());
-                $link = str_replace('/en/en', '/en', config('app.url') . '/' . $uri);
+                $link = str_replace(['/no/no','/no/en'], '/no', config('app.url') . '/' . $uri);
                 $url->setUrl($link);
                 return $url;
             })

@@ -75,7 +75,6 @@ return [
      * if your files are stored locally above the site root or on s3.
      */
     'url_generator' => null,
-    // 'url_generator' => Spatie\MediaLibrary\UrlGenerator\BaseUrlGenerator::class,
     // 'url_generator' => App\Helpers\MediaLibraryUrlGenerator::class,
 
     /*

@@ -1,17 +1,6 @@
 @extends('layouts.admin')
-@section('styles')
-
-<link rel="stylesheet" href="{{ asset('asset/admin/css/jquery.minicolors.css')}}">
-@endsection
 @section('content')
-@php
-    $all_game_category = \App\GameCategory::all();
-    $all_similar_games = \App\Game::all();
-    $all_slots = \App\Game::all();
-    $all_casinos = \App\Casino::all();
-    $all_faqQuestions = \App\FaqQuestion::all();
-    $all_providers = \App\Software::all();
-@endphp
+
 <div class="card">
     <div class="card-header">
         {{ trans('global.create') }} {{ trans('cruds.game.title_singular') }}
@@ -23,67 +12,6 @@
     <div class="card">
         <div class="card-header">Game</div>
         <div class="card-body">
-            <div class="form-group">
-                <label for="game_category">{{ trans('cruds.game.fields.game_category') }}</label>
-                @php
-                    $game_category = explode(",", @$game->game_category);
-                @endphp
-                <select class="form-control custom_order select2_game_category {{ $errors->has('game_category') ? 'is-invalid' : '' }}" name="game_category[]" id="game_category" data-selected="{{ implode(",", $game_category) }}" multiple>
-                    @foreach($game_category as $game_id)
-                        @php
-                            /**
-                            * @var $game_id from loop
-                                */
-                            $gamecat = \App\GameCategory::find($game_id)
-                        @endphp
-                        @if($gamecat)
-                            <option value="{{ $gamecat->id }}">{{ $gamecat->name }}</option>
-                        @endif
-                    @endforeach
-                    @foreach($all_game_category as $gamecat)
-                        @if($gamecat && !in_array($gamecat->id, $game_category))
-                            <option value="{{ $gamecat->id }}">{{ $gamecat->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @if($errors->has('game_category'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('game_category') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.game_category_helper') }}</span>
-            </div>
-
-            <div class="form-group">
-                <label for="similar_games">{{ trans('cruds.game.fields.similar_games') }}</label>
-                @php
-                    $similar_games = explode(",", @$game->similar_games);
-                @endphp
-                <select class="form-control custom_order select2_similar_games {{ $errors->has('similar_games') ? 'is-invalid' : '' }}" name="similar_games[]" id="similar_games" data-selected="{{ implode(",", $similar_games) }}" multiple>
-                    @foreach($similar_games as $game_id)
-                        @php
-                            /**
-                            * @var $game_id from loop
-                                */
-                            $similargame = \App\Game::find($game_id)
-                        @endphp
-                        @if($similargame)
-                            <option value="{{ $similargame->id }}">{{ $similargame->name }}</option>
-                        @endif
-                    @endforeach
-                    @foreach($all_similar_games as $similargame)
-                        @if($similargame && !in_array($similargame->id, $similar_games))
-                            <option value="{{ $similargame->id }}">{{ $similargame->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @if($errors->has('similar_games'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('similar_games') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.similar_games_helper') }}</span>
-            </div>
             <div class="form-group">
                 <label for="logo">{{ trans('cruds.game.fields.logo') }} (upload in 1:1 ratio, recommended size  120*120)</label>
                 <div class="needsclick dropzone {{ $errors->has('logo') ? 'is-invalid' : '' }}" id="logo-dropzone">
@@ -105,19 +33,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.game.fields.logo_alt_text_helper') }}</span>
             </div>
-
             <div class="form-group">
-                <label for="color_picker">{{ trans('cruds.game.fields.color_picker') }}</label>
-                <input id="swatches" class="form-control demo" name="bg_color" data-swatches="#ef9a9a|#90caf9|#a5d6a7|#fff59d|#ffcc80|#bcaaa4|#eeeeee|#f44336|#2196f3|#4caf50|#ffeb3b|#ff9800|#795548|#9e9e9e" value="#abcdef">
-                @if($errors->has('color_picker'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('color_picker') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.color_picker_helper') }}</span>
-            </div>
-
-            {{-- <div class="form-group">
                 <label for="bg_image">{{ trans('cruds.game.fields.bg_image') }} (recommended size  1920*400)</label>
                 <div class="needsclick dropzone {{ $errors->has('bg_image') ? 'is-invalid' : '' }}" id="bg_image-dropzone">
                 </div>
@@ -137,7 +53,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.game.fields.bg_image_alt_text_helper') }}</span>
-            </div> --}}
+            </div>
             <div class="form-group">
                 <label for="bg_image_logo">{{ trans('cruds.game.fields.bg_image_logo') }} (recommended size   max-width:300px & max-height:200px)</label>
                 <div class="needsclick dropzone {{ $errors->has('bg_image_logo') ? 'is-invalid' : '' }}" id="bg_image_logo-dropzone">
@@ -169,7 +85,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.game.fields.bg_image_text_helper') }}</span>
             </div>
-            {{-- <div class="form-group">
+            <div class="form-group">
                 <label for="bg_image_button_text">{{ trans('cruds.game.fields.bg_image_button_text') }}</label>
                 <input class="form-control {{ $errors->has('bg_image_button_text') ? 'is-invalid' : '' }}" type="text" name="bg_image_button_text" id="bg_image_button_text" value="{{ old('bg_image_button_text', '') }}">
                 @if($errors->has('bg_image_button_text'))
@@ -178,8 +94,8 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.game.fields.bg_image_button_text_helper') }}</span>
-            </div> --}}
-            {{--<div class="form-group">
+            </div>
+            <div class="form-group">
                 <label for="bg_image_button_link">{{ trans('cruds.game.fields.bg_image_button_link') }}</label>
                 <input class="form-control {{ $errors->has('bg_image_button_link') ? 'is-invalid' : '' }}" type="text" name="bg_image_button_link" id="bg_image_button_link" value="{{ old('bg_image_button_link', '') }}">
                 @if($errors->has('bg_image_button_link'))
@@ -188,7 +104,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.game.fields.bg_image_button_link_helper') }}</span>
-            </div>--}}
+            </div>
             <div class="form-group">
                 <label for="game_link">{{ trans('cruds.game.fields.game_link') }}</label>
                 <textarea class="form-control {{ $errors->has('game_link') ? 'is-invalid' : '' }}" name="game_link" id="game_link" placeholder="http://abc.com" value="{!! old('game_link', '') !!}"></textarea>
@@ -286,7 +202,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.game.fields.maks_innsats_helper') }}</span>
             </div>
-
+            
             <div class="form-group">
                 <label for="description">{{ trans('cruds.game.fields.description') }}</label>
                 <textarea class="form-control ckeditor {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description">{!! old('description', '') !!}</textarea>
@@ -299,12 +215,7 @@
             </div>
             <div class="form-group">
                 <label for="provider">{{ trans('cruds.game.fields.provider') }}</label>
-                <select class="form-control select2 {{ $errors->has('provider') ? 'is-invalid' : '' }}" name="provider" id="provider">
-                  <option value="" hidden>Please select one</option>
-                  @foreach($all_providers as $provider)
-                    <option value="{{$provider->title}}">{{$provider->title}}</option>
-                  @endforeach
-                </select>
+                <input class="form-control {{ $errors->has('provider') ? 'is-invalid' : '' }}" type="text" name="provider" id="provider" value="{{ old('provider', '') }}">
                 @if($errors->has('provider'))
                     <div class="invalid-feedback">
                         {{ $errors->first('provider') }}
@@ -354,139 +265,10 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.game.fields.gpi_helper') }}</span>
             </div>
-
-            <div class="form-group">
-                <label for="popular_casino_heading">{{ trans('cruds.game.fields.popular_casino_heading') }}</label>
-                <input class="form-control {{ $errors->has('popular_casino_heading') ? 'is-invalid' : '' }}" type="text" name="popular_casino_heading" id="popular_casino_heading">
-                @if($errors->has('popular_casino_heading'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('popular_casino_heading') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.popular_casino_heading_helper') }}</span>
-            </div>
-
-            {{-- <div class="form-group">
-                <label for="popular_casino">{{ trans('cruds.game.fields.popular_casino') }}</label>
-                @php
-                    $popular_casinos = old('popular_casinos', $data->popular_casinos ?? [])
-                @endphp
-                <select class="form-control custom_order select2_popular_casinos {{ $errors->has('popular_casinos') ? 'is-invalid' : '' }}" name="popular_casinos[]" id="popular_casinos" data-selected="{{ implode(",", $popular_casinos) }}" multiple>
-                    @foreach($popular_casinos as $casino_id)
-                        @php
-                            /**
-                            * @var $casino_id from loop
-                                */
-                            $casino = \App\Casino::find($casino_id)
-                        @endphp
-                        @if($casino)
-                            <option value="{{ $casino->id }}">{{ $casino->name }}</option>
-                        @endif
-                    @endforeach
-                    @foreach($all_casinos as $casino)
-                        @if($casino && !in_array($casino->id, $popular_casinos))
-                            <option value="{{ $casino->id }}">{{ $casino->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @if($errors->has('popular_casinos'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('popular_casinos') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.popular_casino_helper') }}</span>
-            </div> --}}
-
-            <div class="form-group">
-                <label for="slots_heading">{{ trans('cruds.game.fields.slots_heading') }}</label>
-                <input class="form-control {{ $errors->has('slots_heading') ? 'is-invalid' : '' }}" type="text" name="slots_heading" id="slots_heading">
-                @if($errors->has('slots_heading'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('slots_heading') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.slots_heading_helper') }}</span>
-            </div>
-
-            {{-- <div class="form-group">
-                <label for="slots">{{ trans('cruds.game.fields.slots') }}</label>
-                @php
-                    $slots = explode(",", @$game->slots);
-                @endphp
-                <select class="form-control custom_order select2_slots {{ $errors->has('slots') ? 'is-invalid' : '' }}" name="slots[]" id="slots" data-selected="{{ implode(",", $slots) }}" multiple>
-                    @foreach($slots as $game_id)
-                        @php
-                            /**
-                            * @var $game_id from loop
-                                */
-                            $slots_casino = \App\Game::find($game_id)
-                        @endphp
-                        @if($slots_casino)
-                            <option value="{{ $slots_casino->id }}">{{ $slots_casino->name }}</option>
-                        @endif
-                    @endforeach
-                    @foreach($all_slots as $slots_casino)
-                        @if($slots_casino && !in_array($slots_casino->id, $slots))
-                            <option value="{{ $slots_casino->id }}">{{ $slots_casino->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @if($errors->has('slots'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('slots') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.slots_helper') }}</span>
-            </div> --}}
-
-
-            <div class="form-group">
-                <label for="faq_heading">{{ trans('cruds.game.fields.faq_heading') }}</label>
-                <input class="form-control {{ $errors->has('faq_heading') ? 'is-invalid' : '' }}" type="text" name="faq_heading" id="faq_heading">
-                @if($errors->has('faq_heading'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('faq_heading') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.faq_heading_helper') }}</span>
-            </div>
-
-            <div class="form-group">
-                <label for="faqs">{{ trans('cruds.game.fields.faq') }}</label>
-                @php
-                    $faqs = old('faqs', $data->faqs ?? [])
-                @endphp
-                <select class="form-control custom_order select2_faq {{ $errors->has('faqs') ? 'is-invalid' : '' }}" name="faqs[]" id="faqs" data-selected="{{ implode(",", $faqs) }}" multiple>
-                    @foreach($faqs as $faq_id)
-                        @php
-                            /**
-                            * @var $faq_id from loop
-                                */
-                            $faq = \App\FaqQuestion::find($faq_id)
-                        @endphp
-                        <option value="{{ $faq->id }}">{{ $faq->question }}</option>
-                    @endforeach
-                    @foreach($all_faqQuestions as $faq)
-                        @if(!in_array($faq->id, $faqs))
-                            <option value="{{ $faq->id }}">{{ $faq->question }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @if($errors->has('faqs'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('faqs') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.game.fields.faq_helper') }}</span>
-            </div>
         </div>
     </div>
-    @php
-        $seo_title = $seo_keyword = $seo_description = '';
-        $countries = [];
-    @endphp
+    @php($seo_title = $seo_keyword = $seo_description = '')
     @include('partials.seoFields', compact('errors', 'seo_title', 'seo_keyword', 'seo_description'))
-    {{-- @include('partials.countriesFields', compact('errors', 'countries')) --}}
     @include('partials.saveWideButton')
 </form>
 
@@ -498,18 +280,6 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('select.select2_game_category').select2_sortable({
-                maximumSelectionLength: 20
-            });
-            $('select.select2_similar_games').select2_sortable({
-                maximumSelectionLength: 20
-            });
-            $('select.select2_popular_casinos').select2_sortable({
-            });
-            $('select.select2_faq').select2_sortable({
-            });
-             $('select.select2_slots').select2_sortable({
-            });
             function SimpleUploadAdapter(editor) {
                 editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
                     return {
@@ -519,7 +289,7 @@
                                     return new Promise(function(resolve, reject) {
                                         // Init request
                                         var xhr = new XMLHttpRequest();
-                                        xhr.open('POST', '/en/admin/games/ckmedia', true);
+                                        xhr.open('POST', '/no/admin/games/ckmedia', true);
                                         xhr.setRequestHeader('x-csrf-token', window._token);
                                         xhr.setRequestHeader('Accept', 'application/json');
                                         xhr.responseType = 'json';
@@ -729,36 +499,6 @@
                 return _results
             }
         }
-
-    </script>
-
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="{{ asset('asset/admin/css/jquery.minicolors.js')}}"></script>
-    <script>
-        $(document).ready( function() {
-        $('.demo').each( function() {
-            $(this).minicolors({
-            control: $(this).attr('data-control') || 'hue',
-            defaultValue: $(this).attr('data-defaultValue') || '',
-            format: $(this).attr('data-format') || 'hex',
-            keywords: $(this).attr('data-keywords') || '',
-            inline: $(this).attr('data-inline') === 'true',
-            letterCase: $(this).attr('data-letterCase') || 'lowercase',
-            opacity: $(this).attr('data-opacity'),
-            position: $(this).attr('data-position') || 'bottom',
-            swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
-            change: function(value, opacity) {
-                if( !value ) return;
-                if( opacity ) value += ', ' + opacity;
-                if( typeof console === 'object' ) {
-                console.log(value);
-                }
-            },
-            theme: 'bootstrap'
-            });
-
-        });
-
-        });
+        
     </script>
 @endsection

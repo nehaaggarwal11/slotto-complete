@@ -32,14 +32,6 @@ $.fn.extend({
     }
 });
 
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-        currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-}
-
 $(document).ready(function () {
     window._token = $('meta[name="csrf-token"]').attr('content');
 

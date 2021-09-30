@@ -13,8 +13,7 @@
   define("SITE_DIRECTORY",$_SERVER['DOCUMENT_ROOT'] .'/email-builder/v2.0/');
 */
 
-define("SITE_URL", "https://slottomat.com/en/public/email-builder/");
-// define("SITE_DIRECTORY", __DIR__."/packages/email-builder/");
+define("SITE_URL", "https://slottomat.com/no/public/email-builder/");
 define("SITE_DIRECTORY", __DIR__."/");
 
 
@@ -31,7 +30,7 @@ define("EXPORTS_URL",SITE_URL.'exports/');
 define('DB_SERVER','localhost');
 define('DB_USER','root');
 define('DB_PASS' ,'nj&*#^*H@*&29NJ');
-define('DB_NAME', 'project_slottomat_uk_email_builder');
+define('DB_NAME', 'project_slottomat_norway_email_builder');
 
 // Example DB
 // define('DB_SERVER','localhost');

@@ -1,210 +1,363 @@
-
-function singlePop(jImgCasinoUrl,jImgCasinoAlt,jCasinoName,jCasinoLink){
-  var urlPath = window.location.pathname;
-  if(urlPath.search('slot/') == 1){
-    $('#gameModal .provider-logo').html("<img src='"+jImgCasinoUrl+"' alt='"+jImgCasinoAlt+"'/>");
-    $('#gameModal .provider-name').html('<h3>'+jCasinoName+'</h3>');
-    $('#gameModal #popAgree a').addClass('closePop').attr({'href':'javascript:void(0);','data-dismiss':'modal'});
-    $('#gameModal #popDisagree a').attr({'href':"/free-slots"});
-    $('#gameModal').addClass('show').fadeIn();
-  }
-  else if(urlPath.search('casino/') == 1){
-      $('#gameModal .modal-body').append("<a href='#' class='clos closePop casino-close-btn' data-dismiss='modal'><p style='color:#fff;font-size:14px;margin-bottom:0;padding-top:2px;'>Read Review</p><img src='/asset/frontend/img/popup/arrow.png' alt='moving arrow' class='read-review-arrow' /><img src='/asset/frontend/img/popup/cancel.png' alt='close icon'>");
-      $('#gameModal .provider-logo').html("<img src='"+jImgCasinoUrl+"' alt='"+jImgCasinoAlt+"'/>");
-      $('#gameModal .provider-name').html('<h3>'+jCasinoName+'</h3>');
-      $('#gameModal #popAgree a').attr({'href':jCasinoLink, 'target':'_blank', 'rel':'noreferrer'});
-      $('#gameModal').addClass('show').fadeIn();
-  }
-}
-
-$.fn.loadingButton = function(action) {
-    var loadingText = this.data('loading-text') || '<i class="fa fa-circle-o-notch fa-spin"></i> loading...';
-    if (action === 'loading' && loadingText) {
-        this.data('original-text', this.html()).html(loadingText).prop('disabled', true);
-    }
-    if (action === 'reset' && this.data('original-text')) {
-        this.html(this.data('original-text')).prop('disabled', false);
-    }
-};
-////get links
-$(window).load(function(){
-    $.getScript('https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js');
-    //$.getScript('https://www.slottomat.com/asset/frontend/js/popper.min.js');
-    $.getScript('https://cdn.jsdelivr.net/npm/sweetalert2@9');
-        if($('.gameContent').length <= 4){
-            $('.scrlable').removeClass('scrol');
+(function ($) {
+    "use strict";
+    $.fn.loadingButton = function(action) {
+        var loadingText = this.data('loading-text') || '<i class="fa fa-circle-o-notch fa-spin"></i> loading...';
+        if (action === 'loading' && loadingText) {
+            this.data('original-text', this.html()).html(loadingText).prop('disabled', true);
         }
-        else{
-          $('.scrlable').addClass('scrol');
+        if (action === 'reset' && this.data('original-text')) {
+            this.html(this.data('original-text')).prop('disabled', false);
         }
+    };
 
-        $.each($('.game-content').parent(), function(){
-          if($(this).attr('id') != "game_list"){
-              if($(this).children().length >= 19){
-                $(this).css("height","517px").addClass('scrol');
-              }
-              else{
-                $(this).removeClass('scrol');
-              }
-            }
-        });
-      $('#slider-section').removeClass('shiftCon');
-
-		 setTimeout(function() {
-            // $("#newsletterModal").modal('show');
+    // Preloader (if the #preloader div exists)
+    $(window).on('load', function () {
+        if ($('#preloader').length) {
+            $('#preloader').delay(2000).fadeOut('slow');
+        }
+    });
+    window.onload = function() {
+        setTimeout(function() {
+            $("#newsletterModal").modal('show');
         }, 10000);
-});
-
-$(document).ready(function(){
-    $('.rmore').click(function(e){
-        var rmore = $(this);
-        var slideContent =  $(this).prev().slideToggle(500,function(){
-              rmore.text(function(){
-                 return slideContent.is(":visible") ? "Les Mindre" : "Les Mer";
-            });
-       });
+    }
+    // Back to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
+        }
     });
-    
-    $('.rmore').text('Les Mer');
-
-    $("a[target='_blank']").each(function(){
-      $(this).attr('rel','noreferrer');
+    $('.back-to-top').click(function () {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 1500, 'easeInOutExpo');
+        return false;
     });
-  $(".casino-modal-link").on("click", function () {
-          var dataName = $(this).attr("data-name");
-          var dataImage = $(this).attr("data-img");
-          //alert(dataImage);
-          var dataLink = $(this).attr("data-link");
-          var dataImageAltText = $(this).attr("data-img-alt-text");
-          $('#gameModal .modal-body').append("<a href='javascript:void(0);' id='dismissBtn' class='closePop clos casino-close-btn' ><img src='/asset/frontend/img/popup/cancel.png' alt='close icon'></a>");
-          $(".provider-name").html("<h3 class='casino-name'>"+dataName+"</h3>");
-          $("#popAgree a").attr({'href':dataLink, 'target':'_blank', 'rel':'noreferrer'});
-          $(".provider-logo").html("<img src="+dataImage+" alt="+dataImageAltText+">");
-          //$('#gamemodal').modal('show');
-          $.closePop();
-          $('#gameModal').removeClass('fade').addClass('show').fadeIn();
-      });
-      $.closePop = function(){
-        $('.closePop').click(function(){
-            //console.log($(this).attr('id'));
-            $('#gameModal').removeClass('show fade').fadeOut();
-        });
-      }
-      $(document).keyup(function(e){
-          var key_code = 27;
-          if(e.key == "Escape"){
-            var display =   $('#gameModal').attr('style');
-            if(display == "display: block;"){
-              $('#gameModal').removeClass('show fade').fadeOut();
-            }
-          }
-      });
-      $('a').click(function(){
-          $(this).toggleClass('custActive');
-          $(this).children('.fa').toggleClass('fa-angle-down fa-angle-up');
-      });
 
-      $('#mobileFilterBtn button').click(function(){
-         $('#sideFilter').slideToggle();
-      });
-
-      $('.menuToggle').click(function(){
-              $('.menu-Icon i').toggleClass('fa-bars fa-times');
-              $('.oc-header--desktop').toggleClass('ann');
-              if($('.oc-header--desktop').hasClass('ann')){
-                  $('#menuOverlay').fadeIn();
-                  $('.oc-header--desktop').animate({left:'0'},500);
-              }
-              else{
-                  $('#menuOverlay').fadeOut();
-                   $('.oc-header--desktop').animate({left:'-300px'},500);
-              }
-          });
-          $('.menuColla > i').click(function(e){
-              e.preventDefault()
-              e.stopImmediatePropagation();
-              $(this).toggleClass('fa-angle-down fa-angle-up');
-              $(this).parent().siblings('ul').slideToggle();
-              $(this).parent().parent().siblings('.dropdown-menu--sub').slideToggle();
-          });
-
-    var i = 1;
-     setInterval(function () {
-        i++;
-           if(i == '100'){
-            i=0;
-             $("div.gamenumin").html(i);
-           }
-          else{
-               $("div.gamenumin").html(i);
-           }
-       }, 1000
-     );
-
-       $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js',function(){
-         $('form.subscribeForm').each(function () {
-             $(this).validate({
-                 submitHandler: function (_form) {
-                     console.log('_form', _form);
-                     const form = $(_form);
-                     const subBtn = form.find('button[type=submit]');
-                     subBtn.loadingButton('loading');
-                     if(!form.find('input[name="agree"]').is(':checked')){
-                         Swal.fire('Godta vilkår og betingelser', 'De oppgitte dataene var ugyldige.', 'error');
-                         subBtn.loadingButton('reset');
-                         return false;
-                     }
-                     $.ajax({
-                         url: form.attr('action'),
-                         type: "post",
-                         data: form.serialize(),
-                         dataType: "json",
-                         complete: function (xhr,status) {
-                             subBtn.loadingButton('reset');
-                             const data = xhr.responseJSON;
-                             if(status === 'error'){
-                                 Swal.fire(data.errors.email[0], data.message, 'error');
-                             }else{
-                                 Swal.fire('Godt jobbet!', 'En bekreftelses -e -post ble sendt. Vennligst bekreft', 'success')
-                                 .then(function () {
-                                     $('#newsletterModal').modal('hide');
-                                 });
-                                 form.find('input[name="email"]').val('');
-                             }
-                             return false;
-                         }
-                     })
-                     return false;
-                 }
-             });
-         });
-       });
 
     // Initiate the wowjs animation library
-    $.getScript('https://cdn.boomcdn.com/libs/wow-js/1.3.0/wow.min.js',function(){
-      if(typeof WOW !== 'undefined'){
-          new WOW().init();
-      }
+    if(typeof WOW !== 'undefined'){
+        new WOW().init();
+    }
+
+
+    // Navigation active state on scroll
+    var nav_sections = $('section');
+    var main_nav = $('.main-nav, .mobile-nav');
+    var main_nav_height = $('#header').outerHeight();
+
+    $(window).on('scroll', function () {
+        var cur_pos = $(this).scrollTop();
+
+        nav_sections.each(function () {
+            var top = $(this).offset().top - main_nav_height,
+                bottom = top + $(this).outerHeight();
+
+            if (cur_pos >= top && cur_pos <= bottom) {
+                main_nav.find('li').removeClass('active');
+                main_nav.find('a[href="#' + $(this).attr('id') + '"]').parent('li').addClass('active');
+            }
+        });
     });
 
+
+
+
+    //Running pirate on click
+
+    /* $('img.playgif').click(function () {
+        var srcName = $(this).attr("src");
+        if (srcName == "asset/frontend/img/pirate.gif") {
+            $(this).attr("src", 'asset/frontend/img/running.gif');
+            $('#mediPlay')[0].play();
+
+        } else {
+            $(this).attr("src", 'asset/frontend/img/pirate.gif');
+            $('#mediPlay')[0].pause();
+        }
+    }); */
+
+    //Open Coin box
+    $('.boxgif').click(function () {
+        var srcName = $(this).attr("src");
+        if (srcName == "asset/frontend/img/box/box-blink.gif") {
+            $(this).attr("src", 'asset/frontend/img/box/boxx.gif');
+            $(this).attr("alt", 'skattekiste full av skinnende gullmynter');
+            $('#audioBox')[0].play();
+
+        } else {
+            $(this).attr("src", 'asset/frontend/img/box/box-blink.gif');
+            $('.playgif').attr('src', 'asset/frontend/img/pirate.gif');
+            $('#audioBox')[0].pause();
+        }
+    });
+
+    //button pirate animation
+    $('#start-btn').on('mouseenter', function () {
+        $('.playgif').attr('src', 'asset/frontend/img/pirate-moving-flagg.gif');
+    });
+
+    $('#start-btn').on('mouseleave', function () {
+        $('.playgif').attr('src', 'asset/frontend/img/pirate.gif');
+    });
+
+    //menu hover pirate animation
+    $('.drop-down').on('mouseenter', function () {
+        $('.playgif').attr('src', 'asset/frontend/img/moving-head.gif');
+    });
+
+    $('.drop-down').on('mouseleave', function () {
+        $('.playgif').attr('src', 'asset/frontend/img/pirate.gif');
+    });
+
+    //Les Mer jquery
+    $('#myBtn').click(function () {
+        $('#more').slideToggle();
+        if ($('#myBtn').text() == "Les Mer") {
+            $(this).text("Les Mindre")
+        } else {
+            $(this).text("Les Mer")
+        }
+    });
+
+    $("#noDeposit").click(function () {
+        var elem = $("#noDeposit").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#noDeposit").text("Les Mindre");
+            $("#more-deposit-bonuse").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#noDeposit").text("Les Mer");
+            $("#more-deposit-bonuse").slideUp();
+        }
+    });
+
+    $("#deposit-read-more").click(function () {
+        var elem = $("#deposit-read-more").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#deposit-read-more").text("Les Mindre");
+            $("#deposit-bonuse").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#deposit-read-more").text("Les Mer");
+            $("#deposit-bonuse").slideUp();
+        }
+    });
+
+    $("#wagering-read-more").click(function () {
+        var elem = $("#wagering-read-more").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#wagering-read-more").text("Les Mindre");
+            $("#wagering-more-section").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#wagering-read-more").text("Les Mer");
+            $("#wagering-more-section").slideUp();
+        }
+    });
+    
+    $("#sport-casino-read-more").click(function () {
+        var elem = $("#sport-casino-read-more").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#sport-casino-read-more").text("Les Mindre");
+            $("#sport-casino-more-section").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#sport-casino-read-more").text("Les Mer");
+            $("#sport-casino-more-section").slideUp();
+        }
+    });
+
+    $("#new-casino-read-more").click(function () {
+        var elem = $("#new-casino-read-more").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#new-casino-read-more").text("Les Mindre");
+            $("#new-casino-more-section").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#new-casino-read-more").text("Les Mer");
+            $("#new-casino-more-section").slideUp();
+        }
+    });
+
+    $("#find-casino-read-more").click(function () {
+        var elem = $("#find-casino-read-more").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#find-casino-read-more").text("Les Mindre");
+            $("#find-casino-more-section").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#find-casino-read-more").text("Les Mer");
+            $("#find-casino-more-section").slideUp();
+        }
+    });
+
+
+    $("#mobile-casino-read-more").click(function () {
+        var elem = $("#mobile-casino-read-more").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#mobile-casino-read-more").text("Les Mindre");
+            $("#mobile-casino-more-section").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#mobile-casino-read-more").text("Les Mer");
+            $("#mobile-casino-more-section").slideUp();
+        }
+    });
+
+    $("#slot-machine-read-more").click(function () {
+        var elem = $("#slot-machine-read-more").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#slot-machine-read-more").text("Les Mindre");
+            $("#slot-machine-more-section").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#slot-machine-read-more").text("Les Mer");
+            $("#slot-machine-more-section").slideUp();
+        }
+    });
+
+    $("#news-read-more").click(function () {
+        var elem = $("#news-read-more").text();
+        if (elem == "Les Mer") {
+            //Stuff to do when btn is in the Les Mer state
+            $("#news-read-more").text("Les Mindre");
+            $("#news-more-section").slideDown();
+        } else {
+            //Stuff to do when btn is in the Les Mindre state
+            $("#news-read-more").text("Les Mer");
+            $("#news-more-section").slideUp();
+        }
+    });
+
+    $('.casino-widget').hover(function () {
+        $(this).find('.casino-top').hide();
+        $(this).find('.casino-bottom').show();
+    }, function () {
+        $(this).find('.casino-top').show();
+        $(this).find('.casino-bottom').hide();
+    });
+
+    $(window).scroll(function () {
+        //more then or equals to
+        if ($(window).scrollTop() >= 1000) {
+            $(".section-title").css("display", "block");
+
+            //less then 100px from top
+        } else if ($(window).scrollTop() >= 1000) {
+            $(".section-title").css("display", "none");
+        }
+    });
+
+    $('.casino-review-tab').find('.table').addClass('table-responsive');
+    $('.detail-review-tab').find('.table').addClass('table-responsive');
+    $('#cookie-section-page').find('.table').addClass('table-striped table-responsive cookie-table');
+
+    // Character moves with mouse
+    var mouseX = 0,
+        mouseY = 0;
+    $(document).mousemove(function (e) {
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+    });
+
+    // cache the selector
+    var follower = $("#follower img");
+    var xp = 0,
+        yp = 0;
+    var loop = setInterval(function () {
+        // change 12 to alter damping higher is slower
+        xp += (mouseX - xp) / 12;
+        yp += (mouseY - yp) / 12;
+        follower.css({
+            left: xp,
+            top: yp
+        });
+
+    }, 30);
+
+    // $('select').niceSelect();
 
     $('form#games_filter_form input').on("change, click", function () {
         document.forms.games_filter_form.submit();
     });
 
+    $('form#games_filter_mobile_form input').on("change, click", function () {
+        document.forms.games_filter_mobile_form.submit();
+    });
+
+    $('form#games_filter_ipad_form input').on("change, click", function () {
+        document.forms.games_filter_ipad_form.submit();
+    });
+
+    $('form#news_form').on("change", function () {
+        document.forms.news_form.submit();
+    });
+
+
+
+    $(window).on("resize", function(){
+        if (window.innerWidth > 767 && window.innerWidth < 1099) {
+          $('.game-content').addClass('col-md-4').removeClass('col-md-3');
+          $('.filter-screen').addClass('col-md-3 offset-md-1').removeClass('col-md-2');
+          $('.game-popular-casino').addClass('col-md-10 offset-md-1').removeClass('col-md-3');
+          $('.faq_content').addClass('col-md-10').removeClass('col-md-7');
+          $('.faq_popular_casino').addClass('col-md-10 offset-md-1').removeClass('col-md-3');
+          $('.slottomat-table-tab').addClass('col-md-6 offset-md-4').removeClass('col-md-4 offset-md-6');
+
+
+        } else {
+            $('.game-content').addClass('col-md-3').removeClass('col-md-4');
+            $('.filter-screen').addClass('col-md-2').removeClass('col-md-3 offset-md-1');
+            $('.game-popular-casino').addClass('col-md-3').removeClass('col-md-10 offset-md-1');
+            $('.faq_content').addClass('col-md-7').removeClass('col-md-10');
+            $('.faq_popular_casino').addClass('col-md-3').removeClass('col-md-10 offest-md-1');
+            $('.slottomat-table-tab').addClass('col-md-4 offset-md-6').removeClass('col-md-6 offset-md-4');
+        }
+    });
+
+    $(window).on("load", function(){
+        if (window.innerWidth > 767 && window.innerWidth < 1099) {
+          $('.game-content').addClass('col-md-4').removeClass('col-md-3');
+          $('.filter-screen').addClass('col-md-3 offset-md-1').removeClass('col-md-2');
+          $('.game-popular-casino').addClass('col-md-10 offset-md-1').removeClass('col-md-3');
+          $('.faq_content').addClass('col-md-10').removeClass('col-md-7');
+          $('.faq_popular_casino').addClass('col-md-10 offset-md-1').removeClass('col-md-3');
+            $('.slottomat-table-tab').addClass('col-md-6 offset-md-4').removeClass('col-md-4 offset-md-6');
+        } else {
+            $('.game-content').addClass('col-md-3').removeClass('col-md-4');
+            $('.filter-screen').addClass('col-md-2').removeClass('col-md-3 offset-md-1');
+            $('.game-popular-casino').addClass('col-md-3').removeClass('col-md-10 offset-md-1');
+            $('.faq_content').addClass('col-md-7').removeClass('col-md-10');
+            $('.faq_popular_casino').addClass('col-md-3').removeClass('col-md-10 offest-md-1');
+            $('.slottomat-table-tab').addClass('col-md-4 offset-md-6').removeClass('col-md-6 offset-md-4');
+        }
+    });
+
     setTimeout(function() {
         $('#success-msg').fadeOut('fast');
     }, 3000);
-    $('.counterSelector').click(function(){
-        $(this).toggleClass('active');
-        $('#multisite_selector ul').slideToggle();
-    });
-    $('#multisite_selector li').click(function () {
-     window.location.href = $(this).attr('data-link');
-   });
-      if(window.location.href=="https://www.slottomat.com/online-casinos-in-india"){
-        $('.counterSelector').html('<img src="https://www.slottomat.com/asset/frontend/img/logo/Flag_of_India.png" alt="india_flag" width="16">&nbsp India');
-      }
-   $.closePop();
-    
-  });
+
+
+    $('#filterLow span').text("Lav");
+    $('#filterMedium span').text("Middels");
+    $('#filterHigh span').text("Høy");
+
+    $(document).ready(function() {
+        let multisite_selector = $("#multisite_selector");
+        multisite_selector.msDropdown();
+        multisite_selector.on("change", function () {
+            window.location.href = $(this).val();
+        })
+    })
+})(jQuery);

@@ -13,7 +13,7 @@
             @csrf
             @method('PUT')
 
-            {{-- <div class="form-group">
+            <div class="form-group">
                 <label class="required" for="popular_casinos_box_title">{{ trans('cruds.staticPage.setting.fields.popular_casinos_box_title') }}</label>
                 <input class="form-control {{ $errors->has('popular_casinos_box_title') ? 'is-invalid' : '' }}" type="text" name="popular_casinos_box_title" id="popular_casinos_box_title" value="{{ old('popular_casinos_box_title', @$data->popular_casinos_box_title) }}" required>
                 @if($errors->has('popular_casinos_box_title'))
@@ -51,7 +51,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.staticPage.setting.fields.popular_casinos_helper') }}</span>
-            </div> --}}
+            </div>
             <div class="card">
                 <div class="card-header">
                     {{ trans('cruds.staticPage.setting.fields.welcome_email_title') }}

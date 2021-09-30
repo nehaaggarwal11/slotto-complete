@@ -2,7 +2,6 @@
 @section('content')
     @php
         $all_casinos = \App\Casino::all();
-        $all_faqQuestions = \App\FaqQuestion::all();
     @endphp
 
     <div class="card">
@@ -65,49 +64,7 @@
                     <span class="help-block">{{ trans('cruds.staticPage.casino-bonus.fields.casinos_helper') }}</span>
                 </div>
 
-                <div class="form-group">
-                    <label for="faq_heading">{{ trans('cruds.staticPage.casino-bonus.fields.faq_heading') }}</label>
-                    <input class="form-control {{ $errors->has('faq_heading') ? 'is-invalid' : '' }}" type="text" name="faq_heading" id="faq_heading" value="{{ old('faq_heading', @$data->faq_heading) }}">
-                    @if($errors->has('faq_heading'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('faq_heading') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.staticPage.casino-bonus.fields.faq_heading_helper') }}</span>
-                </div>
-
-                <div class="form-group"> 
-                    <label class="required" for="faq">{{ trans('cruds.staticPage.casino-bonus.fields.faq') }}</label>
-                    @php
-                        $faqs = old('faqs', $data->faqs ?? [])
-                    @endphp
-                    <select class="form-control custom_order select2_faq {{ $errors->has('faqs') ? 'is-invalid' : '' }}" name="faqs[]" id="faqs" data-selected="{{ implode(",", $faqs) }}" multiple required>
-                        @foreach($faqs as $faq_id)
-                            @php
-                                /**
-                                * @var $faq_id from loop
-                                    */
-                                $faq = \App\FaqQuestion::find($faq_id)
-                            @endphp
-                            @if($faq)
-                                <option value="{{ $faq->id }}">{{ $faq->question }}</option>
-                            @endif
-                        @endforeach
-                        @foreach($all_faqQuestions as $faq)
-                            @if($faq && !in_array($faq->id, $faqs))
-                                <option value="{{ $faq->id }}">{{ $faq->question }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @if($errors->has('faqs'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('faqs') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.staticPage.casino-bonus.fields.faq_helper') }}</span>
-                </div>
-
-                <!-- <div class="card">
+                <div class="card">
                     <div class="card-header">Two Main Casinos</div>
                     <div class="card-body">
                         <div class="form-group">
@@ -121,9 +78,9 @@
                                         */
                                         $casino = \App\Casino::find($casino_id)
                                     @endphp
-                                @if($casino)
-                                    <option value="{{ $casino->id }}">{{ $casino->name }}</option>
-                                @endif
+                                    @if($casino)
+                                        <option value="{{ $casino->id }}">{{ $casino->name }}</option>
+                                    @endif
                                 @endforeach
                                 @foreach($all_casinos as $casino)
                                     @if($casino && !in_array($casino->id, $tmc_casinos))
@@ -273,7 +230,7 @@
                                     <span class="help-block">{{ trans('cruds.staticPage.casino-bonus.fields.info_text_helper') }}</span>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
 
                         <div class="card">
                             <div class="card-header">Sannheten om gratis bonus</div>
@@ -377,7 +334,7 @@
                         @endphp
                         @include('partials.seoFields', compact('errors', 'seo_title', 'seo_keyword', 'seo_description'))
                     </div>
-                </div> 
+                </div>
 
                 <div class="form-group">
                     <button class="btn btn-danger" type="submit">
@@ -393,8 +350,10 @@
     <script>
         $(document).ready(function () {
             $('select.select2_casinos').select2_sortable({
+                maximumSelectionLength: 40
             });
-            $('select.select2_faq').select2_sortable({
+            $('select.select2_two_casinos').select2_sortable({
+                maximumSelectionLength: 2
             });
 
             function SimpleUploadAdapter(editor) {
@@ -406,7 +365,7 @@
                                     return new Promise(function(resolve, reject) {
                                         // Init request
                                         var xhr = new XMLHttpRequest();
-                                        xhr.open('POST', '/en/admin/casinos/ckmedia', true);
+                                        xhr.open('POST', '/no/admin/casinos/ckmedia', true);
                                         xhr.setRequestHeader('x-csrf-token', window._token);
                                         xhr.setRequestHeader('Accept', 'application/json');
                                         xhr.responseType = 'json';

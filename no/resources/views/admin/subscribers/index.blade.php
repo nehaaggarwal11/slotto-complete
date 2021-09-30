@@ -12,7 +12,7 @@
                         <div class="form-group mr-3 mb-2">
                             <label for="status" class="sr-only">Status</label>
                             <select id="status" name="status" class="form-control" data-selected="{{ $filters->status }}">
-                                <option value="all">All</option>
+                                <option value="">All</option>
                                 <option value="pending">Pending to verify email</option>
                                 <option value="unsubscribed">Unsubscribed</option>
                                 <option value="subscribed">Subscribed</option>

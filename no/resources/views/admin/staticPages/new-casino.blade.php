@@ -3,8 +3,6 @@
 @section('content')
     @php
         $all_casinos = \App\Casino::all();
-        $all_faqQuestions = \App\FaqQuestion::all();
-        $all_games = \App\Game::all();
     @endphp
 
     <div class="card">
@@ -47,7 +45,7 @@
 
 
 
-                <!-- <div class="card">
+                <div class="card">
                     <div class="card-header">Top 3 Casinos</div>
                     <div class="card-body">
                         <div class="card">
@@ -189,7 +187,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <div class="form-group">
                     <label for="heading">{{ trans('cruds.staticPage.new-casino.fields.heading') }}</label>
@@ -242,87 +240,6 @@
                     @endif
                     <span class="help-block">{{ trans('cruds.staticPage.new-casino.fields.section_text_helper') }}</span>
                 </div>
-
-                <div class="form-group">
-                    <label for="faq_heading">{{ trans('cruds.staticPage.new-casino.fields.faq_heading') }}</label>
-                    <input class="form-control {{ $errors->has('faq_heading') ? 'is-invalid' : '' }}" type="text" name="faq_heading" id="faq_heading" value="{{ old('faq_heading', @$data->faq_heading) }}">
-                    @if($errors->has('faq_heading'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('faq_heading') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.staticPage.new-casino.fields.faq_heading_helper') }}</span>
-                </div>
-
-                <div class="form-group"> 
-                    <label class="required" for="faq">{{ trans('cruds.staticPage.new-casino.fields.faq') }}</label>
-                    @php
-                        $faqs = old('faqs', $data->faqs ?? [])
-                    @endphp
-                    <select class="form-control custom_order select2_faq {{ $errors->has('faqs') ? 'is-invalid' : '' }}" name="faqs[]" id="faqs" data-selected="{{ implode(",", $faqs) }}" multiple required>
-                        @foreach($faqs as $faq_id)
-                            @php
-                                /**
-                                * @var $faq_id from loop
-                                    */
-                                $faq = \App\FaqQuestion::find($faq_id)
-                            @endphp
-                            @if($faq)
-                                <option value="{{ $faq->id }}">{{ $faq->question }}</option>
-                            @endif
-                        @endforeach
-                        @foreach($all_faqQuestions as $faq)
-                            @if($faq && !in_array($faq->id, $faqs))
-                                <option value="{{ $faq->id }}">{{ $faq->question }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @if($errors->has('faqs'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('faqs') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.staticPage.new-casino.fields.faq_helper') }}</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="new_slots_heading">{{ trans('cruds.staticPage.new-casino.fields.new_slots_heading') }}</label>
-                    <input class="form-control {{ $errors->has('new_slots_heading') ? 'is-invalid' : '' }}" type="text" name="new_slots_heading" id="new_slots_heading" value="{{ old('new_slots_heading', @$data->new_slots_heading) }}">
-                    @if($errors->has('new_slots_heading'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('new_slots_heading') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.staticPage.new-casino.fields.new_slots_heading_helper') }}</span>
-                </div>
-
-                <div class="form-group">
-                    <label class="required" for="new_slots">{{ trans('cruds.staticPage.new-casino.fields.new_slots') }}</label>
-                    @php
-                        $games = old('games', $data->games ?? [])
-                    @endphp
-                    <select class="form-control custom_order select2_games {{ $errors->has('games') ? 'is-invalid' : '' }}" name="games[]" id="games" data-selected="{{ implode(",", $games) }}" multiple required>
-                        @foreach($games as $game_id)
-                            @php
-                                $game = \App\Game::find($game_id)
-                            @endphp
-                            @if($game)
-                                <option value="{{ $game->id }}">{{ $game->name }} - {{$game->provider}}</option>
-                            @endif
-                        @endforeach
-                        @foreach($all_games as $game)
-                            @if($game && !in_array($game->id, $games))
-                                <option value="{{ $game->id }}">{{ $game->name }} - {{$game->provider}}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @if($errors->has('games'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('games') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.staticPage.new-casino.fields.new_slots_helper') }}</span>
-                </div>
                 @php
                     /**
                      * @var $casino from controller
@@ -346,15 +263,7 @@
     <script>
         $(document).ready(function () {
             $('select.select2_casinos').select2_sortable({
-            });
-
-            $('select.select2_popular_casinos').select2_sortable({
-            });
-
-            $('select.select2_faq').select2_sortable({
-            });
-
-            $('select.select2_games').select2_sortable({               
+                maximumSelectionLength: 40
             });
 
             function SimpleUploadAdapter(editor) {
@@ -366,7 +275,7 @@
                                     return new Promise(function(resolve, reject) {
                                         // Init request
                                         var xhr = new XMLHttpRequest();
-                                        xhr.open('POST', '/en/admin/casinos/ckmedia', true);
+                                        xhr.open('POST', '/no/admin/casinos/ckmedia', true);
                                         xhr.setRequestHeader('x-csrf-token', window._token);
                                         xhr.setRequestHeader('Accept', 'application/json');
                                         xhr.responseType = 'json';

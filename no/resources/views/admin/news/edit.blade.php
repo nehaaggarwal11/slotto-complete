@@ -1,10 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@php
-    $all_casinos = \App\Casino::all();
-    $all_similar_news = \App\News::all();
-    $all_faqQuestions = \App\FaqQuestion::all();
-@endphp
+
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.news.title_singular') }}
@@ -37,7 +33,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.news.fields.logo_img_helper') }}</span>
             </div>
-
+            
             <div class="form-group">
                 <label for="logo_img_alt_text">{{ trans('cruds.news.fields.logo_img_alt_text') }}</label>
                 <input class="form-control {{ $errors->has('logo_img_alt_text') ? 'is-invalid' : '' }}" type="text" name="logo_img_alt_text" id="logo_img_alt_text" value="{{ old('logo_img_alt_text', $news->logo_img_alt_text) }}">
@@ -90,7 +86,7 @@
                 <span class="help-block">{{ trans('cruds.news.fields.bg_image_alt_text_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="description">{{ trans('cruds.news.fields.col_1') }}</label>
+                <label for="description">{{ trans('cruds.news.fields.description') }}</label>
                 <textarea class="form-control ckeditor {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description">{!! old('description', $news->description) !!}</textarea>
                 @if($errors->has('description'))
                     <div class="invalid-feedback">
@@ -99,164 +95,17 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.news.fields.description_helper') }}</span>
             </div>
-            <div class="form-group">
-               <label for="description2">{{ trans('cruds.news.fields.col_2') }}</label>
-               <textarea class="form-control ckeditor {{ $errors->has('description2') ? 'is-invalid' : '' }}" name="description2" id="description2">{!! old('description2', $news->description2) !!}</textarea>
-               @if($errors->has('description2'))
-                   <div class="invalid-feedback">
-                       {{ $errors->first('description2') }}
-                   </div>
-               @endif
-               <span class="help-block">{{ trans('cruds.news.fields.description_helper') }}</span>
-           </div>
-            <div class="form-group">
-               <label for="description3">{{ trans('cruds.news.fields.col_3') }}</label>
-               <textarea class="form-control ckeditor {{ $errors->has('description3') ? 'is-invalid' : '' }}" name="description3" id="description3">{!! old('description3', $news->description3) !!}</textarea>
-               @if($errors->has('description3'))
-                   <div class="invalid-feedback">
-                       {{ $errors->first('description3') }}
-                   </div>
-               @endif
-               <span class="help-block">{{ trans('cruds.news.fields.description_helper') }}</span>
-           </div>
-            <div class="form-group">
-                <label for="popular_casinos_heading">{{ trans('cruds.news.fields.popular_casinos_heading') }}</label>
-                <input class="form-control {{ $errors->has('popular_casinos_heading') ? 'is-invalid' : '' }}" type="text" name="popular_casinos_heading" id="popular_casinos_heading" value="{{ old('popular_casinos_heading', @$news->popular_casinos_heading) }}">
-                @if($errors->has('popular_casinos_heading'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('popular_casinos_heading') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.news.fields.popular_casinos_heading_helper') }}</span>
-            </div>
-
-            <div class="form-group">
-                <label for="popular_casinos">{{ trans('cruds.news.fields.popular_casinos') }}</label>
-                @php
-                    $popular_casinos = explode(",", $news->popular_casinos)
-                @endphp
-                <select class="form-control custom_order select2_popular_casinos {{ $errors->has('popular_casinos') ? 'is-invalid' : '' }}" name="popular_casinos[]" id="popular_casinos" data-selected="{{ implode(",", $popular_casinos) }}" multiple>
-                    @foreach($popular_casinos as $casino_id)
-                        @php
-                            /**
-                            * @var $casino_id from loop
-                                */
-                            $casino = \App\Casino::find($casino_id)
-                        @endphp
-                        @if($casino)
-                            <option value="{{ $casino->id }}">{{ $casino->name }}</option>
-                        @endif
-                    @endforeach
-                    @foreach($all_casinos as $casino)
-                        @if($casino && !in_array($casino->id, $popular_casinos))
-                            <option value="{{ $casino->id }}">{{ $casino->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @if($errors->has('popular_casinos'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('popular_casinos') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.news.fields.popular_casinos_helper') }}</span>
-            </div>
-
-            {{-- <div class="form-group">
-                <label for="similar_news_title">{{ trans('cruds.news.fields.similar_news_title') }}</label>
-                <input class="form-control {{ $errors->has('similar_news_title') ? 'is-invalid' : '' }}" type="text" name="similar_news_title" id="similar_news_title" value="{{ old('similar_news_title', @$news->similar_news_title) }}">
-                @if($errors->has('similar_news_title'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('similar_news_title') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.news.fields.similar_news_title_helper') }}</span>
-            </div>
-
-            <div class="form-group">
-                <label for="similar_news">{{ trans('cruds.news.fields.similar_news') }}</label>
-                @php
-                    $similar_news = explode(",", $news->similar_news);
-                @endphp
-                <select class="form-control custom_order select2_similar_news {{ $errors->has('similar_news') ? 'is-invalid' : '' }}" name="similar_news[]" id="similar_news" data-selected="{{ implode(",", $similar_news) }}" multiple>
-                    @foreach($similar_news as $news_id)
-                        @php
-                            /**
-                            * @var $news_id from loop
-                                */
-                            $similarnews = \App\News::find($news_id)
-                        @endphp
-                        @if($similarnews)
-                            <option value="{{ $similarnews->id }}">{{ $similarnews->name }}</option>
-                        @endif
-                    @endforeach
-                    @foreach($all_similar_news as $similarnews)
-                        @if($similarnews && !in_array($similarnews->id, $similar_news))
-                            <option value="{{ $similarnews->id }}">{{ $similarnews->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @if($errors->has('similar_news'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('similar_news') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.news.fields.similar_news_helper') }}</span>
-            </div> --}}
-
-            <div class="form-group">
-                <label for="faq_heading">{{ trans('cruds.news.fields.faq_heading') }}</label>
-                <input class="form-control {{ $errors->has('faq_heading') ? 'is-invalid' : '' }}" type="text" name="faq_heading" value="{{ old('faq_heading', @$news->faq_heading) }}">
-                @if($errors->has('faq_heading'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('faq_heading') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.news.fields.faq_heading_helper') }}</span>
-            </div>
-
-            <div class="form-group">
-                <label for="faqs">{{ trans('cruds.news.fields.faq') }}</label>
-                @php
-                    $faqs = explode(",", $news->faqs)
-                @endphp
-                <select class="form-control custom_order select2_faq {{ $errors->has('faqs') ? 'is-invalid' : '' }}" name="faqs[]" id="faqs" data-selected="{{ implode(",", $faqs) }}" multiple>
-                    @foreach($faqs as $faq_id)
-                        @php
-                            /**
-                            * @var $faq_id from loop
-                                */
-                            $faq = \App\FaqQuestion::find($faq_id)
-                        @endphp
-                        @if($faq)
-                            <option value="{{ $faq->id }}">{{ $faq->question }}</option>
-                        @endif
-                    @endforeach
-                    @foreach($all_faqQuestions as $faq)
-                        @if($faq && !in_array($faq->id, $faqs))
-                            <option value="{{ $faq->id }}">{{ $faq->question }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                @if($errors->has('faqs'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('faqs') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.news.fields.faq_helper') }}</span>
-            </div>
         </div>
     </div>
     @php
-        /**
-          * @var $news `from controller`
-          */
-        $seo_title = $news->seo_title;
-        $seo_keyword = $news->seo_keyword;
-        $seo_description = $news->seo_description;
-        $countries = explode(',', $news->countries);
+    /**
+      * @var $news from controller
+      */
+    $seo_title = $news->seo_title;
+    $seo_keyword = $news->seo_keyword;
+    $seo_description = $news->seo_description;
     @endphp
     @include('partials.seoFields', compact('errors', 'seo_title', 'seo_keyword', 'seo_description'))
-    {{-- @include('partials.countriesFields', compact('errors', 'countries')) --}}
     @include('partials.saveWideButton')
 </form>
 
@@ -268,13 +117,6 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('select.select2_popular_casinos').select2_sortable({
-            });
-            $('select.select2_similar_news').select2_sortable({
-                maximumSelectionLength: 20
-            });
-            $('select.select2_faq').select2_sortable({
-            });
             function SimpleUploadAdapter(editor) {
                 editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
                     return {
@@ -284,7 +126,7 @@
                                     return new Promise(function(resolve, reject) {
                                         // Init request
                                         var xhr = new XMLHttpRequest();
-                                        xhr.open('POST', '/en/admin/news/ckmedia', true);
+                                        xhr.open('POST', '/no/admin/news/ckmedia', true);
                                         xhr.setRequestHeader('x-csrf-token', window._token);
                                         xhr.setRequestHeader('Accept', 'application/json');
                                         xhr.responseType = 'json';
@@ -442,6 +284,6 @@
                 return _results
             }
         }
-
+        
     </script>
 @endsection

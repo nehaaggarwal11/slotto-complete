@@ -7,12 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ trans('panel.site_title') }} - Admin</title>
-
-    <!-- Favicons -->
-    <link href="{{asset('asset/frontend/img/logo/favicon.png')}}" rel="icon">
-    <link href="{{asset('asset/frontend/img/logo/favicon.png')}}" rel="apple-touch-icon">
-
+    <title>{{ trans('panel.site_title') }}</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet" />
@@ -25,8 +20,6 @@
     <link href="https://unpkg.com/@coreui/coreui@2.1.16/dist/css/coreui.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
-    <script src="{{ asset('asset/admin/js/ckeditor.js') }}"></script>
-    @yield('styles_before')
     <link href="{{ asset('asset/admin/css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
 </head>
@@ -37,8 +30,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <span class="navbar-brand-full"><img src="{{asset('asset/frontend/img/logo/logo_mail.png')}}" width="90px"></span>
-            <span class="navbar-brand-minimized"><img src="{{asset('asset/frontend/img/logo/logo_mail.png')}}" width="50px"></span>
+            <span class="navbar-brand-full">{{ trans('panel.site_title') }}</span>
+            <span class="navbar-brand-minimized">{{ trans('panel.site_title') }}</span>
         </a>
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
             <span class="navbar-toggler-icon"></span>
@@ -64,7 +57,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="{{ config('panel.sites.uk.url') }}/admin" class="dropdown-item {{ config('panel.sites.uk.key') == config('panel.sites.current') ? 'active': '' }}">World</a>
                     <a href="{{ config('panel.sites.norway.url') }}/admin" class="dropdown-item {{ config('panel.sites.norway.key') == config('panel.sites.current') ? 'active': '' }}">Norway</a>
-                    {{--<a href="{{ config('panel.sites.usa.url') }}/admin" class="dropdown-item {{ config('panel.sites.usa.key') == config('panel.sites.current') ? 'active': '' }}">United States</a>--}}
+                    <a href="{{ config('panel.sites.usa.url') }}/admin" class="dropdown-item {{ config('panel.sites.usa.key') == config('panel.sites.current') ? 'active': '' }}">United States</a>
                 </div>
             </li>
             <li class="nav-item dropdown d-md-down-none">
@@ -123,16 +116,13 @@
     <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
-    {{-- <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script> --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-    @yield('scripts_before')
-    <script src="{{ asset('asset/admin/js/main.js') }}?v=0.0.0.2"></script>
-
+    <script src="{{ asset('asset/admin/js/main.js') }}"></script>
     <script>
-
         $(function() {
   let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
   let csvButtonTrans = '{{ trans('global.datatables.csv') }}'
@@ -241,7 +231,6 @@
 });
 
     </script>
-
     @yield('scripts')
 </body>
 
