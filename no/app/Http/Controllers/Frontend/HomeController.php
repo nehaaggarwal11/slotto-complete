@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Casino;
-use App\Sport;
 use App\FaqQuestion;
 use App\FaqQuestions;
 use App\Game;
 use App\News;
+use App\homeSlider;
+use App\GameCategory;
+use App\Software;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\StaticPage;
 use Illuminate\Http\Request;
@@ -23,34 +25,31 @@ class HomeController extends Controller
 
     public function index()
     {
-        $data = StaticPage::getAllFields('landing-page');
-        return view('frontend.index', compact('data'));
-    }
-
-    public function home()
-    {
+        $current_country = nj_get_current_country();
 
         $slider_casinos_ids = implode(',', @json_decode(StaticPage::getField('home', 'slider_casinos'), true) ?? []);
-        $slider_casinos = $slider_casinos_ids ? Casino::select('id', 'home_page_slider_title','info','link', 'transparent_logo_image_alt_text')
+        $slider_casinos = Casino::select('id','slug', 'home_page_slider_title','info','link', 'transparent_logo_image_alt_text')
             ->whereRaw("`id` IN ($slider_casinos_ids)")
-            ->orderByRaw("FIELD(id, $slider_casinos_ids)")
-            ->get(): null;
-            
-        $casinos_ids = implode(',', @json_decode(StaticPage::getField('home', 'casinos'), true) ?? []);
-        $casinos = $casinos_ids ? Casino::select('id','name','slug','spins', 'spins_text','bonus',
-                'bonus_text', 'wagering_requirements', 'wagering_requirements_text','rating',
-                'small_description', 'info','link','seo_title','seo_keyword','seo_description','featured_image_alt_text'
-            )->whereRaw("`id` IN ($casinos_ids)")
-            ->orderByRaw("FIELD(id, $casinos_ids)")
-            ->get(): null;    
+            ->orderByRaw("FIELD(id, $slider_casinos_ids)");
 
-        $sports_ids = implode(',', @json_decode(StaticPage::getField('home', 'sports'), true) ?? []);
-        $sports = $sports_ids ? Sport::select('id','name','slug','bonus',
-                'bonus_text', 'wagering_requirements', 'wagering_requirements_text','rating',
-                'small_description','info', 'link','seo_title','seo_keyword','seo_description','featured_image_alt_text'
-            )->whereRaw("`id` IN ($sports_ids)")
-            ->orderByRaw("FIELD(id, $sports_ids)")
-            ->get(): null;
+        if($current_country){
+            $slider_casinos = $slider_casinos->countries([$current_country]);
+        }
+
+        $slider_casinos = $slider_casinos_ids ? $slider_casinos->get(): null;
+
+        $casinos_ids = implode(',', @json_decode(StaticPage::getField('home', 'casinos'), true) ?? []);
+        $casinos = Casino::select(
+            'id', 'bg_color', 'slug', 'name', 'spins', 'spins_text', 'bonus', 'countries',
+            'bonus_text', 'wagering_requirements', 'wagering_requirements_text','rating',
+            'small_description', 'info', 'link', 'seo_title', 'seo_keyword', 'seo_description', 'featured_image_alt_text'
+        )->whereRaw("`id` IN ($casinos_ids)")
+        ->orderByRaw("FIELD(id, $casinos_ids)");
+
+        if($current_country){
+            $casinos = $casinos->countries([$current_country]);
+        }
+        $casinos = $casinos_ids ? $casinos->get(): null;
 
         $new_casino_data = StaticPage::getAllFields('new-casino');
 
@@ -89,17 +88,60 @@ class HomeController extends Controller
             ->orderByRaw("FIELD(id, $blog_ids)")
             ->get(): null;
 
+
         $faq_questions_ids = implode(',', @json_decode(StaticPage::getField('home', 'faqs'), true) ?? []);
         $faq_questions = $faq_questions_ids ? FaqQuestion::select('id','question', 'answer')
             ->whereRaw("`id` IN ($faq_questions_ids)")
             ->orderByRaw("FIELD(id, $faq_questions_ids)")
             ->get(): null;
 
-        $home_content = StaticPage::getAllFields('home');    
+        $home_content = StaticPage::getAllFields('home');
         $newsletter = StaticPage::getAllFields('newsletter');
 
-        return view('frontend.home', compact('slider_casinos', 'casinos', 'sports', 'top3_casinos', 'games', 'blog', 'faq_questions', 'home_content', 'newsletter'));
+        $slider =  homeSlider::where('status','Enable')
+            ->orderBy('order_id')
+            ->get();
+
+        return view('frontend.index', compact('slider_casinos', 'casinos', 'top3_casinos', 'games', 'blog', 'faq_questions', 'home_content','newsletter','slider'));
     }
-    
+
+    public function india(request $request)
+   {
+     if ($request->ajax()) {
+          // dd($request);
+          if ($request->type == "sub") {
+              if ($request->title == "all-games" || $request->title == "slots" ||  $request->title == "game_category") {
+                  if ($request->id == "-2") {
+                      $games = Game::latest()->take(20)->get();
+                  } else {
+                      $games = Game::where('game_category', "LIKE", '%"' . $request->id . '"%')->get();
+                  }
+              } elseif ($request->title == "volatilitet_game" || $request->title == "provider") {
+                  $games = Game::where($request->title, $request->data)->get();
+              }
+          } else {
+              if ($request->data == "all-games") {
+                  $games = Game::latest()->take(20)->get();
+              }
+              elseif($request->data == "slots" || $request->data == "game_category"){
+                  $games = Game::where('game_category', "LIKE", '%"' .$request->actChild. '"%')->get();
+              }
+              elseif($request->data == "volatilitet_game" || $request->data == "provider"){
+                  $games = Game::where($request->data, $request->actChildData)->get();
+              }
+              else{
+                  $games = Game::inRandomOrder()->take(10)->get();
+              }
+          }
+          return view('partials.game-card', compact('games'));
+      } else {
+           $page_content = StaticPage::getAllFields('india');
+          $games = Game::latest()->take(20)->get();
+          $game_cate = GameCategory::select('id', 'name')->get();
+          $software = Software::select('id', 'title', 'slug')->get();
+          return view('frontend.india', compact('games', 'page_content', 'game_cate', 'software'))->withShortcodes();
+      }
+
+   }
 
 }

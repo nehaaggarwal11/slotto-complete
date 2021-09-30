@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Casino;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\StaticPage;
+use App\FaqQuestion;
+use App\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -17,13 +19,21 @@ class NewCasinoController extends Controller
     {
         $data = StaticPage::getAllFields('new-casino');
 
-        $casinos_ids = implode(',', @$data->casinos ?? []);
-        $casinos = $casinos_ids ? Casino::select('id','name','slug','spins', 'spins_text','bonus',
-                'bonus_text','wagering_requirements', 'wagering_requirements_text','rating',
-                'small_description','info', 'link','seo_title','seo_keyword','seo_description','featured_image_alt_text'
-            )->whereRaw("`id` IN ($casinos_ids)")
-            ->orderByRaw("FIELD(id, $casinos_ids)")
-            ->get(): null;
+        $current_country = nj_get_current_country();
+        $casinos_ids = implode(',', @json_decode(StaticPage::getField('new-casino', 'casinos'), true) ?? []);
+        $popular_casinos_ids = implode(',', @json_decode(StaticPage::getField('new-casino', 'popular_casinos'), true) ?? []);
+        $casinos = Casino::select()->whereRaw("`id` IN ($casinos_ids)")
+        ->orderByRaw("FIELD(id, $casinos_ids)");
+        $popular_casinos = Casino::select()->whereRaw("`id` IN ($popular_casinos_ids)")
+        ->orderByRaw("FIELD(id, $popular_casinos_ids)");
+        if($current_country){
+            $casinos = $casinos->countries([$current_country]);
+            $popular_casinos = $popular_casinos->countries([$current_country]);
+        }
+        
+        $casinos = $casinos_ids ? $casinos->get(): null;
+
+        $popular_casinos = $popular_casinos_ids ? $popular_casinos->get(): null;
 
         $top3_casinos = [
             [
@@ -47,7 +57,19 @@ class NewCasinoController extends Controller
         ];
         $top3_casinos = json_decode(json_encode($top3_casinos));
 
-        return view('frontend.new-casinos', compact('data', 'casinos', 'top3_casinos'));
+        $faq_questions_ids = implode(',', @json_decode(StaticPage::getField('new-casino', 'faqs'), true) ?? []);
+        $faq_questions = $faq_questions_ids ? FaqQuestion::select('id','question', 'answer')
+            ->whereRaw("`id` IN ($faq_questions_ids)")
+            ->orderByRaw("FIELD(id, $faq_questions_ids)")
+            ->get(): null; 
+
+        $games_ids = implode(',', @json_decode(StaticPage::getField('new-casino', 'games'), true) ?? []);
+        $games = $games_ids ? Game::select()
+            ->whereRaw("`id` IN ($games_ids)")
+            ->orderByRaw("FIELD(id, $games_ids)")
+            ->get(): null;     
+
+        return view('frontend.new-casinos', compact('data', 'casinos', 'top3_casinos','popular_casinos','faq_questions', 'games'));
     }
 
 }
