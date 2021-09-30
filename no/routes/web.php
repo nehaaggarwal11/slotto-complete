@@ -48,7 +48,7 @@ Route::get('/home', function () {
 
 // Frontend
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
-    Route::get('/', 'HomeController@index')->name('index');
+    Route::get('/', 'HomeController@home')->name('index');
     Route::view('/index2', 'frontend.index2');
     Route::get('/hjem', 'HomeController@home')->name('home');
     Route::get('/casino/{slug}', 'CasinoController@index')->name('casino');
