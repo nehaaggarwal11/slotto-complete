@@ -52,7 +52,7 @@
                                     return new Promise(function(resolve, reject) {
                                         // Init request
                                         var xhr = new XMLHttpRequest();
-                                        xhr.open('POST', '/no/admin/casinos/ckmedia', true);
+                                        xhr.open('POST', '/admin/casinos/ckmedia', true);
                                         xhr.setRequestHeader('x-csrf-token', window._token);
                                         xhr.setRequestHeader('Accept', 'application/json');
                                         xhr.responseType = 'json';

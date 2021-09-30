@@ -31,14 +31,14 @@
                             {{ $game->bg_image_text }}
                         </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <th>
                             {{ trans('cruds.game.fields.bg_image_button_text') }}
                         </th>
                         <td>
                             {{ $game->bg_image_button_text }}
                         </td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <th>
                             {{ trans('cruds.game.fields.logo') }}
@@ -100,14 +100,14 @@
                             {{ $game->bg_image_logo_alt_text }}
                         </td>
                     </tr>
-                    <tr>
+                    {{--<tr>
                         <th>
                             {{ trans('cruds.game.fields.bg_image_button_link') }}
                         </th>
                         <td>
                             {{ $game->bg_image_button_link }}
                         </td>
-                    </tr>
+                    </tr>--}}
                     <tr>
                         <th>
                             {{ trans('cruds.game.fields.name') }}
@@ -212,7 +212,7 @@
                             {{ $game->gpi }}
                         </td>
                     </tr>
-                    
+
                 </tbody>
             </table>
             <div class="form-group">

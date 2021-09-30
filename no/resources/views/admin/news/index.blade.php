@@ -24,7 +24,7 @@
                         <th>{{ trans('cruds.news.fields.name') }}</th>
                         <th>{{ trans('cruds.news.fields.category') }}</th>
                         <th>&nbsp;</th>
-                    </tr> 
+                    </tr>
                 </thead>
                 <tbody>
                   @foreach($news as $key => $news)
@@ -34,10 +34,10 @@
                         <td>{{ $news->name ?? '' }}</td>
                         <td>{{ $news->category ?? '' }}</td>
                         <td>
-                            
-                            <a class="btn btn-xs btn-success" href="{{ $news->route }}" target="_blank">
+                            <a class="btn btn-xs btn-primary" href="{{ $news->route }}" target="_blank">
                                 {{ trans('global.slug') }}
                             </a>
+
                             @can('news_show')
                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.news.show', $news->id) }}">
                                     {{ trans('global.view') }}
@@ -61,7 +61,7 @@
                         </td>
 
                     </tr>
-                  @endforeach 
+                  @endforeach
                 </tbody>
             </table>
         </div>

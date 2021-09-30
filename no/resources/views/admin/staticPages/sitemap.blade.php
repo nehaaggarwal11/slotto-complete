@@ -20,14 +20,15 @@
                 <span class="help-block">{{ trans('cruds.staticPage.sitemap.fields.heading_helper') }}</span>
             </div>
             @php
-            /**
-                     * @var $casino from controller
-                    */
-                    $seo_title = @$data->seo_title;
-                    $seo_keyword = @$data->seo_keyword;
-                    $seo_description = @$data->seo_description;
-                    @endphp
-                    @include('partials.seoFields', compact('errors', 'seo_title', 'seo_keyword', 'seo_description'))
+                /**
+                 * @var $casino from controller
+                 */
+                $seo_title = @$data->seo_title;
+                $seo_keyword = @$data->seo_keyword;
+                $seo_description = @$data->seo_description;
+            @endphp
+
+            @include('partials.seoFields', compact('errors', 'seo_title', 'seo_keyword', 'seo_description'))
 
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

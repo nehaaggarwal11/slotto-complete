@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@can('faq_category_create')
+{{-- @can('faq_category_create') --}}
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.faq-categories.create") }}">
@@ -8,7 +8,7 @@
             </a>
         </div>
     </div>
-@endcan
+{{-- @endcan --}}
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.faqCategory.title_singular') }} {{ trans('global.list') }}
@@ -46,25 +46,25 @@
                                 {{ $faqCategory->category ?? '' }}
                             </td>
                             <td>
-                                @can('faq_category_show')
+                                {{-- @can('faq_category_show') --}}
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.faq-categories.show', $faqCategory->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
-                                @endcan
+                                {{-- @endcan
 
-                                @can('faq_category_edit')
+                                @can('faq_category_edit') --}}
                                     <a class="btn btn-xs btn-info" href="{{ route('admin.faq-categories.edit', $faqCategory->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
-                                @endcan
+                                {{-- @endcan
 
-                                @can('faq_category_delete')
+                                @can('faq_category_delete') --}}
                                     <form action="{{ route('admin.faq-categories.destroy', $faqCategory->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
-                                @endcan
+                                {{-- @endcan --}}
 
                             </td>
 

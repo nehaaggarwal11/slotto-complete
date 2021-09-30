@@ -1,8 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
 @php
     $all_games = \App\Game::all();
+    $all_casinos = \App\Casino::all();
+    $all_faqQuestions = \App\FaqQuestion::all();
 @endphp
 <div class="card">
     <div class="card-header">
@@ -25,12 +26,12 @@
                             $game = \App\Game::find($game_id)
                         @endphp
                         @if($game)
-                            <option value="{{ $game->id }}">{{ $game->name }}</option>
+                            <option value="{{ $game->id }}">{{ $game->name }} - {{$game->provider}}</option>
                         @endif
                     @endforeach
                     @foreach($all_games as $game)
                         @if(!in_array($game->id, $games))
-                            <option value="{{ $game->id }}">{{ $game->name }}</option>
+                            <option value="{{ $game->id }}">{{ $game->name }} - {{$game->provider}}</option>
                         @endif
                     @endforeach
                 </select>
@@ -78,7 +79,7 @@
 
             <div class="form-group">
                 <label for="bg_image_text">{{ trans('cruds.staticPage.all-game.fields.bg_image_text') }}</label>
-                <input class="form-control {{ $errors->has('bg_image_text') ? 'is-invalid' : '' }}" type="text" name="bg_image_text" id="bg_image_text" value="{{ old('bg_image_text', @$data->bg_image_text) }}">
+                <textarea class="form-control ckeditor {{ $errors->has('bg_image_text') ? 'is-invalid' : '' }}" type="text" name="bg_image_text" id="bg_image_text">{{ old('bg_image_text', @$data->bg_image_text) }}</textarea>
                 @if($errors->has('bg_image_text'))
                     <div class="invalid-feedback">
                         {{ $errors->first('bg_image_text') }}
@@ -87,16 +88,110 @@
                 <span class="help-block">{{ trans('cruds.staticPage.all-game.fields.bg_image_text_helper') }}</span>
             </div>
 
-            @php
-            /**
-                     * @var $data from controller
-                    */
-                    $seo_title = @$data->seo_title;
-                    $seo_keyword = @$data->seo_keyword;
-                    $seo_description = @$data->seo_description;
-                    @endphp
-                    @include('partials.seoFields', compact('errors', 'seo_title', 'seo_keyword', 'seo_description'))
+            <div class="form-group">
+                <label for="popular_casinos_heading">{{ trans('cruds.staticPage.all-game.fields.popular_casinos_heading') }}</label>
+                <input class="form-control {{ $errors->has('popular_casinos_heading') ? 'is-invalid' : '' }}" type="text" name="popular_casinos_heading" id="popular_casinos_heading" value="{{ old('popular_casinos_heading', @$data->popular_casinos_heading) }}">
+                @if($errors->has('popular_casinos_heading'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('popular_casinos_heading') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.staticPage.all-game.fields.popular_casinos_heading_helper') }}</span>
+            </div>
 
+            <div class="form-group">
+                <label class="required" for="popular_casinos">{{ trans('cruds.staticPage.all-game.fields.popular_casinos') }}</label>
+                @php
+                    $popular_casinos = old('popular_casinos', $data->popular_casinos ?? [])
+                @endphp
+                <select class="form-control custom_order select2_popular_casinos {{ $errors->has('popular_casinos') ? 'is-invalid' : '' }}" name="popular_casinos[]" id="popular_casinos" data-selected="{{ implode(",", $popular_casinos) }}" multiple required>
+                    @foreach($popular_casinos as $casino_id)
+                        @php
+                            /**
+                            * @var $casino_id from loop
+                                */
+                            $casino = \App\Casino::find($casino_id)
+                        @endphp
+                        @if($casino)
+                            <option value="{{ $casino->id }}">{{ $casino->name }}</option>
+                        @endif
+                    @endforeach
+                    @foreach($all_casinos as $casino)
+                        @if($casino && !in_array($casino->id, $popular_casinos))
+                            <option value="{{ $casino->id }}">{{ $casino->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                @if($errors->has('popular_casinos'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('popular_casinos') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.staticPage.all-game.fields.popular_casinos_helper') }}</span>
+            </div>
+
+            <div class="form-group">
+                <label for="content">{{ trans('cruds.staticPage.software.fields.content') }}</label>
+                <textarea class="form-control ckeditor {{ $errors->has('content') ? 'is-invalid' : '' }}" name="content" id="content">{!! old('content', @$data->content) !!}</textarea>
+                @if($errors->has('content'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('content') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.staticPage.software.fields.content_helper') }}</span>
+            </div>
+
+            <div class="form-group">
+                <label for="faq_heading">{{ trans('cruds.staticPage.all-game.fields.faq_heading') }}</label>
+                <input class="form-control {{ $errors->has('faq_heading') ? 'is-invalid' : '' }}" type="text" name="faq_heading" id="faq_heading" value="{{ old('faq_heading', @$data->faq_heading) }}">
+                @if($errors->has('faq_heading'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('faq_heading') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.staticPage.all-game.fields.faq_heading_helper') }}</span>
+            </div>
+
+            <div class="form-group">
+                <label class="required" for="faq">{{ trans('cruds.staticPage.all-game.fields.faq') }}</label>
+                @php
+                    $faqs = old('faqs', $data->faqs ?? [])
+                @endphp
+                <select class="form-control custom_order select2_faq {{ $errors->has('faqs') ? 'is-invalid' : '' }}" name="faqs[]" id="faqs" data-selected="{{ implode(",", $faqs) }}" multiple required>
+                    @foreach($faqs as $faq_id)
+                        @php
+                            /**
+                            * @var $faq_id from loop
+                                */
+                            $faq = \App\FaqQuestion::find($faq_id)
+                        @endphp
+                        @if($faq)
+                            <option value="{{ $faq->id }}">{{ $faq->question }}</option>
+                        @endif
+                    @endforeach
+                    @foreach($all_faqQuestions as $faq)
+                        @if($faq && !in_array($faq->id, $faqs))
+                            <option value="{{ $faq->id }}">{{ $faq->question }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                @if($errors->has('faqs'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('faqs') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.staticPage.all-game.fields.faq_helper') }}</span>
+            </div>
+
+            @php
+                /**
+                 * @var $data from controller
+                 */
+                $seo_title = @$data->seo_title;
+                $seo_keyword = @$data->seo_keyword;
+                $seo_description = @$data->seo_description;
+            @endphp
+            @include('partials.seoFields', compact('errors', 'seo_title', 'seo_keyword', 'seo_description'))
 
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
@@ -112,7 +207,28 @@
     <script>
         $(document).ready(function () {
             $('select.select2_games').select2_sortable({
-                
+
+            });
+            $('select.select2_popular_casinos').select2_sortable({
+            });
+            $('select.select2_faq').select2_sortable({
+            });
+            $('.addBtn').on('click', function () {
+                x = Math.random().toString(36).substr(2, 9);
+                $("#tableAddRow tbody").append(`
+                    <tr>
+                        <td>
+                            <input type="text" name="content[${x}][heading]" class="form-control" placeholder="Please Enter Heading">
+                        </td>
+                        <td>
+                            <textarea class="form-control" rows="5" placeholder="Please Enter Content" name="content[${x}][description]" maxlength="1030"></textarea>
+                        </td>
+                        <td><i class="fa fa-minus removeBtn"></i></td>
+                    </tr>
+                `);
+            });
+            $(document).on("click", ".removeBtn", function () {
+                $(this).parents('tr').remove();
             });
         });
 
