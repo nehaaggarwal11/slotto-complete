@@ -17,18 +17,18 @@ class StaticPageController extends Controller
 
     public function edit($page)
     {
-        abort_if(Gate::denies('static_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('static_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $data = StaticPage::getAllFields($page);
 
-        abort_if(!view()->exists('admin.staticPages.'.$page), Response::HTTP_NOT_FOUND);
+        //abort_if(!view()->exists('admin.staticPages.'.$page), Response::HTTP_NOT_FOUND);
 
         return view('admin.staticPages.'.$page, compact('page','data'));
     }
 
     public function update(UpdateStaticPageRequest $request, $page)
     {
-        abort_if(!view()->exists('admin.staticPages.'.$page), Response::HTTP_NOT_FOUND);
+        //abort_if(!view()->exists('admin.staticPages.'.$page), Response::HTTP_NOT_FOUND);
 
         StaticPage::updateAllFields($page, $request);
         return redirect()->route('admin.static-pages.edit', $page);
@@ -36,7 +36,7 @@ class StaticPageController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('static_page_create') && Gate::denies('static_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('static_page_create') && Gate::denies('static_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new StaticPage();
         $model->id     = $request->input('crud_id', 0);

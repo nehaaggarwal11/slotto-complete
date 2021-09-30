@@ -12,9 +12,9 @@ use App\Http\Requests\StoreNewsRequest;
 use App\Http\Requests\UpdateGameRequest;
 use Illuminate\Http\Request;
 use Gate;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -22,7 +22,7 @@ class NewsController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('news_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('news_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $news = News::all();
 
@@ -31,7 +31,7 @@ class NewsController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('news_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('news_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.news.create');
     }
@@ -39,7 +39,11 @@ class NewsController extends Controller
     public function store(StoreNewsRequest $request)
     {
         $data = $request->all();
+        $data['popular_casinos'] = json_encode($request->popular_casinos);
+        $data['similar_news'] = json_encode($request->similar_news);
+        $data['countries'] = implode(',', $request->countries ?? []);
         $data['slug'] = Str::slug($request->name);
+        $data['faqs'] = json_encode($request->faqs);
         $news = News::create($data);
 
         if ($request->input('logo_img', false)) {
@@ -55,19 +59,19 @@ class NewsController extends Controller
         }
 
         return redirect()->route('admin.news.index');
-        
+
     }
 
     public function show(News $news)
     {
-        abort_if(Gate::denies('news_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('news_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.news.show', compact('news'));
     }
 
     public function edit(News $news)
     {
-        abort_if(Gate::denies('news_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('news_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.news.edit', compact('news'));
     }
@@ -75,7 +79,11 @@ class NewsController extends Controller
     public function update(UpdateGameRequest $request, News $news)
     {
         $data = $request->all();
+        $data['popular_casinos'] = json_encode($request->popular_casinos);
+        $data['similar_news'] = json_encode($request->similar_news);
+        $data['countries'] = implode(',', $request->countries ?? []);
         $data['slug'] = Str::slug($request->name);
+        $data['faqs'] = json_encode($request->faqs);
         $news->update($data);
 
         if ($request->input('logo_img', false)) {
@@ -93,14 +101,14 @@ class NewsController extends Controller
         } elseif ($news->bg_image) {
             $news->bg_image->delete();
         }
-        
+
 
         return redirect()->back();
     }
 
     public function destroy(News $news)
     {
-        abort_if(Gate::denies('news_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('news_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $news->delete();
 
@@ -117,7 +125,7 @@ class NewsController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('news_create') && Gate::denies('news_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('news_create') && Gate::denies('news_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new News();
         $model->id     = $request->input('crud_id', 0);

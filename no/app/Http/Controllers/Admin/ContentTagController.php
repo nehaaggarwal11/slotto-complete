@@ -15,7 +15,7 @@ class ContentTagController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('content_tag_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_tag_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $contentTags = ContentTag::all();
 
@@ -24,7 +24,7 @@ class ContentTagController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('content_tag_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_tag_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.contentTags.create');
     }
@@ -38,7 +38,7 @@ class ContentTagController extends Controller
 
     public function edit(ContentTag $contentTag)
     {
-        abort_if(Gate::denies('content_tag_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_tag_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.contentTags.edit', compact('contentTag'));
     }
@@ -52,14 +52,14 @@ class ContentTagController extends Controller
 
     public function show(ContentTag $contentTag)
     {
-        abort_if(Gate::denies('content_tag_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_tag_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.contentTags.show', compact('contentTag'));
     }
 
     public function destroy(ContentTag $contentTag)
     {
-        abort_if(Gate::denies('content_tag_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('content_tag_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $contentTag->delete();
 

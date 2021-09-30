@@ -16,12 +16,15 @@ class SubscriberController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('subscriber_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('subscriber_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        if(in_array($s = request()->get('status'), ['subscribed', 'unsubscribed', 'pending'])){
+        if(in_array($s = request()->get('status'), ['unsubscribed', 'pending'])){
             $subscribers = Subscriber::where('status', $s)->get();
-        }else{
+        }elseif(in_array($s = request()->get('status'), ['all'])){
             $subscribers = Subscriber::all();
+        }
+        else{
+            $subscribers = Subscriber::all()->where('status', 'subscribed');
         }
 
         $filters = (object)[
@@ -33,7 +36,7 @@ class SubscriberController extends Controller
 
     public function destroy(Subscriber $subscriber)
     {
-        abort_if(Gate::denies('subscriber_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('subscriber_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $subscriber->delete();
 
@@ -58,12 +61,15 @@ class SubscriberController extends Controller
 
     public function email(Request $request)
     {
-        abort_if(Gate::denies('subscriber_send_email'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('subscriber_send_email'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $is_edit = false;
+        $gjs_assets = [];
 
         // $emails = $this->_verify_emails($request->emails);
         $emails = $request->emails;
         $templates = nj_get_email_templates();
-        return view('admin.subscribers.email', compact('emails', 'templates'));
+        return view('admin.subscribers.email', compact('emails', 'templates', 'is_edit', 'gjs_assets'));
     }
 
     private function _parse_email_content($email, $email_content)
@@ -73,10 +79,10 @@ class SubscriberController extends Controller
         $email_content = str_replace('%UNSUB%', $unsub, $email_content);
         return $email_content;
     }
-
+/** old email function
     public function sendEmail(Request $request)
     {
-        abort_if(Gate::denies('subscriber_send_email'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('subscriber_send_email'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $request->validate([
             'emails.*' => 'email|required',
@@ -92,10 +98,36 @@ class SubscriberController extends Controller
         }
         return redirect()->route('admin.subscribers.index')->with('message', 'Email was sent successfully');
     }
+**/
+  //// Bcc Style mailling fucntion
+    // public function sendBulkEmail(Request $request)
+    // {
+    //     $main_email = "news@slottomat.com";
+    //     $emails = $request->emails;
+    //     $subject = $request->subject;
+    //     $email_content = "Welcome to mail Function";
+    //     Mail::to($main_email)->bcc($emails)->send(new Newsletter($subject, $email_content));
+    //     return redirect()->route('admin.subscribers.index')->with('message', 'Email was sent successfully');
+    // }
+
+    public function sendBulkEmail(Request $request)
+    {     $request->validate([
+          'emails.*' => 'email|required',
+          'subject' => 'required'
+          ]);
+        $main_email = "news@slottomat.com";
+        $emails = $request->emails;
+        $subject = $request->subject;
+        $email_content = "Welcome to mail Function";
+        foreach ($emails as $email){
+          Mail::to($email)->send(new Newsletter($subject, $email_content));
+        }
+        return redirect()->route('admin.subscribers.index')->with('message', 'Email was sent successfully');
+    }
 
     public function emailBuilder()
     {
-        abort_if(Gate::denies('subscriber_email_builder_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('subscriber_email_builder_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.subscribers.email-builder');
     }

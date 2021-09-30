@@ -10,9 +10,10 @@ use App\Http\Requests\StoreCasinoRequest;
 use App\Http\Requests\UpdateCasinoRequest;
 use Gate;
 use Illuminate\Http\Request;
-use Spatie\MediaLibrary\Models\Media;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 
 class CasinoController extends Controller
 {
@@ -20,7 +21,7 @@ class CasinoController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('casino_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('casino_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $casinos = Casino::all();
 
@@ -29,16 +30,29 @@ class CasinoController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('casino_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('casino_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.casinos.create');
     }
 
     public function store(StoreCasinoRequest $request)
     {
-        $data = $request->all();
+       
+        $img = $request->file('bg_img');
+        $img_name = $img->getClientOriginalName();
+        $filename = date('his').'-'.$img_name;
+        $saveBg = $img->storePubliclyAs('casino-bg',$filename);
+        $data['bg_color'] = 'storage/'.$saveBg;
+
+        $data['countries'] = implode(',', $request->countries ?? []);
         $data['slug'] = Str::slug($request->name);
+        $data['popular_casinos'] = json_encode($request->popular_casinos);
+        $data['faqs'] = json_encode($request->faqs);
+        $data['games'] = json_encode($request->games);
+        //$data = $request->all();
         $casino = Casino::create($data);
+        
+        $data = $request->all();
 
         if ($request->input('featured_image', false)) {
             $casino->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image');
@@ -60,69 +74,87 @@ class CasinoController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $casino->id]);
         }
 
-        return redirect()->route('admin.casinos.index');
+       return redirect()->route('admin.casinos.index');
     }
 
     public function edit(Casino $casino)
     {
-        abort_if(Gate::denies('casino_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('casino_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.casinos.edit', compact('casino'));
     }
 
     public function update(UpdateCasinoRequest $request, Casino $casino)
     {
+
         $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $casino->update($data);
+       $data['countries'] = implode(',', $request->countries ?? []);
+       $data['slug'] = Str::slug($request->name);
+       $data['popular_casinos'] = json_encode($request->popular_casinos);
+       $data['faqs'] = json_encode($request->faqs);
+       $data['games'] = json_encode($request->games);
 
-        if ($request->input('featured_image', false)) {
-            if (!$casino->featured_image || $request->input('featured_image') !== $casino->featured_image->file_name) {
-                $casino->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image');
-            }
-        } elseif ($casino->featured_image) {
-            $casino->featured_image->delete();
-        }
+       if ($request->file('bg_img', false)) {
 
-        if ($request->input('logo_image', false)) {
-            if (!$casino->logo_image || $request->input('logo_image') !== $casino->logo_image->file_name) {
-                $casino->addMedia(storage_path('tmp/uploads/' . $request->input('logo_image')))->toMediaCollection('logo_image');
-            }
-        } elseif ($casino->logo_image) {
-            $casino->logo_image->delete();
-        }
+          $old_img = pathinfo($request->old_bg_img,PATHINFO_BASENAME);
+          Storage::delete('casino-bg/'.$old_img);
+           $img = $request->file('bg_img');
+           $img_name = $img->getClientOriginalName();
+           $filename = date('his').'-'.$img_name;
+           $saveBg = $img->storePubliclyAs('casino-bg',$filename);
+           $data['bg_color'] = 'storage/'.$saveBg;
+       }
 
-        if ($request->input('transparent_logo_image', false)) {
-            if (!$casino->transparent_logo_image || $request->input('transparent_logo_image') !== $casino->transparent_logo_image->file_name) {
-                $casino->addMedia(storage_path('tmp/uploads/' . $request->input('transparent_logo_image')))->toMediaCollection('transparent_logo_image');
-            }
-        } elseif ($casino->transparent_logo_image) {
-            $casino->transparent_logo_image->delete();
-        }
+       $casino->update($data);
 
-        if ($request->input('bg_image', false)) {
-            if (!$casino->bg_image || $request->input('bg_image') !== $casino->bg_image->file_name) {
-                $casino->addMedia(storage_path('tmp/uploads/' . $request->input('bg_image')))->toMediaCollection('bg_image');
-            }
-        } elseif ($casino->bg_image) {
-            $casino->bg_image->delete();
-        }
+       if ($request->input('featured_image', false)) {
+           if (!$casino->featured_image || $request->input('featured_image') !== $casino->featured_image->file_name) {
+               $casino->addMedia(storage_path('tmp/uploads/' . $request->input('featured_image')))->toMediaCollection('featured_image');
+           }
+       } elseif ($casino->featured_image) {
+           $casino->featured_image->delete();
+       }
 
-        return redirect()->back();
-        // return redirect()->route('admin.casinos.index');
+       if ($request->input('logo_image', false)) {
+           if (!$casino->logo_image || $request->input('logo_image') !== $casino->logo_image->file_name) {
+               $casino->addMedia(storage_path('tmp/uploads/' . $request->input('logo_image')))->toMediaCollection('logo_image');
+           }
+       } elseif ($casino->logo_image) {
+           $casino->logo_image->delete();
+       }
+
+       if ($request->input('transparent_logo_image', false)) {
+           if (!$casino->transparent_logo_image || $request->input('transparent_logo_image') !== $casino->transparent_logo_image->file_name) {
+               $casino->addMedia(storage_path('tmp/uploads/' . $request->input('transparent_logo_image')))->toMediaCollection('transparent_logo_image');
+           }
+       } elseif ($casino->transparent_logo_image) {
+           $casino->transparent_logo_image->delete();
+       }
+
+       if ($request->input('bg_image', false)) {
+           if (!$casino->bg_image || $request->input('bg_image') !== $casino->bg_image->file_name) {
+               $casino->addMedia(storage_path('tmp/uploads/' . $request->input('bg_image')))->toMediaCollection('bg_image');
+           }
+       } elseif ($casino->bg_image) {
+           $casino->bg_image->delete();
+       }
+
+       return redirect()->back();
     }
 
     public function show(Casino $casino)
     {
-        abort_if(Gate::denies('casino_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('casino_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.casinos.show', compact('casino'));
     }
 
     public function destroy(Casino $casino)
     {
-        abort_if(Gate::denies('casino_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('casino_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+         $old_img = pathinfo($casino->bg_color,PATHINFO_BASENAME);
+        storage::delete('casino-bg/'.$old_img);
         $casino->delete();
 
         return back();
@@ -137,7 +169,7 @@ class CasinoController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('casino_create') && Gate::denies('casino_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('casino_create') && Gate::denies('casino_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new Casino();
         $model->id     = $request->input('crud_id', 0);
