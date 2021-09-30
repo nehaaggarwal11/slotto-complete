@@ -2,75 +2,166 @@
 
 @section('title','Casino Bonus')
 @section('meta_tags')
-    <title>{{ $games->seo_title }}</title>
-    <meta content="{{ $games->seo_keyword }}" name="keywords">
-    <meta content="{{ $games->seo_description }}" name="description">
+    <title>{{ $game->seo_title }}</title>
+    <meta content="{{ $game->seo_keyword }}" name="keywords">
+    <meta content="{{ $game->seo_description }}" name="description">
+    <meta property="og:site_name" content="Slottomat" />
+    <meta property="og:url" content="{{ $game->route }}" />
+    <meta property="og:title" content="{{ $game->name }}" />
+    <meta property="og:description" content="{{$game->seo_description}}" />
+    <meta property="og:image" content="{{ asset($game->bg_image_logo->url??"") }}" />
+    <meta property="bt:type" content="GameReview" />
+    <meta name="date" content="{{$game->created_at}}" />
+    <meta property="og:article:modified_time" content="{{$game->updated_at}}" />
+    @section('schemaMarkup')
+    <script type="application/ld+json">
+    [
+
+      {
+        "@context": "http://schema.org",
+        "@type": "VideoGame",
+        "name": "{{ $game->name }}",
+        "url": "{{ $game->route }}",
+        "image": "{{ asset($game->bg_image_logo->url??"") }}",
+        "description" : "Read our Ted Megaways slot review and find out how to enjoy Ted’s features and 117,649 megaways. Play for free or real money now.",
+        "applicationCategory": [
+            "Game"
+        ],
+        "operatingSystem" : "Multi-platform",
+        "aggregateRating" : {
+            "@type":"AggregateRating",
+            "itemReviewed" : "{{ $game->name }} Review",
+            "ratingValue" : "4.3928571428571",
+            "ratingCount" : "28"
+        },
+        "author":{
+            "@type" : "Organization",
+            "name" : "{{ $game->provider }}",
+            "url" : "{{ $game->route }}"
+        }
+        },
+
+        {
+            "@context":"https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                @foreach($faq_questions ?? [] as $faqs)
+                    @if($loop->last)
+                        {
+                            "@type": "Question",
+                            "name": "{{ $faqs->question }}",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "{{ $faqs->question }}"
+                            }
+                        }
+                    @else
+                        {
+                            "@type": "Question",
+                            "name": "{{ $faqs->question }}",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "{{ $faqs->answer }}"
+                            }
+                        },
+                    @endif
+                @endforeach
+
+            ]
+        }
+    ]
+    </script>
+    @endsection
+
 @endsection
 @section('content')
-    <section id="single-game-section">
-        <div class="game-top-banner" style="background: url('{{ $games->bg_image ? $games->bg_image->url : '' }}') no-repeat center center / cover;">
-            <div class="game-banner-content position-absolute">
-                <img class="game-bg-logo" src="{{ $games->bg_image_logo ? $games->bg_image_logo->url : asset('asset/frontend/img/logo/game.png') }}" alt="{{ $games->bg_image_logo_alt_text }}">
-                <h1>{{$games->bg_image_text}}</h1>
-                <button onclick="window.location.href = '{{$games->bg_image_button_link}}'" target="_blank" class="play-single-btn">{{$games->bg_image_button_text}}</button>
-            </div>
-        </div>
 
-        <div class="single-game-content">
-            <div class="container-fluid">
+
+    <section id="single-game-section">
+    <div id="newHeader"  class="newHeader">
+       <img class="software-bg-logo" width="160px" style="background-color: {{ $game->bg_image_color}}" src="{{ $game->bg_image_logo ? $game->bg_image_logo->url : asset('asset/frontend/img/logo/game.png') }}" alt="{{ $game->bg_image_logo_alt_text }}">
+       <h1>{{ $game->bg_image_text }}</h1><br>
+       <div class="cBreadcrumb">
+            <span><a href="/">Hjem</a></span>
+            <span><a href="{{ route('frontend.all-games') }}">Gratis Spilleautomater</a></span>
+            <span>{{ $game->bg_image_text }}</span>
+       </div>
+    </div>
+        <div class="single-game-content sectionPTPB">
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-8 offset-md-2 pull-md-2">
+                    <div class="col-md-12 pull-md-2">
                         {{--<div class="play-game-frame">
                            <h4>Game Frame Section</h4>
                         </div>--}}
-                        @if($games->game_link)
+                        @if($game->game_link)
                         <iframe
-                            src="{{$games->game_link}}"
+                            src="{{$game->game_link}}"
                             class="game-frame"></iframe>
-                        @endif    
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row popular_casino_row">
+                    <div class="col-md-12 mb-4">
+                        <h2 class="popular-casino-card-heading">{{ @$game->popular_casino_heading }}</h2>
+                    </div>
+                </div>
+                    @include('partials.staytune', compact('casinos'))
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 pull-md-1">
+                        <div class="play-game-content mt-4">
+                            <h2>{{$game->name}}</h2>
+                            <figure class="table text-center" style="display: none;">
+                            <table>
+                                  <tr>
+                                  	<th>RTP <sup>(Tilbakebetalingsprosent)</sup></th>
+                                  	<th>Layout</th>
+                                  	<th>Gevinstlinjer</th>
+                                  	<th>Maks mynt gevinst</th>
+                                  	<th>Volatilitet</th>
+                                  	<th>Min. innsats</th>
+                                  	<th>Maks innsats</th>
+                                  </tr>
+                                  <tr>
+                                  	<td>{{$game->rtp_game}}</td>
+                                  	<td>{{$game->layout}}</td>
+                                  	<td>{{$game->gevinstlinjer}}</td>
+                                  	<td>{{$game->maks_mynt_gevinst}}</td>
+                                  	<td>{{$game->volatilitet_game}}</td>
+                                  	<td>{{$game->min_innsats}}</td>
+                                  	<td>{{$game->maks_innsats}}</td>
+                                  </tr>
+							</table>
+                            </figure>
 
-                        <div class="play-game-content">
-                            <h2>{{$games->name}}</h2>
-                            <table class="table-responsive single-game-table d-none d-lg-block d-xl-block">
-                                <tr>
-                                    <td>RTP (Tilbakebetalingsprosent)</td>
-                                    <td>{{$games->rtp_game}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Layout</td>
-                                    <td>{{$games->layout}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Gevinstlinjer</td>
-                                    <td>{{$games->gevinstlinjer}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Maks mynt gevinst</td>
-                                    <td>{{$games->maks_mynt_gevinst}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Volatilitet</td>
-                                    <td>{{$games->volatilitet_game}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Min. innsats</td>
-                                    <td>{{$games->min_innsats}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Maks innsats</td>
-                                    <td>{{$games->maks_innsats}}</td>
-                                </tr>
-                            </table>
-                            <div class="play-game-list mobile-game-table d-lg-none d-xl-none">
-                                <p>RTP (Tilbakebetalingsprosent) <span>{{$games->rtp_game}}</span></p>
-                                <p>Layout <span>{{$games->layout}}</span></p>
-                                <p>Gevinstlinjer <span>{{$games->gevinstlinjer}}</span></p>
-                                <p>Maks mynt gevinst <span>{{$games->maks_mynt_gevinst}}</span></p>
-                                <p>Volatilitet <span>{{$games->volatilitet_game}}</span></p>
-                                <p>Min. innsats <span>{{$games->min_innsats}}</span></p>
-                                <p>Maks innsats <span>{{$games->maks_innsats}}</span></p>
-                            </div>
-                            {!! $games->description !!}
+                            <div id="newTable" class="text-center mb-4">
+                                  <ul id="single-game-table">
+                                      <li class="tablehead">
+                                              <div class="tLi">RTP <sub>(Tilbakebetalingsprosent)</sub></div>
+                                              <div class="tLi">Layout</div>
+                                              <div class="tLi">Gevinstlinjer</div>
+                                              <div class="tLi">Maks mynt gevinst</div>
+                                              <div class="tLi">Volatilitet</div>
+                                              <div class="tLi">Min. innsats</div>
+                                              <div class="tLi">Maks innsats</div>
+                                          </li>
+                                          <li class="tablebody">
+                                              <div class="tLi" data-id="RTP: ">{{$game->rtp_game}}</div>
+                                              <div class="tLi"  data-id="Layout: ">{{$game->layout}}</div>
+                                              <div class="tLi" data-id="Paylines: ">{{$game->gevinstlinjer}}</div>
+                                              <div class="tLi" data-id="Max win: ">{{$game->maks_mynt_gevinst}}</div>
+                                              <div class="tLi" data-id="Volatility: ">{{$game->volatilitet_game}}</div>
+                                              <div class="tLi" data-id="Min stake: " >{{$game->min_innsats}}</div>
+                                          	  <div class="tLi" data-id="Max Bet: ">{{$game->maks_innsats}}</div>
+
+                                      </li>
+                                  </ul>
+                              </div>
+                            {!! $game->description !!}
                             {{-- <p>Gonzo's Quest har et Sør- Amerikansk azteker tema der vi blir med eventyreren Gonzo på
                                 jakt etter Eldorado, en by som er fullstendig dekket av gull!. Spillet var det første av
                                 sitt slag som var basert på en "skred" funksjon ( avalanche), og ble lansert i 2013 av
@@ -126,7 +217,69 @@
                     </div>
 
                 </div>
+                @if(!empty($similar_games))
+                <div class="row similar-games justify-content-center">
+                    <div class="col-md-12 pull-md-2">
+                        <h2 class="text-center">Similar Games</h2>
+                        <div class="row justify-content-center">
+                            @foreach($similar_games ?? [] as $similar_game)
+                                <div class="col-6 col-md-2 mb-4 game-content">
+                                    <div class="content">
+                                        <a href="{{ $similar_game->route }}">
+                                            <div class="content-overlay"></div>
+                                            <img class="content-image" src="{{ $similar_game->logo ? $similar_game->logo->getUrl('thumb') : asset('asset/frontend/img/logo/game.png') }}" alt="{{ $similar_game->logo_alt_text }}">
+                                            <div class="content-details fadeIn-top">
+                                            <span class="gameh5Span">Play {{ $similar_game->name }} demo</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if(!empty($slots) && count($slots)!=0)
+                <div class="row similar-games justify-content-center">
+                    <div class="col-md-12 pull-md-2 mb-4">
+                    @if(!empty($game->slots_heading))
+                        <h2 class="text-center">{{ $game->slots_heading }}</h2>
+                    @endif
+                        <div class="row justify-content-center">
+                            @foreach($slots ?? [] as $slot)
+                             {{-- @if($slot->name != $game->name) --}}
+                                <div class="col-6 col-md-2 mb-4 game-content">
+                                    <div class="content">
+                                        <a href="{{ $slot->route }}">
+                                            <div class="content-overlay"></div>
+                                            <img class="content-image" src="{{ $slot->logo ? $slot->logo->getUrl('thumb') : asset('asset/frontend/img/logo/game.png') }}" alt="{{ $slot->logo_alt_text }}">
+                                            <div class="content-details fadeIn-top">
+                                                <span class="gameh5Span">Play {{ $slot->name }} demo</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                               {{-- @endif --}}
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @php
+                  $faq_head = $game->faq_heading;
+                @endphp
+            @include('partials.faq',compact('faq_head','faq_questions'))
             </div>
         </div>
     </section>
+    <script>
+      $(document).ready(function(){
+        var jImgCasinoUrl = "{{ $game->bg_image_logo ? $game->bg_image_logo->url : asset('asset/frontend/img/logo/game.png') }}",
+         jImgCasinoAlt = "{{ $game->bg_image_logo_alt_text }}",
+         jCasinoName = "{{$game->name}}",
+         jCasinoLink = "no";
+        singlePop(jImgCasinoUrl,jImgCasinoAlt,jCasinoName,jCasinoLink);
+      });
+    </script>
 @endsection

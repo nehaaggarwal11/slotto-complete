@@ -7,7 +7,7 @@
     <meta content="{{ $terms->seo_description }}" name="description">
 @endsection
 @section('content')
-    <section id="terms-section-page">
+    <section id="terms-section-page" class="sectionMTMB">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

@@ -5,10 +5,47 @@
     <title>{{ $data->seo_title }}</title>
     <meta content="{{ $data->seo_keyword }}" name="keywords">
     <meta content="{{ $data->seo_description }}" name="description">
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org/",
+            "@type": ["ArchiveComponent"],
+            "name": "{{ $data->casino_heading }}"
+        },
+        {
+            "@context":"https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                @foreach($faq_questions ?? [] as $faqs)
+                    @if($loop->last)
+                        {
+                            "@type": "Question",
+                            "name": "{{ $faqs->question }}",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "{{ $faqs->question }}"
+                            }
+                        }
+                    @else
+                        {
+                            "@type": "Question",
+                            "name": "{{ $faqs->question }}",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "{{ $faqs->answer }}"
+                            }
+                        },
+                    @endif
+                @endforeach
+
+            ]
+        }
+    ]
+    </script>
 @endsection
 @section('content')
 
-    <section id="casino-bonuse">
+    <section id="casino-bonuse" class="sectionPTPB">
         <div id="background-wrap">
             <div class="x1">
                 <div class="cloud"></div>
@@ -17,12 +54,6 @@
                 <div class="cloud"></div>
             </div>
             <div class="x3">
-                <div class="cloud"></div>
-            </div>
-            <div class="x4">
-                <div class="cloud"></div>
-            </div>
-            <div class="x5">
                 <div class="cloud"></div>
             </div>
             <div class="bird-container bird-container--one">
@@ -37,77 +68,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ @$data->casino_heading }}</h1>
-                    <p>{{ @$data->casino_text }}</p>
+                    <h1 class="skyblueh">{{ @$data->casino_heading }}</h1>
+                    <p class="skyblueh text-center">{{ @$data->casino_text }}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="banner-heading">
-                        @php($tmc1_heading_icon_image = \App\StaticPage::getMediaField('casino-bonus', 'tmc1_heading_icon_image'))
-                        <img src="{{ @$tmc1_heading_icon_image->url }}" class="img-responsive" alt="{{ @$data->tmc1_heading_icon_image_alt_text }}" width="30">
-                        <h4>{{ $data->tmc1_heading_title }}</h4>
-                    </div>
-                    @php($tmc1_bg_image = \App\StaticPage::getMediaField('casino-bonus', 'tmc1_bg_image'))
-                    <div class="top-banner" style="background-image: url('{{ $tmc1_bg_image->url }}')" aria-label="{{ @$data->tmc1_bg_image_alt_text }}">
-                        <div class="first-casino-banner position-absolute">
-                            <div class="first-casino-banner-img">
-                                <div class="first-casino-banner-logo">
-                                    <img src="{{ @$tmc_casinos[0]->transparent_logo_image->url }}" alt="{{ @$tmc_casinos[0]->transparent_logo_image_alt_text }}">
-                                    <a href="{{ @$tmc_casinos[0]->route }}" class="read-review">Les anmeldelse</a>
-                                </div>
-                            </div>
-                            <div class="casino-bonus">
-                                <span class="bonus-amount">{{ @$data->tmc1_info_text }}</span>
-                            </div>
-                            <div class="review-casino-btn">
-                                <button class="btn-primary claim-btn mx-auto d-block" onclick="window.location.href = '{{ @$tmc_casinos[0]->link }}'">Hent bonus</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="banner-heading">
-                        @php($tmc2_heading_icon_image = \App\StaticPage::getMediaField('casino-bonus', 'tmc2_heading_icon_image'))
-                        <img src="{{ @$tmc2_heading_icon_image->url }}" class="img-responsive" alt="{{ @$data->tmc2_heading_icon_image_alt_text }}" width="30">
-                        <h4>{{ @$data->tmc2_heading_title }}</h4>
-                    </div>
-                    @php($tmc2_bg_image = \App\StaticPage::getMediaField('casino-bonus', 'tmc2_bg_image'))
-                    <div class="top-banner" style="background-image: url('{{ @$tmc2_bg_image->url }}')" aria-label="{{ @$data->tmc2_bg_image_alt_text }}">
-                        <div class="second-casino-banner position-absolute">
-                            <div class="second-casino-banner-img">
-                                <div class="second-casino-banner-logo">
-                                    <img src="{{ @$tmc_casinos[1]->transparent_logo_image->url }}" alt="{{ @$tmc_casinos[1]->transparent_logo_image_alt_text }}">
-                                    <a href="{{ @$tmc_casinos[1]->route }}" class="read-review">Les anmeldelse</a>
-                                </div>
-                            </div>
-                            <div class="casino-bonus">
-                                <span class="bonus-amount">{{ @$data->tmc2_info_text }}</span>
-                            </div>
-                            <div class="review-casino-btn">
-                                <button class="btn-primary claim-btn mx-auto d-block" onclick="window.location.href = '{{ @$tmc_casinos[1]->link }}'">Hent bonus</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-30 d-none d-lg-block">
-                <div class="col-md-12">
-                    @include('partials.casino-table', compact('casinos'))
-                </div>
-            </div>
-            <div class="row rating-mobile mt-4 d-block d-lg-none d-xl-none">
-                <div class="col-md-12">
-                    @include('partials.casino-table-mobile', compact('casinos'))
-                    <button class="btn btn-primary view-btn mx-auto d-block">Se Alle
-                    </button>
-                </div>
-            </div>
+                @include('partials.staytune', compact('casinos'))
         </div>
     </section>
     {{--<div class="boat-animation">
-        <img src="{{ asset('asset/frontend/img/gif/boat-casino.gif')}}" alt="">
+        <img src="{{ asset('asset/frontend/img/gif/boat-casino.gif')}}" alt="boat-casino">
     </div>--}}
     <div class="sud" style="background:#42bdf4;">
         <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
@@ -137,46 +106,29 @@
 
     </div>
 
-    <section id="casino-bonus-content">
-        <div class="container-fluid">
+    <section id="casino-bonus-content" class="casino-bonus-content sectionPTPB text-justify">
+        <div class="container">
             <div class="row">
-                <div class="col-md-2">
-                    <div class="documentaion-shap-img">
-                        <img class="d-shap-img-1 casino-jelly-img wow fadeInLeft animated"
-                             data-wow-duration="1.5s" id="leftglobe"
-                             src="{{ asset('asset/frontend/img/fishes/jelly.gif')}}" alt="rosa manet som beveger øyne og tentakler"
-                             style="visibility: visible; animation-duration: 1.5s; animation-name: bounce;">
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-                    <h2>{{ $data->free_bonus_heading }}</h2>
+                <div class="col-md-12">
+                    {!!  $data->free_bonus_heading !!}
                     {!! $data->free_bonus_text !!}
                     {!! $data->casino_bonus_penge_text_less !!}
                     <div id="more-deposit-bonuse">
                         {!! $data->casino_bonus_penge_text_more !!}
                     </div>
-                    <a id="noDeposit" href="javascript:void(0);">Les
-                        Mer</a>
+                    <a id="noDeposit" class="rmore" href="javascript:void(0);">Read More</a>
 
                     {!! $data->casino_bonus_nettcasino_text_less !!}
                     <div id="deposit-bonuse">
                         {!! $data->casino_bonus_nettcasino_text_more !!}
                     </div>
-                    <a id="deposit-read-more"
-                    href="javascript:void(0);">Les Mer</a>
+                    <a id="deposit-read-more" class="rmore"
+                    href="javascript:void(0);">Read More</a>
                     {!! $data->casino_bonus_wagering_text !!}
                 </div>
-                <div class="col-md-2">
-                    <div class="documentaion-shap-img">
-                        <img class="d-shap-img-2 casino-crab-img wow fadeInLeft animated"
-                             data-wow-duration="1.5s"
-                             src="{{ asset('asset/frontend/img/fishes/crab.gif')}}" alt="krabbe"
-                             style="visibility: visible; animation-duration: 1.5s; animation-name: bounce;">
-                    </div>
-                </div>
             </div>
+
+          
         </div>
     </section>
 @endsection
-
