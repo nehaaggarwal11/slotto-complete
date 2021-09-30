@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^slottomat.local$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^slottomat.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.slottomat.com$ [NC,OR]
+# RewriteCond %{HTTP_HOST} ^www.domain-name.com$
+RewriteCond %{REQUEST_URI} !en/
+RewriteCond %{REQUEST_URI} !us/
+RewriteCond %{REQUEST_URI} !no/
+RewriteRule (.*) /en/$1 [L]
+RewriteRule (.*) /en/$1/$2 [L]

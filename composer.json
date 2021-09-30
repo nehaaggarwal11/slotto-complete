@@ -1,0 +1,9 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^6.5",
+        "phpfastcache/phpfastcache": "^8.0",
+        "ext-json": "*",
+        "vlucas/phpdotenv": "^5.0",
+        "ext-curl": "*"
+    }
+}
