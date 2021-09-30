@@ -15,7 +15,6 @@ class Game extends Model implements HasMedia
     public $table = 'games';
 
     protected $appends = [
-        // 'slug',
         'route',
         'logo',
         'bg_image',
@@ -28,15 +27,16 @@ class Game extends Model implements HasMedia
     ];
 
     protected $fillable = [
+        'slug',
+        'game_category',
         'bg_image_text',
-        'bg_image_button_text',
         'bg_image_button_link',
         'logo_alt_text',
         'bg_image_alt_text',
         'bg_image_logo_alt_text',
+        'bg_color',
         'game_link',
         'name',
-        'slug',
         'rtp_game',
         'layout',
         'gevinstlinjer',
@@ -48,23 +48,38 @@ class Game extends Model implements HasMedia
         'provider',
         'rtp',
         'gpi',
+        'similar_games',
+        'popular_casino_heading',
+        'popular_casinos',
         'seo_title',
         'seo_keyword',
         'seo_description',
         'volatilitet',
+        'faq_heading',
+        'faqs',
+        'slots_heading',
+        'slots',
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Scope a query to only include active users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     * @param  array  $countries
+     */
+    public function scopeCountries($query, array $countries = [])
+    {
+        return $query->whereRaw('FIND_IN_SET(?,countries)', $countries);
+        //return whereIn('countries', $countries);
+    }
 
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')->width(188)->height(188);
     }
-
-    /* public function getSlugAttribute()
-    {
-        return Str::slug($this->name);
-    } */
 
     public function getRouteAttribute()
     {
@@ -105,6 +120,12 @@ class Game extends Model implements HasMedia
         }
 
         return $file;
+    }
+
+    public static function isJson($string)
+    {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 
 }

@@ -3,13 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
-    use SoftDeletes;
-
-    public $table = 'comment';
+    public $table = 'comments';
 
     protected $dates = [
         'created_at',
@@ -17,13 +14,13 @@ class Comment extends Model
     ];
 
     protected $fillable = [
-        'name',
         'news_id',
+        'name',
         'email',
         'comment',
+        'status',
         'created_at',
         'updated_at',
-        
     ];
 
     public function news()

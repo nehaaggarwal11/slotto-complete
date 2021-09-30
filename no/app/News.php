@@ -15,7 +15,6 @@ class News extends Model implements HasMedia
     public $table = 'news';
 
     protected $appends = [
-        // 'slug',
         'logo_img',
         'bg_image',
     ];
@@ -26,13 +25,21 @@ class News extends Model implements HasMedia
     ];
 
     protected $fillable = [
+        'slug',
         'category',
         'logo_img_alt_text',
         'name',
-        'slug',
         'small_description',
         'bg_image_alt_text',
         'description',
+        'description2',
+        'description3',
+        'popular_casinos_heading',
+        'popular_casinos',
+        'similar_news_title',
+        'similar_news',
+        'faq_heading',
+        'faqs',
         'seo_title',
         'seo_keyword',
         'seo_description',
@@ -40,19 +47,32 @@ class News extends Model implements HasMedia
         'updated_at',
     ];
 
+    /**
+     * Scope a query to only include active users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     * @param  array  $countries
+     */
+    public function scopeCountries($query, array $countries = [])
+    {
+        return $query->whereRaw('FIND_IN_SET(?,countries)', $countries);
+        //return whereIn('countries', $countries);
+    }
+
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')->width(150)->height(150);
     }
-    /* 
-    public function getSlugAttribute()
+
+    /*public function getSlugAttribute()
     {
         return Str::slug($this->name);
-    } */
+    }*/
 
     public function getRouteAttribute()
     {
-        return $this->slug? route('frontend.news', $this->slug): url('404');
+        return route('frontend.news', $this->slug ?? '404');
     }
 
     public function getLogoImgAttribute()
