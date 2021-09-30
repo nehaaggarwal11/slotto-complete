@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'ipinfo' => [
+        'access_token' => env('IPINFO_ACCESS_TOKEN'),
+    ],
+
+    'email_builder' => [
+        'api_endpoint' => env('EMAIL_BUILDER_API_ENDPOINT'),
+    ],
 ];
