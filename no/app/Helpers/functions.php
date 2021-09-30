@@ -94,31 +94,31 @@ if(!function_exists('nj_get_current_country')){
     }
 }
 
-if(!function_exists('nj_set_current_country_site')){
-    function nj_set_current_country_site(){
-        $req = request();
-        $que = $req->query();
-        $query = !empty($que) ? '?'.http_build_query($que): '';
-        $country = 'en';
-        switch ($country) {
-            case 'us':
-            case 'no':
-            break;
-            case 'en':
-            default:
-                $country = '';
-            break;
-        }
+// if(!function_exists('nj_set_current_country_site')){
+//     function nj_set_current_country_site(){
+//         $req = request();
+//         $que = $req->query();
+//         $query = !empty($que) ? '?'.http_build_query($que): '';
+//         $country = 'en';
+//         switch ($country) {
+//             case 'us':
+//             case 'no':
+//             break;
+//             case 'en':
+//             default:
+//                 $country = '';
+//             break;
+//         }
 
-        $new_url = $req->getSchemeAndHttpHost() .
-                    ($country?'/' .$country: '') .
-                    ($req->path() && $req->path() != "/" ? '/' .$req->path(): '');
-        if($new_url !== $req->url()){
-            $new_url .= $query;
-            header("Location: $new_url"); exit;
-        }
-    }
-}
+//         $new_url = $req->getSchemeAndHttpHost() .
+//                     ($country?'/' .$country: '') .
+//                     ($req->path() && $req->path() != "/" ? '/' .$req->path(): '');
+//         if($new_url !== $req->url()){
+//             $new_url .= $query;
+//             header("Location: $new_url"); exit;
+//         }
+//     }
+// }
 
 
 if (!function_exists('sdh_dynamic_menu')) {
