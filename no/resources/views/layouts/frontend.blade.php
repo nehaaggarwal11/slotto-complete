@@ -141,7 +141,7 @@
                         </div>
 
                 </div>
-                <a class="navbar-brand" href="{{ route('frontend.index') }}"><img src="/asset/frontend/img/logo/slottomat-logo.png" class="img-fluid" alt="Slottomat Logo"></a>
+                <a class="navbar-brand" href="{{ route('frontend.index') }}"><img src="/asset/frontend/img/logo/logo2.png" class="img-fluid" alt="Slottomat Logo"></a>
 
             </nav>
         </div>
