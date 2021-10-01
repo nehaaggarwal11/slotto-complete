@@ -65,7 +65,7 @@
 @endsection
 @section('content')
 @php
-  $faq_head = $data->faq_heading;
+  $faq_head = @$data->faq_heading;
 @endphp
     <section id="games-new-section">
         @php($bg_image = \App\StaticPage::getMediaField('software', 'bg_image'))
