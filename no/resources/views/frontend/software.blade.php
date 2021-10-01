@@ -101,10 +101,10 @@
                          @foreach($softwares as $software)
                             <div class="col-6 col-md-3 mb-4" data-id="{{ $software->id }}">
                                 <div class="content">
-                                    <a href="{{ $software->route }}">
-                                        @if($software->logo)
+                                    <a href="{{ @$software->route }}">
+                                        @if(@$software->logo)
                                         <img class="content-image obFit"
-                                            src="{{ $software->logo->getUrl('thumb') }}" alt="{{ $software->logo_alt_text }}">
+                                            src="{{ @$software->logo->getUrl('thumb') }}" alt="{{ @$software->logo_alt_text }}">
                                         @endif
                                     </a>
                                 </div>
@@ -129,7 +129,7 @@
             <div class="container-fluid">
                 <div class="row software-content">
                     <div class="col-md-10 offset-md-1 mt-4">
-                    @if(!empty($data->software_heading))
+                    @if(!empty(@$data->software_heading))
                       <h2>{{ @$data->software_heading }}</h2>
                     @endif
                       <p class="software-description">{!! @$data->software_description !!}</p>
@@ -137,7 +137,7 @@
                 </div>
 
                 <div class="col-md-10 offset-md-1">
-                  @include('partials.faq',compact('faq_head','faq_questions'));
+                  {{-- @include('partials.faq',compact('faq_head','faq_questions')); --}}
                 </div>
 
             </div>
