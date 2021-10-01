@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="google-site-verification" content="JJ46-tAVgZacw8_iRInMYZM-udNMn8k3j76HAr7LweE" />
-    @yield('meta_tags')
-    @yield('schemaMarkup')
+    <?php echo $__env->yieldContent('meta_tags'); ?>
+    <?php echo $__env->yieldContent('schemaMarkup'); ?>
     <!-- Favicons -->
-    <link href="{{asset('asset/frontend/img/logo/favicon.png')}}" rel="icon">
-    <link href="{{asset('asset/frontend/img/logo/favicon.png')}}" rel="apple-touch-icon">
+    <link href="<?php echo e(asset('asset/frontend/img/logo/favicon.png')); ?>" rel="icon">
+    <link href="<?php echo e(asset('asset/frontend/img/logo/favicon.png')); ?>" rel="apple-touch-icon">
     <!-- Bootstrap CSS File -->
-    @if(url()->current() == url('/'))
-      <link rel="stylesheet" href="{{ asset('asset/frontend/css/cdn.css') }}" >
-      <link rel="stylesheet" href="{{ asset('asset/frontend/css/index.css') }}" >
-    @elseif(url()->current()==url('/india-demo'))
-      <link rel="stylesheet" href="{{ asset('asset/frontend/css/cdn2.css') }}" >
-    @else
-      <link rel="stylesheet" href="{{ asset('asset/frontend/css/cdn.css') }}" >
-      <link rel="stylesheet" href="{{ asset('asset/frontend/css/subPage.css') }}" >
-    @endif
+    <?php if(url()->current() == url('/')): ?>
+      <link rel="stylesheet" href="<?php echo e(asset('asset/frontend/css/cdn.css')); ?>" >
+      <link rel="stylesheet" href="<?php echo e(asset('asset/frontend/css/index.css')); ?>" >
+    <?php elseif(url()->current()==url('/india-demo')): ?>
+      <link rel="stylesheet" href="<?php echo e(asset('asset/frontend/css/cdn2.css')); ?>" >
+    <?php else: ?>
+      <link rel="stylesheet" href="<?php echo e(asset('asset/frontend/css/cdn.css')); ?>" >
+      <link rel="stylesheet" href="<?php echo e(asset('asset/frontend/css/subPage.css')); ?>" >
+    <?php endif; ?>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <script src="{{asset('asset/frontend/js/jquery.js')}}"></script>
+    <script src="<?php echo e(asset('asset/frontend/js/jquery.js')); ?>"></script>
     <script>
         $(document).ready(function(){
             if(window.innerWidth > 768){
@@ -40,14 +40,14 @@
             }
         });
     </script>
-    @yield('styles')
+    <?php echo $__env->yieldContent('styles'); ?>
 </head>
 <body>
-@php
+<?php
     $menu = json_decode(@\App\Menu::find(1)->data);
     $menu_id = 0;
     //print_r(url());
-@endphp
+?>
 
 <header id="header-desk">
     <div class="container">
@@ -59,8 +59,8 @@
             <nav class="navbar navbar-expand-lg w-100">
                 <div class="oc-header oc-header--desktop">
                     <div class="navbar-collapse" id="navbarNavDropdown">
-                        <a class="nav-link" href="{{ route('frontend.all-games') }}">Gratis Spilleautomater</a>
-                        <a class="nav-link" href="{{ route('frontend.new-casinos') }}">Nye Casino</a>
+                        <a class="nav-link" href="<?php echo e(route('frontend.all-games')); ?>">Gratis Spilleautomater</a>
+                        <a class="nav-link" href="<?php echo e(route('frontend.new-casinos')); ?>">Nye Casino</a>
                     </div>
                         <div class="dropdown dropdown--open-on-hover dropdown--cats">
                             <a class="dropdown-toggler menu_arrow menuColla" role="button" href="javascript:void(0)">
@@ -70,70 +70,70 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li class="h-100">
                                     <ul class="dropdown-menu__list dropdown-menu__list--level-1">
-                                     @foreach($menu as $data)
+                                     <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <li id="menu-item-1686" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-has-children menu__link menu-item-1686">
-                                            <a href="{{ $data->href ? url($data->href) : 'javascript:void(0)' }}"><i class="{{ $data->icon }}"></i>
-                                                @php 
+                                            <a href="<?php echo e($data->href ? url($data->href) : 'javascript:void(0)'); ?>"><i class="<?php echo e($data->icon); ?>"></i>
+                                                <?php 
                                                     $id =  @$data->menu_id;
                                                     $table =  @$data->menu_type;
                                                     sdh_dynamic_menu($id,$table,$data->text);
-                                               @endphp
-                                                @if(isset($data->children))
+                                               ?>
+                                                <?php if(isset($data->children)): ?>
                                                 <span class="menu__arrow menuColla">
                                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                                     <i class="fa fa-angle-up ml-4 lgNoDis" aria-hidden="true"></i>
                                                 </span>
-                                                @endif
+                                                <?php endif; ?>
                                             </a>
-                                            @if(isset($data->children))
+                                            <?php if(isset($data->children)): ?>
                                             <div class="dropdown-menu dropdown-menu--sub dropdown-menu--level-2">
                                                 <div class="fxdc h100p">
                                                     <ul class="dropdown-menu__list dropdown-menu__list--level-2">
-                                                        @foreach($data->children as $item)
+                                                        <?php $__currentLoopData = $data->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <li id="menu-item-311" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu__link menu-item-311">
-                                                            <a href="{{ $item->href ? $item->href : 'javascript:void(0)' }}">
-                                                                    <i class="{{ $item->icon }}"></i>
-                                                                     @php 
+                                                            <a href="<?php echo e($item->href ? $item->href : 'javascript:void(0)'); ?>">
+                                                                    <i class="<?php echo e($item->icon); ?>"></i>
+                                                                     <?php 
                                                                         $id =  @$item->menu_id;
                                                                         $table =  @$item->menu_type;
                                                                         sdh_dynamic_menu($id,$table,$item->text);
-                                                                    @endphp
-                                                                @if(isset($item->children))
+                                                                    ?>
+                                                                <?php if(isset($item->children)): ?>
                                                                     <span class="menu__arrow menuColla">
                                                                         <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                                                         <i class="fa fa-angle-up ml-4 lgNoDis" aria-hidden="true"></i>
                                                                     </span>
-                                                                @endif
+                                                                <?php endif; ?>
                                                             </a>
-                                                            @if(isset($item->children))
+                                                            <?php if(isset($item->children)): ?>
                                                             <div class="dropdown-menu dropdown-menu--sub dropdown-menu--level-2">
                                                                 <div class="fxdc h100p">
                                                                     <ul class="dropdown-menu__list dropdown-menu__list--level-2">
-                                                                        @foreach($item->children as $item)
+                                                                        <?php $__currentLoopData = $item->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <li id="menu-item-311" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu__link menu-item-311">
-                                                                            <a href="{{ $item->href ? $item->href : 'javascript:void(0)' }}">
+                                                                            <a href="<?php echo e($item->href ? $item->href : 'javascript:void(0)'); ?>">
 
-                                                                                    <i class="{{ $item->icon }}"></i>
-                                                                               @php 
+                                                                                    <i class="<?php echo e($item->icon); ?>"></i>
+                                                                               <?php 
                                                                                 $id =  @$item->menu_id;
                                                                                 $table =  @$item->menu_type;
                                                                                 sdh_dynamic_menu($id,$table,$item->text);
-                                                                                @endphp
+                                                                                ?>
                                                                             </a>
                                                                         </li>
-                                                                        @endforeach
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                            @endif
+                                                            <?php endif; ?>
                                                         </li>
-                                                        @endforeach
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            @endif
+                                            <?php endif; ?>
                                         </li>
-                                    @endforeach 
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                                     </ul>
                                 </li>
                             </ul>
@@ -141,13 +141,13 @@
                         </div>
 
                 </div>
-                <a class="navbar-brand" href="{{ route('frontend.index') }}"><img src="/asset/frontend/img/logo/slottomat-logo.png" class="img-fluid" alt="Slottomat Logo"></a>
+                <a class="navbar-brand" href="<?php echo e(route('frontend.index')); ?>"><img src="/asset/frontend/img/logo/slottomat-logo.png" class="img-fluid" alt="Slottomat Logo"></a>
 
             </nav>
         </div>
     </div>
 </header>
-@yield('content')
+<?php echo $__env->yieldContent('content'); ?>
 <!--Footer-->
 <div class="sud" style="background:#0b004b;">
     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
@@ -165,11 +165,11 @@
         </g>
   </svg>
 </div>
-@php
+<?php
     $footer_menu_widget1 = json_decode(@\App\Menu::find(2)->data);
     $footer_menu_widget2 = json_decode(@\App\Menu::find(3)->data);
     $footer_menu_widget3 = json_decode(@\App\Menu::find(4)->data);
-@endphp
+?>
 <footer id="footer">
     <div class="footer-top" aria-label="skattekiste under vann">
         <div class="container">
@@ -177,26 +177,26 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                       <p class="h4Title">Sider</p>
                     <ul>
-                       @foreach($footer_menu_widget1 ?? [] as $data)
-                        <li> <a href="{{ url($data->href) }}">{{ $data->text }}</a></li>
-                        @endforeach
+                       <?php $__currentLoopData = $footer_menu_widget1 ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li> <a href="<?php echo e(url($data->href)); ?>"><?php echo e($data->text); ?></a></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 footer-links">
                       <p class="h4Title">Sider</p>
                     <ul>
-                      @foreach($footer_menu_widget2 ?? [] as $data)
-                        <li> <a  href="{{ url($data->href) }}">{{ $data->text }}</a></li>
-                        @endforeach 
+                      <?php $__currentLoopData = $footer_menu_widget2 ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li> <a  href="<?php echo e(url($data->href)); ?>"><?php echo e($data->text); ?></a></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
 
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 footer-links">
                       <p class="h4Title">Sider</p>
                     <ul>
-                         @foreach($footer_menu_widget3 ?? [] as $data)
-                        <li> <a href="{{ url($data->href) }}">{{ $data->text }}</a></li>
-                        @endforeach 
+                         <?php $__currentLoopData = $footer_menu_widget3 ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li> <a href="<?php echo e(url($data->href)); ?>"><?php echo e($data->text); ?></a></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                     </ul>
                 </div>
 
@@ -207,8 +207,8 @@
                     </p>
                     <div class="subscription-form">
                         <span>Abonner på vårt nyhetsbrev</span>
-                        <form class="subscribeForm" action="{{ route('frontend.subscribers.subscribe') }}" method="post">
-                            @csrf
+                        <form class="subscribeForm" action="<?php echo e(route('frontend.subscribers.subscribe')); ?>" method="post">
+                            <?php echo csrf_field(); ?>
                             <div class="subscribe-footer-form">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -219,8 +219,8 @@
                                     <input type="checkbox" id="agree_newsletter_footer" name="agree" value="yes">
                                     <label for="agree_newsletter_footer">
                                        Jeg aksepterer
-                                        <a href="{{ route('frontend.page.terms') }}">vilkår og betingelser </a> og
-                                        <a href="{{ route('frontend.page.privacy-policy') }}">Personvern</a>
+                                        <a href="<?php echo e(route('frontend.page.terms')); ?>">vilkår og betingelser </a> og
+                                        <a href="<?php echo e(route('frontend.page.privacy-policy')); ?>">Personvern</a>
                                     </label>
                                 </div>
                                 </div>
@@ -228,7 +228,7 @@
                         </form>
                     </div>
                     <div class="siteSelection">
-                        @include('partials.country-selector')
+                        <?php echo $__env->make('partials.country-selector', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                 </div>
             </div>
@@ -236,7 +236,7 @@
                 <div class="col-md-6">
                     <a href="https://hjelpelinjen.no/" target="_blank">
                         <div class="age">
-                            <img  src="{{ asset('asset/frontend/img/logo/18logo.png') }}" alt="a warning sign with 18+ for gambling online">
+                            <img  src="<?php echo e(asset('asset/frontend/img/logo/18logo.png')); ?>" alt="a warning sign with 18+ for gambling online">
                             Spill Ansvarlig
                         </div>
                     </a>
@@ -244,7 +244,7 @@
                 <div class="col-md-6">
                     <a href="https://hjelpelinjen.no/" target="_blank">
                         <div class="help">
-                            <img style="width:40px" src="{{ asset('asset/frontend/img/logo/help-logo.png') }}" alt="slottomat help">
+                            <img style="width:40px" src="<?php echo e(asset('asset/frontend/img/logo/help-logo.png')); ?>" alt="slottomat help">
                             Hjelpelinjen
                         </div>
                     </a>
@@ -260,7 +260,7 @@
         </div>
     </div>
 
-    {{-- <div class="container"></div> --}}
+    
 </footer><!-- #footer -->
 <!--newsletter popup-->
 
@@ -274,22 +274,22 @@
                     <div class="wf"></div>
                 </div>
                 <div class="land-wrap">
-                    <img class="img-fluid" src="{{asset('asset/frontend/img/popup/land.png')}}" alt="slot land base" />
+                    <img class="img-fluid" src="<?php echo e(asset('asset/frontend/img/popup/land.png')); ?>" alt="slot land base" />
                 </div>
                 <div class="cloud-wrap">
-                    <img  src="{{asset('asset/frontend/img/popup/clouds.png')}}" class="img-fluid w-100" alt="moving clouds slottomat" />
+                    <img  src="<?php echo e(asset('asset/frontend/img/popup/clouds.png')); ?>" class="img-fluid w-100" alt="moving clouds slottomat" />
                 </div>
                 <div class="moon-wrap casino-moon-wrap">
                     <div class="moon"></div>
                 </div>
                 <div class="tresure-wrap">
                     <div class="treasure-box">
-                        <img src="{{asset('asset/frontend/img/popup/o-box.gif')}}" class="img-fluid t-box" alt="treasure chest with golden coins of slottomat"/>
-                        <img  src="{{asset('asset/frontend/img/popup/coin.png')}}" class="img-fluid cin" alt="slottomat golden coins"/>
+                        <img src="<?php echo e(asset('asset/frontend/img/popup/o-box.gif')); ?>" class="img-fluid t-box" alt="treasure chest with golden coins of slottomat"/>
+                        <img  src="<?php echo e(asset('asset/frontend/img/popup/coin.png')); ?>" class="img-fluid cin" alt="slottomat golden coins"/>
                     </div>
                 </div>
                 <div class="caracter-wrap">
-                    <img  src="{{asset('asset/frontend/img/popup/pirate-scope.gif')}}" alt="pirate scope of slottomat" class="img-fluid" />
+                    <img  src="<?php echo e(asset('asset/frontend/img/popup/pirate-scope.gif')); ?>" alt="pirate scope of slottomat" class="img-fluid" />
                 </div>
                 <div class="pop-box">
                     <div class="provider-logo text-center pt-5 pb-3">
@@ -307,7 +307,7 @@
                         </a>
                     </div>
                     <div id="popDisagree" class="cta">
-                        <a href="{{ route('frontend.index') }}" class="decline">
+                        <a href="<?php echo e(route('frontend.index')); ?>" class="decline">
                             Decline
                         </a>
                     </div>
@@ -321,20 +321,21 @@
 <!--cookies-->
 <div class="alert text-center cookiealert" role="alert">
     <b>Vi bruker informasjonskapsler? </b> &#x1F36A;  for å sikre at du får den beste opplevelsen på vår hjemmeside. <a
-        href="{{ route('frontend.page.cookies') }}" target="_blank"> Ler mere</a>
+        href="<?php echo e(route('frontend.page.cookies')); ?>" target="_blank"> Ler mere</a>
 
     <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">
          jeg aksepterer
     </button>
 </div>
-{{-- <div id="preloader"></div> --}}
-@if(url()->current()==url('/india-demo'))
-  <script src="{{ asset('asset/frontend/js/main.js?v=1.0.0.1')}}"></script>
-@else
+
+<?php if(url()->current()==url('/india-demo')): ?>
+  <script src="<?php echo e(asset('asset/frontend/js/main.js?v=1.0.0.1')); ?>"></script>
+<?php else: ?>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- <script src="{{ asset('asset/frontend/js/main.js?v=1.0.0.1')}}"></script>
-@endif
-@yield('scripts')
+ <script src="<?php echo e(asset('asset/frontend/js/main.js?v=1.0.0.1')); ?>"></script>
+<?php endif; ?>
+<?php echo $__env->yieldContent('scripts'); ?>
 </body>
 
 </html>
+<?php /**PATH D:\laravel\slottomat-norway\resources\views/layouts/frontend.blade.php ENDPATH**/ ?>
