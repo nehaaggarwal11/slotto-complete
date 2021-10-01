@@ -8,7 +8,7 @@ class MultisiteRedirection
 {
     public function handle($request, Closure $next)
     {
-        nj_set_current_country_site();
-        return $next($request);
+        //nj_set_current_country_site();
+       // return $next($request);
     }
 }
